@@ -92,5 +92,27 @@ yarn run dev
 두개의 서버 동시 실행 가능
 --prefix client 무슨 의민지 모르겠다
 
+## 배포 설정
+```
+git branch build1
+git checkout build1
+git tag v0.1.1
+```
+git dev/production 별도 브랜치 관리
+버전별로 tag 지정, 버전은 그냥 맘대로 붙임
 
-## 
+```
+cd client
+yarn build
+```
+client폴더로 이동해서 react 소스 빌드
+이후 클라이언트 폴더의 .gitignore 수정 > 빌드 폴더 포함으로
+프로젝트 루트 폴더의 package.json에서 
+```
+  "scripts": {
+    "heroku-postbuild": "cd client && yarn install && yarn build",
+    ...
+```
+헤로쿠(Heroku) 배포를 위한 스크립트 추가
+
+헤로쿠 배포는 아직
