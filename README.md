@@ -93,4 +93,31 @@ yarn run dev
 --prefix client 무슨 의민지 모르겠다
 
 
-## 
+## 헤로쿠 설치 및 배포
+https://devcenter.heroku.com/articles/heroku-cli#windows
+Heroku CLI 다운 및 Heroku 회원 가입
+설치 완료 후
+VS Code 완전 다 껐다 키면 VS Code의 터미널 창에서 heroku 명령어 사용가능
+```
+$ heroku login
+heroku: Press any key to open up the browser to login or q to exit: 
+Opening browser to https://cli-auth.heroku.com/auth/browser/8cde79b1-77e9-4026-af02-1e6d0b67f24e
+Logging in... done
+Logged in as leilai.dev@gmail.com
+```
+
+```
+$ heroku create
+Creating app... done, ⬢ still-gorge-85907
+https://still-gorge-85907.herokuapp.com/ | https://git.heroku.com/still-gorge-85907.git
+```
+
+```
+$ git remote -v
+heroku  https://git.heroku.com/still-gorge-85907.git (fetch)
+heroku  https://git.heroku.com/still-gorge-85907.git (push)
+origin  https://github.com/leilai-dev/Project2SMD.git (fetch)
+origin  https://github.com/leilai-dev/Project2SMD.git (push)
+```
+
+여기까지 완료 후 첫 번째 배포 작업 커밋함
