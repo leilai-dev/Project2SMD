@@ -2,12 +2,13 @@
   "name": "Project2SMD",
   "version": "0.0.1",
   "description": "Team project for Semodak",
-  "main": "app.js",
+  "main": "server.js",
   "repository": "https://github.com/leilai-dev/Project2SMD.git",
   "author": "leilai-dev <leilai.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon app.js",
+    "heroku-postbuild": "cd client && yarn install && yarn build",
+    "server": "nodemon server.js",
     "client": "cd client && yarn run start --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
