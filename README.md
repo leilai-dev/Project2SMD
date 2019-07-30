@@ -126,6 +126,9 @@ origin  https://github.com/leilai-dev/Project2SMD.git (push)
 
 잘 안됨
 
-헤로쿠 들어가서 수동 배포 성공
+헤로쿠 들어가서 설정 변경하여 배포 성공
 
 https://still-gorge-85907.herokuapp.com/
+build1에 변경점 있을 경우
+git push heroku build1
+헤로쿠 저장소에 푸시하면 자동 빌드.
