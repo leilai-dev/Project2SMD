@@ -18,8 +18,13 @@ function App() {
         >
           Learn React
         </a>
+
         <a className="App-link" href="/api/greeting">
           Greeting
+        </a>
+
+        <a className="App-link" href="/main/login">
+          만들거야
         </a>
       </header>
     </div>
