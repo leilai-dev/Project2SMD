@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import Category from "./Category";
 
 function App() {
   return (
@@ -21,7 +22,15 @@ function App() {
         <a className="App-link" href="/api/greeting">
           Greeting
         </a>
+
       </header>
+
+        <div>
+          <h1> 카테고리 드롭다운</h1>
+
+
+        </div>
+      
     </div>
   );
 }

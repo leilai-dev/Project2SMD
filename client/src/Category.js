@@ -1,12 +1,11 @@
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import './Home.css'
-
+import "./Category.css";
 
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
-        
-        this.toggleNavbar =  this.toggleNavbar.bind(this);
+
+        this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
             collapse: true
         };
@@ -25,15 +24,15 @@ export default class Example extends React.Component {
                     <NavbarBrand href="/" className="mr-auto">세모닭 카테고리</NavbarBrand>
                     <NavbarToggle onclick={this.toggleNavbar} className="mr-2" />
                     <Collapse isOpen={!this.state.collapsed} navebar>
-                        <Nav navbar>  
-                        
+                        <Nav navbar>
+
                             <NavItem>
                                 <NavLink href="/components/">볼</NavLink>
                             </NavItem>
 
                             <NavItem>
                                 <NavLink href="/components/">소세지</NavLink>
-                            <NavItem>
+                            </NavItem>
 
                             <NavItem>
                                 <NavLink href="/components/">스테이크</NavLink>
@@ -54,10 +53,10 @@ export default class Example extends React.Component {
                             <NavItem>
                                 <NavLink href="/components/">훈제</NavLink>
                             </NavItem>
-                    </Nav>
-                </Collapse>
-            </Navbar>
-        </div>
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+            </div>
         );
     }
 }
