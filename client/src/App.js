@@ -31,6 +31,13 @@ function App() {
           MongoDB TEST
         </a>
       </header>
+      <form method="post" action="/mongo/signup">
+        <input type="text" placeholder="userid" name="userid" />
+        <input type="text" placeholder="password" name="password" />
+        <input type="text" placeholder="name" name="name" />
+        <input type="text" placeholder="email" name="email" />
+        <button>submit</button>
+      </form>
     </div>
   );
 }
