@@ -1,11 +1,16 @@
 import React from "react";
+import { Route, HashRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
+import Navbar from "./Navbar";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Navbar></Navbar>
+      {/* <header className="App-header">
+
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -22,20 +27,12 @@ function App() {
         <a className="App-link" href="/api/greeting">
           Greeting
         </a>
-
-        <a className="App-link" href="/main/login">
-          만들거야
-        </a>
-        
-        <a className="App-link" href="/mongo">
-          MongoDB TEST
-        </a>
-      </header>
-      <form method="post" action="/mongo/signup">
-        <input type="text" placeholder="userid" name="userid" />
-        <input type="text" placeholder="password" name="password" />
-        <input type="text" placeholder="name" name="name" />
-        <input type="text" placeholder="email" name="email" />
+      </header> */}
+      <form method="post" action="/mongo/signup" style={{paddingTop: 100}}>
+        <input type="text" name="userid" />
+        <input type="text" name="password" />
+        <input type="text" name="name" />
+        <input type="text" name="email" />
         <button>submit</button>
       </form>
     </div>

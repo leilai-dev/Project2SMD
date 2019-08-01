@@ -1,6 +1,7 @@
 var express = require('express');
 const hasher = require('pbkdf2-password')();
 const Users = require('../schemas/user');
+const Items = require('../schemas/item');
 
 module.exports = () => {
     var router = express.Router();
@@ -42,22 +43,69 @@ module.exports = () => {
     });
 
     // 로그인 요청
-    router.get('/login', (req, res) => {
+    router.post('/login', (req, res) => {
         let userid = req.body.userid;
         let password = req.body.password;
 
-        Users.findOne();
+        Users.findOne({ userid }, (err, user) => {
+            if (err) {
+                console.log(err)
+                return;
+            }
+            if (user === null) {
+                console.log("사용자 없음");
+                return res.status(401).json({ error: "USER NOT FOUND" });;
+            }
 
+            hasher({
+                password: password,
+                salt: user.salt
+            }, (err, pass, salt, hash) => {
+                console.log('hash : ', hash);
+                console.log('pass : ', user.password);
 
+                if (hash === user.password) {
+                    console.log('로그인 성공');
+                    req.session.user = user;
+                    res.redirect('/');
+                } else {
+                    console.log('패스워드가 맞지 않습니다');
+                    res.redirect('/');
+                }
+            });
+        });
     });
-    router.get('/', (req, res) => {
 
+    // 마이페이지 > 정보 수정 요청
+    router.get('/userinfo', (req, res) => {
+        let user = res.locals.user;
+        // console.log(userid);
+        if (!user)
+            return res.status(401).json({error: "Session not exist"});
+
+        let userid = user.userid;
+        Users.findOne({ userid }, (err, result) => {
+            if (err)
+                return res.json(err);
+
+            res.json(result);
+        });
     });
-    router.get('/', (req, res) => {
 
+    // 마이페이지 > 관심 상품
+    router.get('/wishlist', (req, res) => {
+        let user = res.locals.user;
+        if (!user)
+            return res.status(401).json({error: "Session not exist"});
+
+        let userid = user.userid;
+        Users.findOne({userid}, {_id:0, createdAt:1}, (err, result) => {
+            res.json(result);
+        })
     });
-    router.get('/', (req, res) => {
 
+    router.get('/itemlist', (req, res) => {
+        // Items
     });
 
     return router;

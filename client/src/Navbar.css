@@ -1,0 +1,29 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-bottom:5px solid #FFF;
+}
+
+.navbar-light .navbar-brand {
+    font-size: 30px;
+    color: white;
+}
+
+.navbar-light .navbar-brand:hover{
+    font-size: 30px;
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.navbar-light .navbar-nav .show>.nav-link {
+    color:white;
+}
