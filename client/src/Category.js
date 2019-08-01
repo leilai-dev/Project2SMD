@@ -1,7 +1,8 @@
+import React, {Component} from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import "./Category.css";
 
-export default class Example extends React.Component {
+export default class Category extends Component {
     constructor(props) {
         super(props);
 
@@ -22,7 +23,7 @@ export default class Example extends React.Component {
             <div>
                 <Navbar color="faded" light>
                     <NavbarBrand href="/" className="mr-auto">세모닭 카테고리</NavbarBrand>
-                    <NavbarToggle onclick={this.toggleNavbar} className="mr-2" />
+                    <NavbarToggler onclick={this.toggleNavbar} className="mr-2" />
                     <Collapse isOpen={!this.state.collapsed} navebar>
                         <Nav navbar>
 
@@ -60,6 +61,3 @@ export default class Example extends React.Component {
         );
     }
 }
-
-
-export default Category;
