@@ -1,9 +1,9 @@
 var express = require('express');
 const hasher = require('pbkdf2-password')();
 const Users = require('../schemas/user');
-var router = express.Router();
 
 module.exports = () => {
+    var router = express.Router();
     router.get('/', (req, res) => {
         res.send('mongodb router');
     })
@@ -23,5 +23,6 @@ module.exports = () => {
     router.get('/', (req, res) => {
         
     });
-
+    
+    return router;
 }
