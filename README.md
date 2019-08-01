@@ -159,5 +159,12 @@ git push heroku build1
 참고링크
 [단편강좌: Heroku(헤로쿠) 가입, Heroku CLI 다운로드, 간단 사용법 - A MEAN Blog] (https://www.a-mean-blog.com/ko/blog/단편강좌/_/Heroku-헤로쿠-가입-Heroku-CLI-다운로드-간단-사용법)
 
-### merge test2
-merge test2 변경내용
+# CSV to MongoDB
+```
+mongoimport --db smd --collection "items" --drop --type csv --headerline --host "localhost:27017"  --file "C:\Users\login\Downloads\items.CSV"
+```
+
+[MongoDB - CSV로 mongoimport하기 | mongodb Tutorial] (https://riptutorial.com/ko/mongodb/example/21736/csv로-mongoimport하기)
+
+[OKKY - mongoDB(몽고)에 csv 파일을 import 시키면 한글이 깨져나와요] (https://okky.kr/article/335261)
+UTF-8(BOM)으로 변경 후 한글 정상 출력
