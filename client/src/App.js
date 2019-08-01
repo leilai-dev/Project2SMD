@@ -26,6 +26,10 @@ function App() {
         <a className="App-link" href="/main/login">
           만들거야
         </a>
+        
+        <a className="App-link" href="/mongo">
+          MongoDB TEST
+        </a>
       </header>
     </div>
   );
