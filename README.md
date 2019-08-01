@@ -168,3 +168,10 @@ mongoimport --db smd --collection "items" --drop --type csv --headerline --host 
 
 [OKKY - mongoDB(몽고)에 csv 파일을 import 시키면 한글이 깨져나와요] (https://okky.kr/article/335261)
 UTF-8(BOM)으로 변경 후 한글 정상 출력
+
+## Herok mlab 몽고 DB에 업로드
+```
+mongoimport --db heroku_x7r5lscv --collection "items" --drop --type csv --headerline -h ds157857.mlab.com:57857 -u mongo -p heroku!@34 --file "C:\Users\login\Downloads\items.CSV"
+```
+[Migrating Data Into mLab | mLab Documentation & Support] (https://docs.mlab.com/migrating/)
+
