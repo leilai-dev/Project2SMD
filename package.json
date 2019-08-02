@@ -9,7 +9,7 @@
   "scripts": {
     "heroku-postbuild": "cd client && yarn install && yarn build",
     "server": "nodemon index.js",
-    "client": "cd client && yarn run start --prefix client",
+    "client": "cd client && yarn run dev --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "dependencies": {
