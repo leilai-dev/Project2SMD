@@ -20,7 +20,8 @@ const Signin = () => {
                     <Input type="password" name="password" id="examplePassword" placeholder="Enter your passoword" />
                 </FormGroup>
                 <hr />
-                <p>선택 사항</p>
+                <p className="md">선택 사항</p>
+                <p className="muted2">선택 정보는 일일 섭취 권장량 계산에 이용됩니다.</p>
                 <FormGroup>
                     <Label className="md" for="exampleSelect">활동량</Label>
                     <Input type="select" name="select" id="exampleSelect">
@@ -32,17 +33,13 @@ const Signin = () => {
                 </FormGroup>
                 
                 <FormGroup>
-                    <Label className="md" for="exampleText">Text Area</Label>
-                    <Input type="textarea" name="text" id="exampleText" />
+                        <div className="dadan"> 
+                        <Label  className="md" for="exampleEmail">신장 (cm)</Label>
+                        <Input type="number" name="tall" id="exampleEmail" placeholder="Enter your Height (cm)" />
+                        <Label  className="md" for="exampleEmail">체중 (kg)</Label>
+                        <Input type="number" name="weight" id="exampleEmail" placeholder="Enter your Weight (kg)" />
+                        </div>
                 </FormGroup>
-                <FormGroup>
-                    <Label className="md" for="exampleFile">File</Label>
-                    <Input type="file" name="file" id="exampleFile" />
-                    <FormText color="muted">
-                        자신의 프로필 사진을 넣어주세요. (선택)
-          </FormText>
-                </FormGroup>
-
                 <FormGroup tag="fieldset">
                     <p className="md">알레르기 유발 요인</p>
 
@@ -92,6 +89,16 @@ const Signin = () => {
                         </Label>
                         </div>
                     </FormGroup>
+                </FormGroup>
+
+                <FormGroup>
+                    <div className="dadan">
+                    <Label className="md2" for="exampleFile">프로필 이미지</Label>
+                    <FormText className="muted" color="muted">
+                        Select your profile image.
+                    </FormText>
+                    <Input type="file" name="file" id="exampleFile" />
+                    </div>
                 </FormGroup>
                 <Button color="primary">Sign In</Button>
             </Form>
