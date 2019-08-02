@@ -29,3 +29,26 @@ form {
     margin-bottom: 5px;
     font-size: 15px;
 }
+
+.muted{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.muted2 {
+    margin-top: 0px;
+    padding: 0;
+    margin-bottom: 15px;
+    color: gray;
+    font-size: 12px;
+}
+
+.md2 {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.dadan {
+    column-count: 2;
+}
