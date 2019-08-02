@@ -4,6 +4,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
 import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
+import SearchBar from './SearchBar';
+import Card from './cardList';
 
 class App extends Component {
   render() {
@@ -11,6 +13,7 @@ class App extends Component {
       <div className="App">
         <div>
           <Navbar />
+          <SearchBar />
         </div>
 
         <header className="App-header">
@@ -20,8 +23,9 @@ class App extends Component {
         </a>
         </header>
         <div>
+
           
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/" component={Card}/>
           <Switch>
             <Route path="/main/login:name" component={Login}/>
             <Route path="/main/login" component={Login}/>

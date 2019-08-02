@@ -5,7 +5,7 @@ import {
     UncontrolledDropdown, DropdownToggle,
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navbar.css';
+// import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 export default class Example extends React.Component {

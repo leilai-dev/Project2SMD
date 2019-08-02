@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Form, Navbar,
+    Navbar,
     InputGroup,
-    InputGroupText,
     InputGroupAddon,
     InputGroupButtonDropdown,
     InputGroupDropdown,
@@ -14,6 +13,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import { Link } from "react-router-dom";
+
 
 class SearchBar extends Component {
     constructor(props) {
@@ -51,7 +51,9 @@ class SearchBar extends Component {
                 <InputGroup>
                     <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
                         <DropdownToggle split outline>전체 카테고리</DropdownToggle>
+
                         <DropdownMenu>
+
                             <DropdownItem header >카테고리 선택</DropdownItem>
                             <DropdownItem onClick={this.handleClick}>소세지</DropdownItem>
                             <DropdownItem>스테이크</DropdownItem>
