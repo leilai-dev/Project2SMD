@@ -1,40 +1,39 @@
-import React from "react";
-import { Route, HashRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { Route, Switch} from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
+import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
 
-
-function App() {
-  return (
-    <div className="App">
-      <HashRouter>
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
         <div>
-          <Route path="/" component={Navbar}/>
+          <Navbar />
         </div>
-      </HashRouter>
 
-      <header className="App-header">
-
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <a className="App-link" href="/api/greeting">
+            Greeting
         </a>
+        </header>
+        <div>
+          
+        <Route exact path="/" component={Home}/>
+          <Switch>
+            <Route path="/main/login:name" component={Login}/>
+            <Route path="/main/login" component={Login}/>
+          </Switch>
+          
+          <Route path="/main/mylist" component={Mylist}/>
+          <Route path="/main/myinfo" component={Myinfo}/>
+          <Route path="/main/signin" component={Signin}/>
+        </div>
 
-        <a className="App-link" href="/api/greeting">
-          Greeting
-        </a>
-      </header>
-    </div>
-  );
+      </div>
+    );
+  }
 }
-
 export default App;

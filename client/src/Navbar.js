@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 export default class Example extends React.Component {
     constructor(props) {
@@ -30,18 +31,18 @@ export default class Example extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/main/login/">Log In</NavLink>
+                                <NavLink><Link to="/main/login">Log In</Link></NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/main/signin/">Sign In</NavLink>
+                                <NavLink><Link to="/main/signin">Sign In</Link></NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>내 정보</DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem href="/main/mylist">나의 관심 상품</DropdownItem>
+                                    <DropdownItem><Link to="/main/mylist">나의 관심 상품</Link></DropdownItem>
                                     <DropdownItem divider />
                                     
-                                    <DropdownItem href="/main/myinfo">회원 정보 수정</DropdownItem>
+                                    <DropdownItem><Link to="/main/myinfo">회원 정보 수정</Link></DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>
