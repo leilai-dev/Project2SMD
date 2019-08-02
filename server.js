@@ -8,6 +8,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const multer = require('multer'); // 파일 업로드용 모듈?
 const cors = require('cors');
+const item = require("./schemas/item");
 
 // 라우터 선언
 const main = require('./routes/main')();
@@ -57,8 +58,17 @@ const dbConnect = require('./schemas');
 dbConnect();
 
 // 라우팅
+
 app.use('/main', main);
 app.use('/mongo', mongoRouter);
+
+app.get('/', (req, res) => {
+  item.find({}, {_id: 0, name: 1, imgUrl: 1, kcal: 1}, (err,results) => {
+    console.log(results);
+    res.json(results);
+  });
+  
+})
 
 // App.js Greeting 예제를 위해 남겨둠
 app.get("/api/greeting", (req,res) => {

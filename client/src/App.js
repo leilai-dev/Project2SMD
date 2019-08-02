@@ -3,6 +3,7 @@ import { Route, HashRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
+import Cards from "./cardList";
 
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
         <input type="text" name="email" />
         <button>submit</button>
       </form>
+
+      <Cards></Cards>
     </div>
   );
 }
