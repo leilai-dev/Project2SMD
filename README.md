@@ -92,6 +92,29 @@ yarn run dev
 두개의 서버 동시 실행 가능
 --prefix client 무슨 의민지 모르겠다
 
+## 배포 설정
+```
+git branch build1
+git checkout build1
+git tag v0.1.1
+```
+git dev/production 별도 브랜치 관리
+버전별로 tag 지정, 버전은 그냥 맘대로 붙임
+
+```
+cd client
+yarn build
+```
+client폴더로 이동해서 react 소스 빌드
+이후 클라이언트 폴더의 .gitignore 수정 > 빌드 폴더 포함으로
+프로젝트 루트 폴더의 package.json에서 
+```
+  "scripts": {
+    "heroku-postbuild": "cd client && yarn install && yarn build",
+    ...
+```
+헤로쿠(Heroku) 배포를 위한 스크립트 추가
+
 
 ## 헤로쿠 설치 및 배포
 https://devcenter.heroku.com/articles/heroku-cli#windows
@@ -132,3 +155,23 @@ https://still-gorge-85907.herokuapp.com/
 build1에 변경점 있을 경우
 git push heroku build1
 헤로쿠 저장소에 푸시하면 자동 빌드.
+
+참고링크
+[단편강좌: Heroku(헤로쿠) 가입, Heroku CLI 다운로드, 간단 사용법 - A MEAN Blog] (https://www.a-mean-blog.com/ko/blog/단편강좌/_/Heroku-헤로쿠-가입-Heroku-CLI-다운로드-간단-사용법)
+
+# CSV to MongoDB
+```
+mongoimport --db smd --collection "items" --drop --type csv --headerline --host "localhost:27017"  --file "C:\Users\login\Downloads\items.CSV"
+```
+
+[MongoDB - CSV로 mongoimport하기 | mongodb Tutorial] (https://riptutorial.com/ko/mongodb/example/21736/csv로-mongoimport하기)
+
+[OKKY - mongoDB(몽고)에 csv 파일을 import 시키면 한글이 깨져나와요] (https://okky.kr/article/335261)
+UTF-8(BOM)으로 변경 후 한글 정상 출력
+
+## Herok mlab 몽고 DB에 업로드
+```
+mongoimport --db heroku_x7r5lscv --collection "items" --drop --type csv --headerline -h ds157857.mlab.com:57857 -u mongo -p heroku!@34 --file "C:\Users\login\Downloads\items.CSV"
+```
+[Migrating Data Into mLab | mLab Documentation & Support] (https://docs.mlab.com/migrating/)
+
