@@ -8,6 +8,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const multer = require('multer'); // 파일 업로드용 모듈?
 const cors = require('cors');
+const item = require("./schemas/item");
 
 // 라우터 선언
 const main = require('./routes/main')();

@@ -1,0 +1,54 @@
+form {
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    width: 50%;
+    text-align: left;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.left-b {
+    float: left;
+  width: 50%;  
+}
+
+.right-b{
+    float: right;
+    width: 50%;
+}
+
+.sm {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: gray;
+    font-size: 14px;
+}
+
+.md {
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.muted{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.muted2 {
+    margin-top: 0px;
+    padding: 0;
+    margin-bottom: 15px;
+    color: gray;
+    font-size: 12px;
+}
+
+.md2 {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.dadan {
+    column-count: 2;
+}

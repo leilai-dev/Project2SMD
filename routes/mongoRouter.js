@@ -81,7 +81,7 @@ module.exports = () => {
         let user = res.locals.user;
         // console.log(userid);
         if (!user)
-            return res.status(401).json({error: "Session not exist"});
+            return res.status(401).json({ error: "Session not exist" });
 
         let userid = user.userid;
         Users.findOne({ userid }, (err, result) => {
@@ -96,16 +96,21 @@ module.exports = () => {
     router.get('/wishlist', (req, res) => {
         let user = res.locals.user;
         if (!user)
-            return res.status(401).json({error: "Session not exist"});
+            return res.status(401).json({ error: "Session not exist" });
 
         let userid = user.userid;
-        Users.findOne({userid}, {_id:0, createdAt:1}, (err, result) => {
+        Users.findOne({ userid }, { _id: 0, createdAt: 1 }, (err, result) => {
             res.json(result);
         })
     });
 
     router.get('/itemlist', (req, res) => {
-        // Items
+        // Item
+        Items.find({}, { _id: 0, name: 1, imgUrl: 1, kcal: 1 }, (err, results) => {
+
+            console.log(results);
+            res.json(results);
+        })
     });
 
     return router;
