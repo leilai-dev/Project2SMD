@@ -35,12 +35,7 @@ class App extends Component {
           <SearchBar />
         </div>
 
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <a className="App-link" href="/api/greeting">
-            Greeting
-        </a>
-        </header>
+        
         <div>
 
           
