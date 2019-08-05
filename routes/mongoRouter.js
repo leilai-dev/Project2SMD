@@ -106,12 +106,27 @@ module.exports = () => {
 
     router.get('/itemlist', (req, res) => {
         // Item
-        Items.find({}, { _id: 0, name: 1, imgUrl: 1, kcal: 1 }, (err, results) => {
-
-            console.log(results);
+        console.log('요청옴');
+        Items.find ({}, {_id: 0,
+                         category: 1,
+                         name: 1,
+                         imgUrl: 1,
+                         kcal: 1,
+                         carbo: 1,
+                         protein: 1,
+                         fat: 1,
+                         sFat: 1,
+                         tFat: 1,
+                         sugar: 1,
+                         choles: 1,
+                         natrium: 1,
+                         ingredi: 1
+             }, (err,results) => {
+            
+            // console.log(results);
             res.json(results);
-        })
-    });
+            })
+        });
 
     return router;
 }

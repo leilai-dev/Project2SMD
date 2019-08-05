@@ -5,10 +5,29 @@ import "./App.css";
 import Navbar from "./Navbar";
 import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
 import SearchBar from './SearchBar';
-import Card from './cardList';
+import Cards from './cardList';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      asshole: [{name: "a"}]
+    }
+    console.log('안먹니?');
+  }
+  componentDidMount() {
+    this.getUsers();
+  }
+  getUsers = async () => {
+    let res = await axios.get("/mongo/itemlist");
+    this.setState({ asshole: res.data });
+    console.log('axios?');
+  };
   render() {
+
     return (
       <div className="App">
         <div>
@@ -25,7 +44,7 @@ class App extends Component {
         <div>
 
           
-        <Route exact path="/" component={Card}/>
+        {/* <Route exact path="/" component={Cards}/> */}
           <Switch>
             <Route path="/main/login:name" component={Login}/>
             <Route path="/main/login" component={Login}/>
@@ -35,7 +54,7 @@ class App extends Component {
           <Route path="/main/myinfo" component={Myinfo}/>
           <Route path="/main/signin" component={Signin}/>
         </div>
-
+        <Cards data={this.state.asshole}></Cards>
       </div>
     );
   }
