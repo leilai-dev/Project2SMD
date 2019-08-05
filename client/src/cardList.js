@@ -108,3 +108,5 @@ export default function Album(props) {
     </React.Fragment>
   );
 }
+
+// 수정됨
