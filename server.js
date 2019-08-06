@@ -47,7 +47,7 @@ app.use(cors());
 // 각 유저별 세션 정보 res.locals에 저장
 app.use(function (req, res, next) {
   res.locals.user = req.session.user;
-  console.log(res.locals.user);
+  console.log("Session user: ", res.locals.user);
   next();
 });
 
@@ -66,4 +66,6 @@ app.get("/api/greeting", (req,res) => {
   res.send("Hello World!")
 })
 
-app.listen(PORT);
+const server = app.listen(PORT);
+
+server.setTimeout(0);
