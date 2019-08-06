@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import {
-    Navbar,
-    InputGroup,
-    InputGroupAddon,
+    Navbar, InputGroup, InputGroupAddon,
     InputGroupButtonDropdown,
     InputGroupDropdown,
-    Input,
-    Button,
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    Input, Button, Dropdown, DropdownToggle,
+    DropdownMenu, DropdownItem
 } from 'reactstrap';
 import { Link } from "react-router-dom";
-
 
 class SearchBar extends Component {
     constructor(props) {
@@ -42,18 +35,15 @@ class SearchBar extends Component {
         console.log(e)
         console.log(e.target);
         // this.setState({
-
         // });
     }
     render() {
         return (
-            <Navbar>
+            <Navbar className="navbar2">
                 <InputGroup>
                     <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
                         <DropdownToggle split outline>전체 카테고리</DropdownToggle>
-
                         <DropdownMenu>
-
                             <DropdownItem header >카테고리 선택</DropdownItem>
                             <DropdownItem onClick={this.handleClick}>소세지</DropdownItem>
                             <DropdownItem>스테이크</DropdownItem>
@@ -64,11 +54,11 @@ class SearchBar extends Component {
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
 
-                    <Input placeholder="제품명을 입력해주세요." />
+                    <Input placeholder="브랜드명 또는 제품명을 입력해주세요." />
                     
                     <InputGroupAddon addonType="append"><Button color="secondary">검색</Button></InputGroupAddon>
                 </InputGroup>
-            </Navbar>
+                </Navbar>
         );
     }
 }

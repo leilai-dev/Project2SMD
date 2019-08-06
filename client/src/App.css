@@ -19,8 +19,20 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.ndiv1 {
+  position: fixed;
+  top:0;
+  height: 20px;
+  margin: 10px 0 10px 0;
+
+}
+
+.ndiv2 {
+  position: fixed;
+  top:40px;
+  height: 120px;
+  margin: 10px 0 10px 0;
+  
 }
 
 @keyframes App-logo-spin {

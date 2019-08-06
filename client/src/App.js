@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch} from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
-import Navbar from "./Navbar";
 import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import axios from 'axios';
+import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 class App extends Component {
   constructor(props){
@@ -27,18 +25,17 @@ class App extends Component {
     console.log('axios?');
   };
   render() {
-
     return (
       <div className="App">
-        <div>
+        <div className="ndiv1">
           <Navbar />
-          <SearchBar />
         </div>
 
+        <div className="ndiv2">
+          <SearchBar />
+        </div>
         
         <div>
-
-          
         {/* <Route exact path="/" component={Cards}/> */}
           <Switch>
             <Route path="/main/login:name" component={Login}/>
