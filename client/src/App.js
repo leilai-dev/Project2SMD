@@ -3,7 +3,7 @@ import { Route, Switch} from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
-import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
+import { Home, Login, Myinfo, Mylist, Signin, Nutrition } from 'pages';
 import SearchBar from './SearchBar';
 import Card from './cardList';
 
@@ -21,6 +21,7 @@ class App extends Component {
           <a className="App-link" href="/api/greeting">
             Greeting
         </a>
+        <Nutrition data={this.state.data}  />
         </header>
         <div>
 
