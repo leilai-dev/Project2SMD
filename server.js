@@ -66,4 +66,6 @@ app.get("/api/greeting", (req,res) => {
   res.send("Hello World!")
 })
 
-app.listen(PORT);
+const server = app.listen(PORT);
+
+server.setTimeout(0);

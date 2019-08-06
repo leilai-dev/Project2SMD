@@ -71,7 +71,7 @@ export default class Album extends Component {
 
   async componentDidMount() {
     console.log("Mounted");
-    let res = await axios.get("/mongo/testArray");
+    let res = await axios.get("/mongo/itemlist");
     console.log(res);
     this.setState( {data: res.data, isLoaded: true });
     console.log(this.state);
