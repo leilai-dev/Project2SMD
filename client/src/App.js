@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch} from "react-router-dom";
 import "./App.css";
-import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
+import { Home, Login, Myinfo, Mylist, Signin, Detail } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import axios from 'axios';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 var currentTimeDate = new Date();
 
 class App extends Component {
-
   constructor(props){
     super(props)
     this.state ={
@@ -46,7 +44,6 @@ class App extends Component {
             <Route path="/main/login:name" component={Login}/>
             <Route path="/main/login" component={Login}/>
           </Switch>
-          
           <Route path="/main/mylist" component={Mylist}/>
           <Route path="/main/myinfo" component={Myinfo}/>
           <Route path="/main/signin" component={Signin}/>
@@ -56,7 +53,13 @@ class App extends Component {
           <p><h4>{currentTimeDate.getMonth()+1}월 추천 상품</h4></p>
         <Cards data={this.state.asshole}></Cards>
         </div>
+
+        <div>
+          {/* <Sim /> */}
+          <Detail />
+        </div>
       </div>
+      
     );
   }
 }

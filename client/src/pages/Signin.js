@@ -5,7 +5,7 @@ import './Signin.css';
 const Signin = () => {
     return (
         <div border="1px solid">
-            <Form>
+            <Form className="siform">
             <h4>Sign In</h4>
         <br />
                 <p><h6>필수 사항</h6></p>

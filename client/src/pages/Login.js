@@ -5,7 +5,7 @@ import './Login.css';
 const Login = () => {
   return (
     <div border="1px soild">
-      <Form>
+      <Form className="lgform">
         <h4>Login</h4>
         <br />
         <FormGroup>
