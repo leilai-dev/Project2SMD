@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Badge, Toast, ToastBody, ToastHeader } from 'reactstrap';
 import axios from 'axios';
 
 class Detail extends Component {
@@ -23,8 +24,20 @@ class Detail extends Component {
     render() {
         let {data} = this.state;
         return (
-            <div>
-                {this.state.data.name}
+            <div className="p-3 my-2 rounded bg-docs-transparent-grid">
+              <Toast>
+                <ToastHeader>
+                  알러지 성분
+                </ToastHeader>
+                <ToastBody>
+                <h5>
+                <Badge className="adge1" color="secondary">New</Badge>
+                <Badge color="secondary">{this.state.data.name}</Badge>
+                <Badge className="adge2" color="secondary">New</Badge>
+                </h5>
+                {this.state.data.ingredi}
+                </ToastBody>
+              </Toast>
             </div>
         );
     }

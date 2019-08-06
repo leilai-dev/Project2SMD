@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-import { PropsRoute } from 'react-router-with-props'
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
 import { Home, Login, Myinfo, Mylist, Signin, Detail } from 'pages';
