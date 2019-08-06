@@ -9,3 +9,9 @@
 Button {
    float: center;
 }
+
+input.input1.form-control {
+   height: 50px;
+   width: 100%;
+}
+

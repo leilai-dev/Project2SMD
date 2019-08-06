@@ -8,7 +8,11 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+var currentTimeDate = new Date();
+
 class App extends Component {
+
   constructor(props){
     super(props)
     this.state ={
@@ -27,6 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="bigdiv">
         <div className="ndiv1">
           <Navbar />
         </div>
@@ -34,7 +39,7 @@ class App extends Component {
         <div className="ndiv2">
           <SearchBar />
         </div>
-        
+        </div>
         <div>
         {/* <Route exact path="/" component={Cards}/> */}
           <Switch>
@@ -46,7 +51,11 @@ class App extends Component {
           <Route path="/main/myinfo" component={Myinfo}/>
           <Route path="/main/signin" component={Signin}/>
         </div>
+        <div className="divrecomm">
+          <br />
+          <p><h4>{currentTimeDate.getMonth()+1}월 추천 상품</h4></p>
         <Cards data={this.state.asshole}></Cards>
+        </div>
       </div>
     );
   }

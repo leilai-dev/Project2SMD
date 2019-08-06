@@ -41,7 +41,7 @@ class SearchBar extends Component {
         return (
             <Navbar className="navbar2">
                 <InputGroup>
-                    <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
+                    <InputGroupButtonDropdown className="tog" addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
                         <DropdownToggle split outline>전체 카테고리</DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem header >카테고리 선택</DropdownItem>
@@ -56,7 +56,7 @@ class SearchBar extends Component {
 
                     <Input placeholder="브랜드명 또는 제품명을 입력해주세요." />
                     
-                    <InputGroupAddon addonType="append"><Button color="secondary">검색</Button></InputGroupAddon>
+                    <InputGroupAddon className="but" addonType="append"><Button color="secondary">검색</Button></InputGroupAddon>
                 </InputGroup>
                 </Navbar>
         );

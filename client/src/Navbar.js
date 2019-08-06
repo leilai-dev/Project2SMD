@@ -24,7 +24,6 @@ export default class Example extends React.Component {
     }
     render() {
         return (
-            <div className="navi">
                 <Navbar className="navbar1"   light expand="md">
                     <NavbarBrand href="/">세모:닭</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
@@ -48,7 +47,6 @@ export default class Example extends React.Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
         );
     }
 }
