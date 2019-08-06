@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import './cardList.css';
+
 // import Link from '@material-ui/core/Link';
 
 // function MadeWithLove() {
