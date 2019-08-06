@@ -3,11 +3,12 @@ import { Route, Switch} from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
-import { Home, Login, Myinfo, Mylist, Signin, Nutrition } from 'pages';
+import { Home, Login, Myinfo, Mylist, Signin, Nutrition, Basicinfo} from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import { Basicinfo } from './pages';
 
 
 class App extends Component {
@@ -36,7 +37,8 @@ class App extends Component {
         </div>
 
         <div>
-        <Nutrition data={this.state.data}  />
+        <Basicinfo data={this.state.data} />
+        <Nutrition data={this.state.data} />
         </div>
 
         <div>

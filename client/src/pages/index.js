@@ -4,3 +4,4 @@ export { default as Myinfo } from './Myinfo';
 export { default as Mylist } from './Mylist';
 export { default as Signin } from './Signin';
 export { default as Nutrition } from './Nutrition';
+export { default as Basicinfo } from './Basicinfo';

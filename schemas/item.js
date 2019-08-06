@@ -5,6 +5,7 @@ const itemSchema = new Schema({
 // 스프레드시트 참고하기
 // 카테고리 | 이름 | 영양성분 | ...
 // 탄수화물(g)|단백질(g)|지방(g)|트랜스지방(g)|포화지방(g)|당류(g)|콜레스테롤(mg)|나트륨(mg)
+
 category: "소세지",
 name: "맛있닭 닭가슴살소시지 훈제" ,
 imgUrl: "https://file.rankingdak.com/data/item/1421823810_l1.jpg",
