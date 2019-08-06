@@ -4,12 +4,11 @@ import { PropsRoute } from 'react-router-with-props'
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
-import { Home, Login, Myinfo, Mylist, Signin } from 'pages';
+import { Home, Login, Myinfo, Mylist, Signin, Detail } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +50,7 @@ class App extends Component {
           <Route path="/main/mylist" component={Mylist} />
           <Route path="/main/myinfo" component={Myinfo} />
           <Route path="/main/signin" component={Signin} />
+          <Route path="/detail/:id" component={Detail} />
         </div>
         {/* <Cards data={this.state.asshole}></Cards> */}
       </div>

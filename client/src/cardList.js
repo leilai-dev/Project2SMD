@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 // import Link from '@material-ui/core/Link';
 
 // function MadeWithLove() {
@@ -70,7 +71,7 @@ export default class Album extends Component {
 
   async componentDidMount() {
     console.log("Mounted");
-    let res = await axios.get("/mongo/itemlist");
+    let res = await axios.get("/mongo/testArray");
     console.log(res);
     this.setState( {data: res.data, isLoaded: true });
     console.log(this.state);
@@ -83,7 +84,13 @@ export default class Album extends Component {
     //   this.setState( {data: res.data, isLoaded: true } );
     // })
     // console.log(this.state);
-  };
+  }
+
+  testClick = (event) => {
+    console.log(event.target)
+
+    console.log(event.srcElement);
+  }
   
   // let classes = useStyles();
   // let whatni;
@@ -144,28 +151,30 @@ export default class Album extends Component {
             <Grid container spacing={4}>
               {
                 data.length ? 
-                data.map((card, index) => (
+                data.map((index) => (
                   
-                <Grid item key={card} xs={12} sm={6} md={4}>
+                <Grid item key={index._id} xs={12} sm={6} md={4}>
                   <Card className={Styles.card}>
                     <CardMedia
                       className={Styles.cardMedia}
-                      image={this.state.data[index].imgUrl}
+                      image={index.imgUrl}
                       title="Image title"
                     >
                     <CardContent className={Styles.cardContent}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        {this.state.data[index].name}
+                        {index.name}
                       </Typography>
                       <Typography>
-                        {this.state.data[index].kcal}
+                        {index.kcal}
                       </Typography>
                     </CardContent>
                     </CardMedia>
-                    <CardActions>
-                      <Button size="small" color="primary" float="right">
+                    <CardActions >
+                      <Link to={`/detail/${index._id}`} >
+                      {/* <Button size="small" color="primary" float="right" > */}
                         More
-                    </Button>
+                    {/* </Button> */}
+                    </Link>
                     </CardActions>
                   </Card>
                 </Grid>
