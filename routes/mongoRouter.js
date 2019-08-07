@@ -173,5 +173,12 @@ module.exports = () => {
         });
     });
 
+    router.get('/createIndex', (req, res) => {
+        Items.createIndexes({name:"text",description:"text"}).then(()=>{
+            console.log("index created");
+            res.json({result:"index complete"});
+        })
+    })
+
     return router;
 }
