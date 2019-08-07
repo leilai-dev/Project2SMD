@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import { Button } from 'reactstrap';
 import './tmpCard.css'
 
-class tmpCard extends Component {
+class TmpCard extends Component {
 
     render() {
         return (
@@ -35,4 +35,4 @@ class tmpCard extends Component {
     }
 }
 
-export default tmpCard;
+export default TmpCard;

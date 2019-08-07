@@ -198,7 +198,7 @@ export default class Album extends Component {
             {/* <h1>{props.data[0].name}</h1> */}
             <Grid container spacing={4}>
               {
-                data.length ? 
+                data.length > 0 ? 
                 data.map((index) => (
                   
                 <Grid item key={index._id} xs={12} sm={6} md={4}>
