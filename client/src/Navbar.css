@@ -1,68 +1,51 @@
-.navbar {
-    position: fixed;
+.navbar1 {
     top: 0;
+    margin: 10px 0 10px 0;
     width:100%;
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border-bottom:5px solid #FFF;
 }
+
+.navbar2 {
+    text-align:center;
+}
+
+.navbar {
+    margin: 10px 0 10px 0;
+    width:100%;    
+}
+
+.input-group {
+    height: 60px;
+}
+
+.form-control {
+    width: 700px;
+    height: 60px;
+    font-size: 17px; 
+    padding: 20px 20px 20px 30px;
+}
+
+.input-group>.input-group-prepend>.btn {
+    font-size: 17px;
+    padding: 10px 20px 10px 20px;
+}
+
+.input-group>.input-group-append>.btn {
+    font-size: 17px;
+    padding: 10px 20px 10px 20px;
+}
+
 a {
-    color:white;
+    color:black;
     text-decoration: none;
     background-color: transparent;
 }
 
 a:hover{
-    color: green;
+    color: black;
     text-decoration: none;
     background-color: transparent;
 }
 
 a.nav-link {
     margin: 0 5px 0 5px;
-}
-
-.navbar-nav .dropdown-menu {
-    float: none;
-    margin-top: 20px;
-}
-.dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.dropdown-item:hover {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.navbar-light .navbar-brand {
-    font-size: 20px;
-    color: white;
-    
-    margin-left: 10px;
-}
-
-.navbar-light .navbar-brand:hover{
-    font-size: 20px;
-    color: white;
-    margin-left: 10px;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: white;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-    color: white;
-}
-
-.navbar-light .navbar-nav .show>.nav-link {
-    color:white;
-}
-
-.navbar-light .navbar-toggler {
-    color: rgba(255, 255, 255, 1);
-    border-color: rgba(255, 255, 255, 1);
-}
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
-
 }

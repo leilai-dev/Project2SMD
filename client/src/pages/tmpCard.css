@@ -1,0 +1,24 @@
+.inlinecard {
+    flex-direction: column;
+    display: inline-block;
+
+    margin-left: 10px;
+}
+
+.card-body {
+    margin-top:50px;
+    width: 250px;
+    padding:0;
+}
+
+.card-img-top{
+    height: 100px;
+}
+
+.react-multi-carousel-list {
+    display: inline-block !important;
+}
+
+.btn1 {
+position: relative;
+}

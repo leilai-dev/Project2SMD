@@ -5,7 +5,7 @@ import {
     UncontrolledDropdown, DropdownToggle,
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Navbar.css';
+import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 export default class Example extends React.Component {
@@ -25,7 +25,7 @@ export default class Example extends React.Component {
     render() {
         return (
             <div className="navi">
-                <Navbar   light expand="md">
+                <Navbar className="navbar1"   light expand="md">
                     <NavbarBrand href="/">세모:닭</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>

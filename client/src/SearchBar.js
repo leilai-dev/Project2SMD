@@ -56,7 +56,7 @@ class SearchBar extends Component {
     render() {
         const { searchVal, category } = this.state;
         return (
-            <Navbar>
+            <Navbar className="navbar2">
                 <InputGroup>
                     <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
                         <DropdownToggle split outline>{category}</DropdownToggle>
@@ -73,7 +73,7 @@ class SearchBar extends Component {
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
 
-                    <Input onChange={this.updateInput} placeholder="제품명을 입력해주세요." />
+                    <Input onChange={this.updateInput} placeholder="브랜드명 또는 제품명을 입력해주세요." />
 
                     <InputGroupAddon addonType="append"><Link to={
                         category == "전체" || category == "카테고리 선택" ? (

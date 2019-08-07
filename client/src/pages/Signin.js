@@ -4,27 +4,30 @@ import './Signin.css';
 
 const Signin = () => {
     return (
+        <>
         <div border="1px solid">
-            <Form>
-                <p>필수 사항</p>
+            <Form className="siform">
+            <h4>Sign In</h4>
+        <br />
+                <p><h6>필수 사항</h6></p>
                 <FormGroup>
                     <Label  className="sm" for="exampleEmail">ID</Label>
-                    <Input type="userid" name="userid" id="exampleEmail" placeholder="Enter your new ID" />
+                    <Input className="input1" type="userid" name="userid" id="exampleEmail" placeholder="Enter your new ID" />
                 </FormGroup>
                 <FormGroup>
                     <Label  className="sm" for="exampleEmail">Email</Label>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="Enter your E-mail" />
+                    <Input className="input1" type="email" name="email" id="exampleEmail" placeholder="Enter your E-mail" />
                 </FormGroup>
                 <FormGroup>
                     <Label  className="sm" for="examplePassword">Password</Label>
-                    <Input type="password" name="password" id="examplePassword" placeholder="Enter your passoword" />
+                    <Input className="input1" type="password" name="password" id="examplePassword" placeholder="Enter your passoword" />
                 </FormGroup>
                 <hr />
-                <p className="md">선택 사항</p>
+                <p className="md"><h6>선택 사항</h6></p>
                 <p className="muted2">선택 정보는 일일 섭취 권장량 계산에 이용됩니다.</p>
                 <FormGroup>
                     <Label className="md" for="exampleSelect">활동량</Label>
-                    <Input type="select" name="select" id="exampleSelect">
+                    <Input className="input1" type="select" name="select" id="exampleSelect">
                         <option default>자신의 활동량 선택</option>
                         <option >육체 활동이 거의 없는 경우</option>
                         <option>보통의 활동을 하는 경우</option>
@@ -35,9 +38,9 @@ const Signin = () => {
                 <FormGroup>
                         <div className="dadan"> 
                         <Label  className="md" for="exampleEmail">신장 (cm)</Label>
-                        <Input type="number" name="tall" id="exampleEmail" placeholder="Enter your Height (cm)" />
+                        <Input className="input1" ype="number" name="tall" id="exampleEmail" placeholder="Enter your Height (cm)" />
                         <Label  className="md" for="exampleEmail">체중 (kg)</Label>
-                        <Input type="number" name="weight" id="exampleEmail" placeholder="Enter your Weight (kg)" />
+                        <Input className="input1" type="number" name="weight" id="exampleEmail" placeholder="Enter your Weight (kg)" />
                         </div>
                 </FormGroup>
                 <FormGroup tag="fieldset">
@@ -103,6 +106,7 @@ const Signin = () => {
                 <Button color="primary">Sign In</Button>
             </Form>
         </div>
+        </>
     );
 };
 
