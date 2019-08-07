@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-import { PropsRoute } from 'react-router-with-props'
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
@@ -9,6 +8,7 @@ import SearchBar from './SearchBar';
 import Cards from './cardList';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import { Basicinfo } from './pages';
 
 class App extends Component {
   constructor(props) {
@@ -37,6 +37,9 @@ class App extends Component {
 
 
         <div>
+        {/* <Basicinfo data={this.state.data} />
+        <Nutrition data={this.state.data} /> */}
+        </div>
 
 
           {/* <PropsRoute exact path="/" component={Cards} data={this.state.asshole} /> */}
@@ -48,12 +51,13 @@ class App extends Component {
           </Switch>
           <Route exact path="/" component={Cards} />
           <Route path="/main/mylist" component={Mylist} />
-          <Route path="/main/myinfo" component={Myinfo} />
+          <Route path="/main/myinfo" rcomponent={Myinfo} />
           <Route path="/main/signin" component={Signin} />
           <Route path="/detail/:id" component={Detail} />
+
+          {/* <Route path="/main/myinfo" render={ <Myinfo user={this.state.userInfo}></Myinfo>} /> */}
+
         </div>
-        {/* <Cards data={this.state.asshole}></Cards> */}
-      </div>
     );
   }
 }
