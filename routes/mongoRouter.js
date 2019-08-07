@@ -35,7 +35,7 @@ module.exports = () => {
                 if (err) console.log(err);
                 else {
                     console.log(result);
-                    res.status(201).json(result);
+                    res.redirect('/');
                 }
             });
 
@@ -44,9 +44,11 @@ module.exports = () => {
 
     // 로그인 요청
     router.post('/login', (req, res) => {
+        console.log(req.body);
         let userid = req.body.userid;
         let password = req.body.password;
 
+        console.log(userid);
         Users.findOne({ userid }, (err, user) => {
             if (err) {
                 console.log(err)
@@ -54,7 +56,7 @@ module.exports = () => {
             }
             if (user === null) {
                 console.log("사용자 없음");
-                return res.status(401).json({ error: "USER NOT FOUND" });;
+                return res.status(401).json({ result: false });;
             }
 
             hasher({
@@ -67,7 +69,7 @@ module.exports = () => {
                 if (hash === user.password) {
                     console.log('로그인 성공');
                     req.session.user = user;
-                    res.redirect('/');
+                    res.json({result:true, name:user.name});
                 } else {
                     console.log('패스워드가 맞지 않습니다');
                     res.redirect('/');
@@ -75,6 +77,14 @@ module.exports = () => {
             });
         });
     });
+
+    router.get('/checkUser', (req, res) => {
+        if (res.locals.user) {
+            return res.json(true);
+        }
+        else
+            return res.json(false);
+    })
 
     // 마이페이지 > 정보 수정 요청
     router.get('/userinfo', (req, res) => {

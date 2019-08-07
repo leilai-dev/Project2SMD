@@ -73,7 +73,7 @@ export default class Album extends Component {
 
   }
 
-  async shouldComponentUpdate() {
+  async componentDidUpdate() {
     console.log("willUpdate:", this.props);
     console.log(this.props.match.params);
     let res;

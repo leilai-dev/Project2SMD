@@ -19,10 +19,19 @@ const userSchema = new Schema({
     salt: String,
     name: String,
     email: String,
+    extraInfo : {
+        type: Object,
+        gender: String,
+        height: Number,
+        weight: Number,
+        age: Number,
+        allergy: Array
+    },
+    wishlist: Array,
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
 });
 
 module.exports = mongoose.model('user', userSchema);

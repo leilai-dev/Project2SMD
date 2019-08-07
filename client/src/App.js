@@ -14,10 +14,27 @@ var currentTimeDate = new Date();
 class App extends Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   asshole: { name: "a" }
-    // }
+    this.state = {
+      isLoggedIn: false
+    }
     // console.log('안먹니?');
+  }
+
+  // async componentDidMount() {
+  //   const isLoggedIn = await axios.get('/mongo/checkUser');
+  //   if (isLoggedIn) {
+      
+  //     this.setState({
+  //       isLoggedIn: isLoggedIn
+  //     })
+  //   }
+  // }
+
+  login = (formChild) => {
+    this.setState({
+      isLoggedIn: formChild,
+    })
+    console.log("Login?",this.state.isLoggedIn);
   }
 
   render() {
@@ -26,7 +43,7 @@ class App extends Component {
         <div className="bigdiv">
 
           <div className="ndiv1">
-            <Navbar />
+            <Navbar isLoggedIn={this.state.isLoggedIn} />
           </div>
 
           <div className="ndiv2">
@@ -38,7 +55,7 @@ class App extends Component {
         {/* <Route exact path="/" render={() => <Cards data={this.state.asshole} />} />*/}
         <Switch>
             <Route path="/main/login:name" component={Login} />
-            <Route path="/main/login" component={Login} />
+            <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
           </Switch>
           <Route exact path="/" render={ (props) => <Cards {...props}/> } />
           <Route path={`/search/:value`} render={ (props) => <Cards {...props} /> } />            

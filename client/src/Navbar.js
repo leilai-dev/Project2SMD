@@ -14,15 +14,24 @@ export default class Example extends React.Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            isLoggedIn: this.props.isLoggedIn,
         };
     }
+    // componentDidUpdate() {
+    //     console.log(this.props);
+    //     console.log("navbar", this.props.isLoggedIn)
+    //     // this.setState({
+    //     //     isLoggedIn: this.props.isLoggedIn
+    //     // })
+    // }
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
     render() {
+        const { isLoggedin } = this.state;
         return (
             <div className="navi">
                 <Navbar className="navbar1"   light expand="md">
@@ -30,21 +39,28 @@ export default class Example extends React.Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink><Link to="/main/login">Log In</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink><Link to="/main/signin">Sign In</Link></NavLink>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>내 정보</DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem><Link to="/main/mylist">나의 관심 상품</Link></DropdownItem>
-                                    <DropdownItem divider />
-                                    
-                                    <DropdownItem><Link to="/main/myinfo">회원 정보 수정</Link></DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
+                            {
+                                isLoggedin ? (
+                                    <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>내 정보</DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem><Link to="/main/mylist">나의 관심 상품</Link></DropdownItem>
+                                            <DropdownItem divider />
+                                            
+                                            <DropdownItem><Link to="/main/myinfo">회원 정보 수정</Link></DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                ) : (
+                                    <>
+                                    <NavItem>
+                                        <NavLink><Link to="/main/login">Log In</Link></NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink><Link to="/main/signin">Sign In</Link></NavLink>
+                                    </NavItem>
+                                    </>
+                                )
+                            }
                         </Nav>
                     </Collapse>
                 </Navbar>
