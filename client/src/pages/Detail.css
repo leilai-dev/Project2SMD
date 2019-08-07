@@ -2,3 +2,30 @@
     margin-top:170px !important;
 }
 
+.left {
+    float: left;
+    width:40%;
+    margin-right: 0;
+}
+
+.right {
+    float: right;
+    width:60%;
+    right:0;
+}
+
+
+.left .toast {
+    max-width: 500px;
+}
+
+.right .toast {
+    margin-left: 20px;
+    max-width: 1000px;
+}
+
+.th {
+    width: 15%;
+    margin-right: 5px;
+}
+
