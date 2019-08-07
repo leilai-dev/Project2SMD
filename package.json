@@ -2,14 +2,15 @@
   "name": "Project2SMD",
   "version": "0.0.1",
   "description": "Team project for Semodak",
-  "main": "server.js",
+  "main": "index.js",
   "repository": "https://github.com/leilai-dev/Project2SMD.git",
   "author": "leilai-dev <leilai.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npm-run-all --parallel start:**",
-    "start:server": "nodemon server.js",
-    "start:client": "cd client && yarn start",
+    "heroku-postbuild": "cd client && yarn install && yarn build",
+    "start": "nodemon index.js",
+    "server": "nodemon index.js",
+    "client": "cd client && yarn run dev --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "dependencies": {
@@ -35,3 +36,5 @@
     "cross-env": "^5.2.0"
   }
 }
+
+

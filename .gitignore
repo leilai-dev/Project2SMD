@@ -59,3 +59,6 @@ typings/
 
 # session 파일 제외
 sessions
+package\.json
+
+client/build/

@@ -10,6 +10,10 @@ const multer = require('multer'); // 파일 업로드용 모듈?
 const cors = require('cors');
 const item = require("./schemas/item");
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
 // 라우터 선언
 const main = require('./routes/main')();
 const mongoRouter = require('./routes/mongoRouter')();
