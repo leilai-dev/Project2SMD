@@ -120,7 +120,7 @@ module.exports = () => {
 
     // id포함 전체 아이템 리스트 받기
     router.get('/itemlist', (req, res) => {
-        req.setTimeout(0); // 504에러 방지
+        // req.setTimeout(0); // 504에러 방지
         // Item
         console.log('요청옴');
         Items.find({}, {
@@ -141,6 +141,26 @@ module.exports = () => {
         }, (err, results) => {
             res.json(results);
         })
+    });
+
+    router.get('/search/:value', (req, res) => {
+        const searchVal = req.params.value;
+        console.log("search: ", searchVal);
+        Items.find( {$text:{$search: searchVal}}, (err, result) => {
+            console.log(result);
+            res.json(result);
+        });
+    });
+
+    router.get('/searchCategory/:category/:value', (req, res) => {
+        const searchVal = req.params.value;
+        const category = req.params.category;
+
+        console.log("search: ", searchVal);
+        Items.find( {category, $text:{$search: searchVal}}, (err, result) => {
+            console.log(result);
+            res.json(result);
+        });
     });
 
     return router;

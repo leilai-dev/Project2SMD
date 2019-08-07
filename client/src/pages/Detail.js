@@ -6,11 +6,10 @@ class Detail extends Component {
         super(props);
 
         this.state = {
-            _id: this.props.match.params.id,
+            // _id: this.props.match.params.id,
             data:[]
         }
-        console.log(props);
-        console.log(this.state._id);
+        console.log(this.props.match.params);
     }
 
     async componentDidMount() {
@@ -24,7 +23,8 @@ class Detail extends Component {
         let {data} = this.state;
         return (
             <div>
-                {this.state.data.name}
+                {data.name}
+                {data.ingredi}
             </div>
         );
     }

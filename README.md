@@ -175,3 +175,8 @@ mongoimport --db heroku_x7r5lscv --collection "items" --drop --type csv --header
 ```
 [Migrating Data Into mLab | mLab Documentation & Support] (https://docs.mlab.com/migrating/)
 
+
+
+## 몽고DB 검색을 위한 인덱스 만들기
+db.items.createIndex({name:"text",description:"text"});
+db.items.find( {$text:{$search: "새우"} });

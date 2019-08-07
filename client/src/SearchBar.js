@@ -5,6 +5,7 @@ import {
     InputGroupAddon,
     InputGroupButtonDropdown,
     InputGroupDropdown,
+    FormGroup,
     Input,
     Button,
     Dropdown,
@@ -23,7 +24,9 @@ class SearchBar extends Component {
         this.toggleSplit = this.toggleSplit.bind(this);
         this.state = {
             dropdownOpen: false,
-            splitButtonOpen: false
+            splitButtonOpen: false,
+            searchVal: "",
+            category: "카테고리 선택",
         };
     }
 
@@ -39,34 +42,46 @@ class SearchBar extends Component {
         });
     }
     handleClick = (e) => {
-        console.log(e)
-        console.log(e.target);
-        // this.setState({
-
-        // });
+        // console.log(e.target.innerHTML);
+        this.setState({
+            category: e.target.innerHTML
+        });
+        console.log(this.state.category);
     }
+    updateInput = (event) => {
+        this.setState({ searchVal: event.target.value })
+        // console.log(this.state.searchVal);
+    }
+
     render() {
+        const { searchVal, category } = this.state;
         return (
             <Navbar>
                 <InputGroup>
                     <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
-                        <DropdownToggle split outline>전체 카테고리</DropdownToggle>
+                        <DropdownToggle split outline>{category}</DropdownToggle>
 
                         <DropdownMenu>
-
                             <DropdownItem header >카테고리 선택</DropdownItem>
+                            <DropdownItem onClick={this.handleClick}>전체</DropdownItem>
                             <DropdownItem onClick={this.handleClick}>소세지</DropdownItem>
-                            <DropdownItem>스테이크</DropdownItem>
-                            <DropdownItem>슬라이스</DropdownItem>
-                            <DropdownItem>육포</DropdownItem>
-                            <DropdownItem>큐브</DropdownItem>
-                            <DropdownItem>볼</DropdownItem>
+                            <DropdownItem onClick={this.handleClick}>스테이크</DropdownItem>
+                            <DropdownItem onClick={this.handleClick}>슬라이스</DropdownItem>
+                            <DropdownItem onClick={this.handleClick}>육포</DropdownItem>
+                            <DropdownItem onClick={this.handleClick}>큐브</DropdownItem>
+                            <DropdownItem onClick={this.handleClick}>볼</DropdownItem>
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
 
-                    <Input placeholder="제품명을 입력해주세요." />
-                    
-                    <InputGroupAddon addonType="append"><Button color="secondary">검색</Button></InputGroupAddon>
+                    <Input onChange={this.updateInput} placeholder="제품명을 입력해주세요." />
+
+                    <InputGroupAddon addonType="append"><Link to={
+                        category == "전체" || category == "카테고리 선택" ? (
+                            `/search/${searchVal}`
+                        ) : (
+                            `/search/${searchVal}?category=${category}`
+                        )
+                    }><Button>검색</Button></Link></InputGroupAddon>
                 </InputGroup>
             </Navbar>
         );

@@ -65,16 +65,62 @@ export default class Album extends Component {
       data: [],
       isLoaded: false,
     }
-    console.log(this.state);
+    // queries[0], queries[1]
+    // console.log(queries[0], queries[1]);
+    // console.log("cardlist props:", this.props);
 
   }
 
+  async shouldComponentUpdate() {
+    console.log("willUpdate:", this.props);
+    console.log(this.props.match.params);
+    let res;
+    // 서치일경우 > /search/:value 링크로 접근시.
+    if (this.props.match.params.value) {
+      const split = String(this.props.location.search).split("?");
+      // split[1] 값이 존재하면 카테고리 필터링 검색 수행
+      if (split[1] != null || split[1] != undefined) {
+        const queries = String(split[1]).split("=");
+        res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
+      } else
+        res = await axios.get(`/mongo/search/${this.props.match.params.value}`);
+      // console.log("search: ",this.props.match.params.value);
+    }
+    else {
+      res = await axios.get("/mongo/itemlist");
+    }
+    this.setState( {data: res.data, isLoaded: true });
+  }
   async componentDidMount() {
     console.log("Mounted");
-    let res = await axios.get("/mongo/itemlist");
-    console.log(res);
+// 서치 타입 지정
+// 필터 | 전체 | NONE
+
+    // let renderType = this.props.match.params.value;
+    // switch (searchType) {
+    //   case value:
+    //     break;
+    //   default:
+    //     break;
+    // }
+
+    let res;
+    // 서치일경우 > /search/:value 링크로 접근시.
+    if (this.props.match.params.value) {
+      const split = String(this.props.location.search).split("?");
+      // split[1] 값이 존재하면 카테고리 필터링 검색 수행
+      if (split[1] != null || split[1] != undefined) {
+        const queries = String(split[1]).split("=");
+        res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
+      } else
+        res = await axios.get(`/mongo/search/${this.props.match.params.value}`);
+      // console.log("search: ",this.props.match.params.value);
+    }
+    else {
+      res = await axios.get("/mongo/itemlist");
+    }
     this.setState( {data: res.data, isLoaded: true });
-    console.log(this.state);
+    console.log("cardlist state:", this.state);
   }
 
   getItems = async () => {

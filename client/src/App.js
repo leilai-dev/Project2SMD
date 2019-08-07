@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-import { PropsRoute } from 'react-router-with-props'
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
@@ -13,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
   constructor(props) {
     super(props)
+    console.log("App props:", this.props);
     // this.state = {
     //   asshole: { name: "a" }
     // }
@@ -46,7 +46,9 @@ class App extends Component {
             <Route path="/main/login:name" component={Login} />
             <Route path="/main/login" component={Login} />
           </Switch>
-          <Route exact path="/" component={Cards} />
+          <Route exact path="/" render={ (props) => <Cards {...props}/> } />
+          <Route path={`/search/:value`} render={ (props) => <Cards {...props} /> } />            
+
           <Route path="/main/mylist" component={Mylist} />
           <Route path="/main/myinfo" component={Myinfo} />
           <Route path="/main/signin" component={Signin} />
