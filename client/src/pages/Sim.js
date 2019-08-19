@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Carousel from "react-multi-carousel";
-import TMPCard from './tmpCard';
+import { Button } from 'reactstrap';
 import "react-multi-carousel/lib/styles.css";
-
+import Carousel from "react-multi-carousel";
+import Card from 'react-bootstrap/Card'
+import './tmpCard.css'
 
 const responsive = {
     desktop: {
@@ -23,7 +24,6 @@ const responsive = {
 };
 
 class Sim extends Component {
-
     render() {
         return (
             <div>
@@ -73,13 +73,35 @@ class Sim extends Component {
                     swipeable
                 >
 
-                    <TMPCard data={this.props.data} />
+                    <Card className="inlinecard" style={{ width: '8rem' }}>
+                        <Card.Img variant="top" src={this.props.data.imgUrl} />
+                        <Card.Body>
+                            <Card.Text>{this.props.data.name}</Card.Text>
+                            <Button className="btn1" variant="primary">Go</Button>
+                        </Card.Body>
+                    </Card>
 
-                    {/* <WithStyles
-                        description="React Carousel with Server Side Rendering Support – Part 1"
-                        headline="w3js.com - web front-end studio"
-                        image="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                    />*/}
+                    <Card className="inlinecard" style={{ width: '8rem' }}>
+                        <Card.Img variant="top" src={this.props.data.imgUrl} />
+                        <Card.Body>
+                            <Card.Text>{this.props.data.name}</Card.Text>
+                            <Button className="btn1" variant="primary">Go</Button>
+                        </Card.Body>
+                    </Card>
+                    <Card className="inlinecard" style={{ width: '8rem' }}>
+                        <Card.Img variant="top" src={this.props.data.imgUrl} />
+                        <Card.Body>
+                            <Card.Text>{this.props.data.name}</Card.Text>
+                            <Button className="btn1" variant="primary">Go</Button>
+                        </Card.Body>
+                    </Card>
+                    <Card className="inlinecard" style={{ width: '8rem' }}>
+                        <Card.Img variant="top" src={this.props.data.imgUrl} />
+                        <Card.Body>
+                            <Card.Text>{this.props.data.name}</Card.Text>
+                            <Button className="btn1" variant="primary">Go</Button>
+                        </Card.Body>
+                    </Card>
                 </Carousel>
             </div>
         );

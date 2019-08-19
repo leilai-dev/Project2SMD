@@ -121,12 +121,51 @@ module.exports = () => {
 
     router.get('/detail/:id', (req, res) => {
         console.log(req.params.id);
-        _id = req.params.id;
+        // _id = req.params.id;
 
-        Items.findOne({_id}, (err, result) => {
-            res.status(200).json(result);
-        })
+        // Items.findOne({_id}, (err, result) => {
+        //     res.status(200).json(result);
+        // })
+
+      result=[{"_id":"5d47b049f1722f83637f7a08","category":"스테이크","name":"햇살닭 아보카도 닭가슴살 스테이크 100gX10팩","imgUrl":"https://file.rankingdak.com/_data/item/da83a5f63991a1e5f44c1da4652e5483.jpg","kcal":165,"carbo":7,"protein":19,"fat":7,"sFat":2.2,"tFat":0,"sugar":3,"choles":58,"natrium":266,"ingredi":"닭가슴살 (국내산) 75.6 %, 탈지대두(미국산), 할라피노퍼퍼스(멕시코산)3.7%,함수포도당,아보카도(멕시코산)2.3 %, 농축대두단백, 건식빵가루,마늘, 청양고추,유장분말,양파분말, 미담다시마장,정제소금, 패각칼, 효모추출물,혼합제제 (아세트산나트륨, 푸마르산,팜오일,쌀겨왁스), 돌리인산나트륨,흑후추분말 닭고기, 대두,밀,우유함유"},[{"category":"스테이크","name":"허닭 일품 닭가슴살 스테이크 오리지널 100g","imgUrl":"https://file.rankingdak.com/_data/item/bdcf331fa7147755657db28c0c18d3ec.jpg","fat":4.3},{"category":"스테이크","name":"허닭 일품 닭가슴살 스테이크 불고기 100g","imgUrl":"https://file.rankingdak.com/_data/item/5f042c3869d81c8e789d3dac870a08a0.jpg","fat":4.3}],[{"category":"스테이크","name":"맛있닭 닭가슴살 스테이크 야채맛 100g","imgUrl":"https://file.rankingdak.com/_data/item/9a6656baa69f3f49d0f8730e3ce796fe.jpg","fat":4.12},{"category":"볼","name":"맛있닭 닭가슴살볼 치즈맛","imgUrl":"https://file.rankingdak.com/_data/item/1526462214_l1.jpg","fat":4.06}]]; 
+        res.status(200).json(result);
     })
+
+
+    // 제품 정보 페이지
+    router.get('/detail2/:id', async (req, res) => {
+        console.log(req.params.id);
+        _id = req.params.id;
+        results =[];
+
+        Items.findOne({_id}, (err, total) => {
+            results.push(total);
+        })
+
+        console.log('Similar Items ...');
+
+        //axois로 fat =x 가져오기... 
+        //axios로 카테고리 가져오기...
+        element='fat';
+        figure=4.17;
+        cate='소세지';
+
+        var upper = await Items.find(
+            {[element]:{$gte:figure},
+            category:{$ne:cate}},
+            {_id:0,name:1,category:1,imgUrl: 1,fat:1}).sort({fat:1}).limit(2);
+            
+        results.push(upper);
+
+        var lower = await Items.find(   
+            {[element]:{$lte:figure},
+            category:{$ne:cate}},
+            {_id:0,name:1,category:1,imgUrl: 1,fat:1}).sort({fat:-1}).limit(2);
+            results.push(lower);
+
+        res.status(200).json(results);
+    })
+
 
     // id포함 전체 아이템 리스트 받기
     router.get('/itemlist', (req, res) => {

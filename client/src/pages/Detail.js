@@ -13,14 +13,19 @@ class Detail extends Component {
             // _id: this.props.match.params.id,
             data:[]
         }
+        console.log('가취가욥');
         console.log(this.props.match.params);
     }
 
     async componentDidMount() {
+
+        
+        console.log(this.props.match.params.id);
         const res = await axios.get('/mongo/detail/' + this.props.match.params.id);
-        console.log(res.data);
+
         this.setState({
-            data: res.data
+            data: res.data[0],
+            sim: [res.data[1][0], res.data[1][1], res.data[1][0], res.data[2][1]]
         })
     }
     render() {
@@ -93,7 +98,7 @@ class Detail extends Component {
                         </ToastBody>
                     </Toast>
                     <div>
-                        {/* <Sim data={data} /> */}
+                        <Sim data={data} />
                     </div>
                 </div>
             </div>
