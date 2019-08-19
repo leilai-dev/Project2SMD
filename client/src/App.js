@@ -31,11 +31,17 @@ class App extends Component {
   //   }
   // }
 
+  componentDidMount() {
+  }
+
   login = (formChild) => {
     this.setState({
       isLoggedIn: formChild,
     })
-    console.log("Login?",this.state.isLoggedIn);
+  }
+
+  componentDidUpdate() {
+    // console.log("app didUpdate");
   }
 
   render() {
@@ -54,8 +60,8 @@ class App extends Component {
 
         {/* <PropsRoute exact path="/" component={Cards} data={this.state.asshole} /> */}
         {/* <Route exact path="/" render={() => <Cards data={this.state.asshole} />} />*/}
-        <Switch>
-            <Route path="/main/login:name" component={Login} />
+          <Switch>
+            <Route path="/main/login/:name" component={Login} />
             <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
           </Switch>
           <Route exact path="/" render={ (props) => <Cards {...props}/> } />
