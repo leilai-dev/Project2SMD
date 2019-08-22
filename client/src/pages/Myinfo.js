@@ -6,14 +6,21 @@ import Axios from 'axios';
 
 
 class Myinfo extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state ={
-    //         data:{},
-    //     }
-    //     console.log(data);
-    // }
+        this.state ={
+            data:{},
+        }
+        console.log(this.props.match.params);
+    }
+
+    async componentDidMount() {
+        const res = await Axios.get('/mongo/userinfo/' + this.props.match.params.id);
+        console.log(res.data);
+        this.setState({
+            data: res.data
+        })
 
     // componentDidMount() {
     //     Axios.get('/mongo/userinfo')
@@ -22,7 +29,7 @@ class Myinfo extends Component {
     //             data:res.data
     //         });
     //     });
-    // }
+    }
     
     render() {
         return (

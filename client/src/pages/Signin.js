@@ -24,7 +24,7 @@ class Signin extends Component {
             <>
                 <div border="1px solid">
                     <Form className="siform" onSubmit={this.handleSubmit}>
-                        <h4>Sign In</h4>
+                        <h4>Sign Up</h4>
                         <br />
                         <p><h6>필수 사항</h6></p>
                         <FormGroup>

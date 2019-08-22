@@ -56,7 +56,7 @@ export default class Example extends React.Component {
                                         <NavLink><Link to="/main/login">Log In</Link></NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink><Link to="/main/signin">Sign In</Link></NavLink>
+                                        <NavLink><Link to="/main/signin">Sign Up</Link></NavLink>
                                     </NavItem>
                                     </>
                                 )

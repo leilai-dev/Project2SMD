@@ -18,7 +18,10 @@ const userSchema = new Schema({
     },
     salt: String,
     name: String,
-    email: String,
+    email:{
+        type: String,
+        unique:true,
+    },
     extraInfo : {
         type: Object,
         gender: String,

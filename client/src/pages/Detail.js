@@ -3,7 +3,7 @@ import { Badge, Toast, ToastBody, ToastHeader, Button } from 'reactstrap';
 import './Detail.css';
 import Image from 'react-bootstrap/Image';
 import axios from 'axios';
-import Sim from './Sim';
+// import Sim from './Sim';
 
 class Detail extends Component {
     constructor(props) {
@@ -45,8 +45,6 @@ class Detail extends Component {
                             <br />
                             <div className="button">
                                 <Button color="warning">관심상품</Button>{' '}
-                                &nbsp; &nbsp;  &nbsp;  &nbsp;
-                            <Button color="success">최저가 구매하기</Button>{' '}
                             </div>
 
                         </ToastBody>
@@ -55,28 +53,37 @@ class Detail extends Component {
                 <div className="right">
                     <Toast className="basic2">
                         <ToastHeader>
-                            영양 구성표
+                            영양 구성표 (100g 당 함량)
                 </ToastHeader>
-                        <ToastBody>
+                        <ToastBody >
+                            
+                            <table border="1px solid gray" width="100%">
 
                             <tr>
-                                <th>열량(g)</th>
-                                <th>탄수화물(g)</th>
-                                <th>단백질(g)</th>
-                                <th>지방(g)</th>
-                                <th>나트륨(mg)</th>
-                                <th>콜레스트롤(mg)</th>
+                                <th>열량</th>
+                                <th>탄수화물</th>
+                                <th>단백질</th>
+                                <th>지방</th>
+                                <th>포화지방</th>
+                                <th>트랜스지방</th>
+                                <th>당류</th>
+                                <th>나트륨</th>
+                                <th>콜레스트롤</th>
                             </tr>
 
                             <tr>
-                                <td><b>{this.state.data.kcal}</b></td>
-                                <td>{this.state.data.carbo}</td>
-                                <td>{this.state.data.protein}</td>
-                                <td>{this.state.data.fat}</td>
-                                <td>{this.state.data.natrium}</td>
-                                <td>{this.state.data.choles}</td>
+                                <td><b>{this.state.data.kcal}kcal</b></td>
+                                <td>{this.state.data.carbo}g</td>
+                                <td>{this.state.data.protein}g</td>
+                                <td>{this.state.data.fat}g</td>
+                                <td>{this.state.data.sFat}g</td>
+                                <td>{this.state.data.tFat}g</td>
+                                <td>{this.state.data.sugar}g</td>
+                                <td>{this.state.data.natrium}mg</td>
+                                <td>{this.state.data.choles}mg</td>
                             </tr>
-
+                            </table>
+                           
                         </ToastBody>
                     </Toast>
                     <Toast className="basic3">

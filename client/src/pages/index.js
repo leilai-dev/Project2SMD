@@ -3,6 +3,6 @@ export { default as Login } from './Login';
 export { default as Myinfo } from './Myinfo';
 export { default as Detail } from './Detail';
 export { default as Mylist } from './Mylist';
-export { default as TmpCard } from './tmpCard';
+// export { default as TmpCard } from './tmpCard';
 export { default as Signin } from './Signin';
-export { default as Sim } from './Sim';
+// export { default as Sim } from './Sim';
