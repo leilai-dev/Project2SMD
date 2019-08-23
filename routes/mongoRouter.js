@@ -69,7 +69,7 @@ module.exports = () => {
                 if (hash === user.password) {
                     console.log('로그인 성공');
                     req.session.user = user;
-                    res.json({result:true, name:user.name});
+                    res.json({ result: true, name: user.name });
                 } else {
                     console.log('패스워드가 맞지 않습니다');
                     res.redirect('/');
@@ -114,58 +114,56 @@ module.exports = () => {
         })
     });
 
-    router.get('/testArray', (req, res) => {
-        let test = [{"_id":"5d4368d73ecfd3cb625cb461","category":"소세지","name":"맛있닭 닭가슴살소시지 훈제","imgUrl":"https://file.rankingdak.com/_data/item/1421823810_l1.jpg","kcal":135,"carbo":3,"protein":23,"fat":4,"sFat":0.7,"tFat":0,"sugar":2,"choles":65,"natrium":250,"ingredi":"닭고기(가슴살 국내산 79.52 %, 대두유{대두유(외국산 아르헨티나, 미국, 브라질 등), d-토코페놀 (혼합형), 규소수지}, 전란액(계란 100 %/국내산), 알콘에스비, 복합시즈닝SD, 복합믹스-J, 함수 포도당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타소금, 비타민C, 스모크오일[히코리스모크오일RS(미국산/대두유, 스모크 향), 대두유(대두, 규소수지)] 007%, 생강분말, 콜라겐케이싱"},{"_id":"5d4368d73ecfd3cb625cb462","category":"소세지","name":"맛있닭 닭가슴살소시지 현미","imgUrl":"https://file.rankingdak.com/_data/item/1421825042_l1.jpg","kcal":145,"carbo":6,"protein":20,"fat":4.5,"sFat":0.9,"tFat":0,"sugar":1,"choles":85,"natrium":200,"ingredi":"닭고기(가슴살/국내산) 76.18 %, 전란액(계란 100 %/국내산), 대두유{대두유(외국산:아르헨티나, 미국, 브라질 등), d-토코페놀(혼합형), 규소수지}, 현미가루(현미100%/국내산) 3.95 %, 알콘에스비, 복합시즈닝SD, 복합믹스-J, 함수포도 당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타소금, 비타민C, 생강분말, 파슬리분태, 콜라겐케이싱"},{"_id":"5d4368d73ecfd3cb625cb463","category":"소세지","name":"맛있닭 닭가슴살소시지 할라피뇨","imgUrl":"https://file.rankingdak.com/_data/item/1479965640_l1.jpg","kcal":130,"carbo":3,"protein":20,"fat":4.1,"sFat":0.9,"tFat":0,"sugar":1,"choles":55,"natrium":250,"ingredi":"닭고기(가슴살/국내산) 72.3 %, 슬라이스 할라피뇨 피클[할라피뇨 고추 60 %, 식초, 정제소금, 향신료(후추, 월계수, 오레가노)](멕시코산) 8.25 %, 전란액(계란 100%/국내산), 대두유, 알콘에스비, 복합시즈닝SD, 복합믹스-J, 함수포도당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타소금, 청양초맛 분말, 비타민C, 생강분말, 콜라겐케이싱"},{"_id":"5d4368d73ecfd3cb625cb464","category":"소세지","name":"맛있닭 닭가슴살소시지 견과","imgUrl":"https://file.rankingdak.com/_data/item/1479966049_l1.jpg","kcal":150,"carbo":5,"protein":21,"fat":5,"sFat":1,"tFat":0,"sugar":1,"choles":55,"natrium":210,"ingredi":"닭고기(가슴살/국내산) 75.06 %, 전란액(계란 100% 국내산), 대두유{대두유(외국산 아르헨티나, 미국, 브라질 등) d-토코페놀(혼합형), 규소수지}, 알콘에스비, 복합시즈닝SD, 황토가마에 구운 해바라기씨(미국산) 1.33 %, 황토가마에 구운 호두(미국산) 1.33 % 황토가마에 구운 아몬드(미국산) 1.33 %, 복합믹스-J, 함수포도당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타 소금, 비타민C 생강분말, 콜라겐케이싱"},{"_id":"5d4368d73ecfd3cb625cb465","category":"소세지","name":"더프레시 오징어 비엔나 닭가슴살 소시지","imgUrl":"https://file.rankingdak.com/_data/item/a87fa5c44ed1bf05f99749659eb61443.jpg","kcal":125.25,"carbo":8.02,"protein":18.37,"fat":2,"sFat":0.67,"tFat":0,"sugar":2.34,"choles":67.47,"natrium":166.33,"ingredi":"닭가슴살(국내산)73.3%,양파(국내산), 오징어 (연근해산)3.5%, 함수포도당,탈지대두, 농축대두단백,유장분말, 건빵가루 HS솔루션시즈닝, 새우조미시즈닝-1, 콜라겐케이싱,미담다시마장,카라기난, 폴리인산나트륨(산도조절제),흑후추 분말,코트롤티에이치(산도조절제)"}];
-        res.json(test);
-    });
-
-    router.get('/detail/:id', (req, res) => {
-        console.log(req.params.id);
-        // _id = req.params.id;
-
-        // Items.findOne({_id}, (err, result) => {
-        //     res.status(200).json(result);
-        // })
-
-      result=[{"_id":"5d47b049f1722f83637f7a08","category":"스테이크","name":"햇살닭 아보카도 닭가슴살 스테이크 100gX10팩","imgUrl":"https://file.rankingdak.com/_data/item/da83a5f63991a1e5f44c1da4652e5483.jpg","kcal":165,"carbo":7,"protein":19,"fat":7,"sFat":2.2,"tFat":0,"sugar":3,"choles":58,"natrium":266,"ingredi":"닭가슴살 (국내산) 75.6 %, 탈지대두(미국산), 할라피노퍼퍼스(멕시코산)3.7%,함수포도당,아보카도(멕시코산)2.3 %, 농축대두단백, 건식빵가루,마늘, 청양고추,유장분말,양파분말, 미담다시마장,정제소금, 패각칼, 효모추출물,혼합제제 (아세트산나트륨, 푸마르산,팜오일,쌀겨왁스), 돌리인산나트륨,흑후추분말 닭고기, 대두,밀,우유함유"},[{"category":"스테이크","name":"허닭 일품 닭가슴살 스테이크 오리지널 100g","imgUrl":"https://file.rankingdak.com/_data/item/bdcf331fa7147755657db28c0c18d3ec.jpg","fat":4.3},{"category":"스테이크","name":"허닭 일품 닭가슴살 스테이크 불고기 100g","imgUrl":"https://file.rankingdak.com/_data/item/5f042c3869d81c8e789d3dac870a08a0.jpg","fat":4.3}],[{"category":"스테이크","name":"맛있닭 닭가슴살 스테이크 야채맛 100g","imgUrl":"https://file.rankingdak.com/_data/item/9a6656baa69f3f49d0f8730e3ce796fe.jpg","fat":4.12},{"category":"볼","name":"맛있닭 닭가슴살볼 치즈맛","imgUrl":"https://file.rankingdak.com/_data/item/1526462214_l1.jpg","fat":4.06}]]; 
-        res.status(200).json(result);
-    })
-
 
     // 제품 정보 페이지
-    router.get('/detail2/:id', async (req, res) => {
+    router.get('/detail/:id', async (req, res) => {
+        console.log('detail 요청...hh')
         console.log(req.params.id);
         _id = req.params.id;
-        results =[];
+        var results = [];
+        var element = ['sugar', 'kcal', 'natrium'];
+        var full = await Items.findOne({ _id });
+        results.push(full);
 
-        Items.findOne({_id}, (err, total) => {
-            results.push(total);
-        })
+        console.log(results);
+        console.log(results[0].category);
+        console.log(results[0][element[0]]);
 
-        console.log('Similar Items ...');
+        var cate = await results[0].category;
 
-        //axois로 fat =x 가져오기... 
-        //axios로 카테고리 가져오기...
-        element='fat';
-        figure=4.17;
-        cate='소세지';
+        var i = 0;
+        while (i < 3) {
+            var figure = await results[0][element[i]];
+            console.log(i+" : "+figure);
 
-        var upper = await Items.find(
-            {[element]:{$gte:figure},
-            category:{$ne:cate}},
-            {_id:0,name:1,category:1,imgUrl: 1,fat:1}).sort({fat:1}).limit(2);
+            var lower = await Items.find({
+                [element[i]]: { $lt: figure },
+                category: { $ne: cate }
+            },
+                { _id: 0, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 }).sort({ [element]: -1 }).limit(1);
             
-        results.push(upper);
+                if(lower._id )
+                results.push(lower);
 
-        var lower = await Items.find(   
-            {[element]:{$lte:figure},
-            category:{$ne:cate}},
-            {_id:0,name:1,category:1,imgUrl: 1,fat:1}).sort({fat:-1}).limit(2);
-            results.push(lower);
+            var upper = await Items.find({
+                [element[i]]: { $gte: figure },
+                category: { $ne: cate }
+            },
+                { _id: 0, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 }).sort({ [element]: 1 }).limit(2);
+            results.push(upper);
+            i++;
+        }
+        console.log('보자보자');
+        console.log(results);
 
         res.status(200).json(results);
     })
 
+
+    router.get('/testArray', (req, res) => {
+        let test = [{ "_id": "5d4368d73ecfd3cb625cb461", "category": "소세지", "name": "맛있닭 닭가슴살소시지 훈제", "imgUrl": "https://file.rankingdak.com/_data/item/1421823810_l1.jpg", "kcal": 135, "carbo": 3, "protein": 23, "fat": 4, "sFat": 0.7, "tFat": 0, "sugar": 2, "choles": 65, "natrium": 250, "ingredi": "닭고기(가슴살 국내산 79.52 %, 대두유{대두유(외국산 아르헨티나, 미국, 브라질 등), d-토코페놀 (혼합형), 규소수지}, 전란액(계란 100 %/국내산), 알콘에스비, 복합시즈닝SD, 복합믹스-J, 함수 포도당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타소금, 비타민C, 스모크오일[히코리스모크오일RS(미국산/대두유, 스모크 향), 대두유(대두, 규소수지)] 007%, 생강분말, 콜라겐케이싱" }, { "_id": "5d4368d73ecfd3cb625cb462", "category": "소세지", "name": "맛있닭 닭가슴살소시지 현미", "imgUrl": "https://file.rankingdak.com/_data/item/1421825042_l1.jpg", "kcal": 145, "carbo": 6, "protein": 20, "fat": 4.5, "sFat": 0.9, "tFat": 0, "sugar": 1, "choles": 85, "natrium": 200, "ingredi": "닭고기(가슴살/국내산) 76.18 %, 전란액(계란 100 %/국내산), 대두유{대두유(외국산:아르헨티나, 미국, 브라질 등), d-토코페놀(혼합형), 규소수지}, 현미가루(현미100%/국내산) 3.95 %, 알콘에스비, 복합시즈닝SD, 복합믹스-J, 함수포도 당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타소금, 비타민C, 생강분말, 파슬리분태, 콜라겐케이싱" }, { "_id": "5d4368d73ecfd3cb625cb463", "category": "소세지", "name": "맛있닭 닭가슴살소시지 할라피뇨", "imgUrl": "https://file.rankingdak.com/_data/item/1479965640_l1.jpg", "kcal": 130, "carbo": 3, "protein": 20, "fat": 4.1, "sFat": 0.9, "tFat": 0, "sugar": 1, "choles": 55, "natrium": 250, "ingredi": "닭고기(가슴살/국내산) 72.3 %, 슬라이스 할라피뇨 피클[할라피뇨 고추 60 %, 식초, 정제소금, 향신료(후추, 월계수, 오레가노)](멕시코산) 8.25 %, 전란액(계란 100%/국내산), 대두유, 알콘에스비, 복합시즈닝SD, 복합믹스-J, 함수포도당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타소금, 청양초맛 분말, 비타민C, 생강분말, 콜라겐케이싱" }, { "_id": "5d4368d73ecfd3cb625cb464", "category": "소세지", "name": "맛있닭 닭가슴살소시지 견과", "imgUrl": "https://file.rankingdak.com/_data/item/1479966049_l1.jpg", "kcal": 150, "carbo": 5, "protein": 21, "fat": 5, "sFat": 1, "tFat": 0, "sugar": 1, "choles": 55, "natrium": 210, "ingredi": "닭고기(가슴살/국내산) 75.06 %, 전란액(계란 100% 국내산), 대두유{대두유(외국산 아르헨티나, 미국, 브라질 등) d-토코페놀(혼합형), 규소수지}, 알콘에스비, 복합시즈닝SD, 황토가마에 구운 해바라기씨(미국산) 1.33 %, 황토가마에 구운 호두(미국산) 1.33 % 황토가마에 구운 아몬드(미국산) 1.33 %, 복합믹스-J, 함수포도당, 비프젤라틴, 산도조절제, 육풍미시즈닝, 기타 소금, 비타민C 생강분말, 콜라겐케이싱" }, { "_id": "5d4368d73ecfd3cb625cb465", "category": "소세지", "name": "더프레시 오징어 비엔나 닭가슴살 소시지", "imgUrl": "https://file.rankingdak.com/_data/item/a87fa5c44ed1bf05f99749659eb61443.jpg", "kcal": 125.25, "carbo": 8.02, "protein": 18.37, "fat": 2, "sFat": 0.67, "tFat": 0, "sugar": 2.34, "choles": 67.47, "natrium": 166.33, "ingredi": "닭가슴살(국내산)73.3%,양파(국내산), 오징어 (연근해산)3.5%, 함수포도당,탈지대두, 농축대두단백,유장분말, 건빵가루 HS솔루션시즈닝, 새우조미시즈닝-1, 콜라겐케이싱,미담다시마장,카라기난, 폴리인산나트륨(산도조절제),흑후추 분말,코트롤티에이치(산도조절제)" }];
+        res.json(test);
+    });
 
     // id포함 전체 아이템 리스트 받기
     router.get('/itemlist', (req, res) => {
@@ -195,7 +193,7 @@ module.exports = () => {
     router.get('/search/:value', (req, res) => {
         const searchVal = req.params.value;
         console.log("search: ", searchVal);
-        Items.find( {$text:{$search: searchVal}}, (err, result) => {
+        Items.find({ $text: { $search: searchVal } }, (err, result) => {
             console.log(result);
             res.json(result);
         });
@@ -206,7 +204,7 @@ module.exports = () => {
         const category = req.params.category;
 
         console.log("search: ", searchVal);
-        Items.find( {category, $text:{$search: searchVal}}, (err, result) => {
+        Items.find({ category, $text: { $search: searchVal } }, (err, result) => {
             console.log(result);
             res.json(result);
         });

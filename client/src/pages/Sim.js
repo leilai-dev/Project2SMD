@@ -23,10 +23,41 @@ const responsive = {
     },
 };
 
+const nameArray = [];
+
+
 class Sim extends Component {
+    constructor(props) {
+        super(props);
+        const Array = this.props.data.map((data) => {
+            nameArray.push(data);
+        });
+    }
+
+    forLoop = () => {
+        let n=0;
+        let itemCard = [];
+        for ( n=0; n<nameArray.length; n++) {
+            itemCard.push(<Card className="inlinecard" style={{ width: '8rem' }}>
+            <Card.Img variant="top" src={nameArray[n].imgUrl} />
+            <Card.Body>
+                <Card.Text> {nameArray[n].name}</Card.Text>
+                <Button className="btn1" variant="primary">Go</Button>
+            </Card.Body>
+            </Card>);
+        }
+        return itemCard;
+    }
+    
+
     render() {
+        if (nameArray == null) {
+            return <span>Loading...</span>;
+        }
+        console.log(nameArray);
         return (
             <div>
+                {Array}
                 <Carousel
                     additionalTransfrom={0}
                     arrows
@@ -34,7 +65,6 @@ class Sim extends Component {
                     centerMode={false}
                     containerClass="container"
                     dotListClass=""
-                    draggable
                     focusOnSelect={false}
                     infinite={false}
                     itemClass=""
@@ -72,36 +102,7 @@ class Sim extends Component {
                     slidesToSlide={1}
                     swipeable
                 >
-
-                    <Card className="inlinecard" style={{ width: '8rem' }}>
-                        <Card.Img variant="top" src={this.props.data.imgUrl} />
-                        <Card.Body>
-                            <Card.Text>{this.props.data.name}</Card.Text>
-                            <Button className="btn1" variant="primary">Go</Button>
-                        </Card.Body>
-                    </Card>
-
-                    <Card className="inlinecard" style={{ width: '8rem' }}>
-                        <Card.Img variant="top" src={this.props.data.imgUrl} />
-                        <Card.Body>
-                            <Card.Text>{this.props.data.name}</Card.Text>
-                            <Button className="btn1" variant="primary">Go</Button>
-                        </Card.Body>
-                    </Card>
-                    <Card className="inlinecard" style={{ width: '8rem' }}>
-                        <Card.Img variant="top" src={this.props.data.imgUrl} />
-                        <Card.Body>
-                            <Card.Text>{this.props.data.name}</Card.Text>
-                            <Button className="btn1" variant="primary">Go</Button>
-                        </Card.Body>
-                    </Card>
-                    <Card className="inlinecard" style={{ width: '8rem' }}>
-                        <Card.Img variant="top" src={this.props.data.imgUrl} />
-                        <Card.Body>
-                            <Card.Text>{this.props.data.name}</Card.Text>
-                            <Button className="btn1" variant="primary">Go</Button>
-                        </Card.Body>
-                    </Card>
+                    {this.forLoop()}
                 </Carousel>
             </div>
         );

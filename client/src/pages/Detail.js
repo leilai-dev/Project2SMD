@@ -11,25 +11,25 @@ class Detail extends Component {
 
         this.state = {
             // _id: this.props.match.params.id,
-            data:[]
+            data: []
         }
-        console.log('가취가욥');
         console.log(this.props.match.params);
     }
 
     async componentDidMount() {
-
-        
         console.log(this.props.match.params.id);
         const res = await axios.get('/mongo/detail/' + this.props.match.params.id);
 
         this.setState({
             data: res.data[0],
-            sim: [res.data[1][0], res.data[1][1], res.data[1][0], res.data[2][1]]
+            sim: [res.data[1][0], res.data[2][0], res.data[2][1],
+                res.data[3][0], res.data[4][0], res.data[4][1],
+                res.data[5][0], res.data[6][0], res.data[6][1]]
         })
+        console.log(this.state.sim);
     }
     render() {
-        let { data } = this.state;
+        let { data, sim } = this.state;
         return (
 
             <div className="p-3 my-2 rounded bg-docs-transparent-grid">
@@ -42,9 +42,9 @@ class Detail extends Component {
                         <ToastBody>
 
                             <div className="img">
-                                <Image src={this.state.data.imgUrl} thumbnail /> </div>
+                                <Image src={data.imgUrl} thumbnail /> </div>
                             <div className="title">
-                                <h2><b>{this.state.data.name}</b></h2> </div>
+                                <h2><b>{data.name}</b></h2> </div>
                             <br />
                             <div className="star"></div>
                             <br />
@@ -74,12 +74,12 @@ class Detail extends Component {
                             </tr>
 
                             <tr>
-                                <td><b>{this.state.data.kcal}</b></td>
-                                <td>{this.state.data.carbo}</td>
-                                <td>{this.state.data.protein}</td>
-                                <td>{this.state.data.fat}</td>
-                                <td>{this.state.data.natrium}</td>
-                                <td>{this.state.data.choles}</td>
+                                <td><b>{data.kcal}</b></td>
+                                <td>{data.carbo}</td>
+                                <td>{data.protein}</td>
+                                <td>{data.fat}</td>
+                                <td>{data.natrium}</td>
+                                <td>{data.choles}</td>
                             </tr>
 
                         </ToastBody>
@@ -91,14 +91,14 @@ class Detail extends Component {
                         <ToastBody>
                             <h5>
                                 <Badge className="adge1" color="secondary">New</Badge>
-                                <Badge color="secondary">{this.state.data.name}</Badge>
+                                <Badge color="secondary">{data.name}</Badge>
                                 <Badge className="adge2" color="secondary">New</Badge>
                             </h5>
-                            {this.state.data.ingredi}
+                            {data.ingredi}
                         </ToastBody>
                     </Toast>
                     <div>
-                        <Sim data={data} />
+                        {sim ? <Sim data={sim} /> : ""}
                     </div>
                 </div>
             </div>
