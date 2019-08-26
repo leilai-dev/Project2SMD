@@ -9,8 +9,8 @@ class Login extends Component {
   }
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target);
-    console.log(e.target.elements.userid.value);
+    // console.log(e.target);
+    // console.log(e.target.elements.userid.value);
     const userid = e.target.elements.userid.value;
     const password = e.target.elements.password.value
 

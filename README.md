@@ -4,11 +4,11 @@
 [Express 서버와 React: Proxy 활용과 빌드 및 헤로쿠(Heroku) 배포 | Chaewon Kong’s Blog] (https://chaewonkong.github.io/react/2018/12/21/express-with-react/)
 해당 내용을 참고하여 팀 프로젝트를 위한 구조 잡기
 
-|Requirements | Version|
-|:---|:---|
-|Node.js | v10.16.0|
-|create-react-app|3.0.1|
-|yarn|1.17.3|
+| Requirements     | Version  |
+| :--------------- | :------- |
+| Node.js          | v10.16.0 |
+| create-react-app | 3.0.1    |
+| yarn             | 1.17.3   |
 
 ### 프로젝트 생성 과정
 - github에서 Repository 생성
@@ -181,3 +181,17 @@ mongoimport --db heroku_x7r5lscv --collection "items" --drop --type csv --header
 db.items.createIndex({name:"text",description:"text"});
 검색 예시
 db.items.find( {$text:{$search: "새우"} });
+
+## Cookie-parser 모듈 활용 예시
+https://github.com/expressjs/cookie-parser#example
+
+http://localhost:3000/api/greeting 접속시 서버 콘솔에서 확인 가능
+
+```
+Cookies:  { 'connect.sid':
+   's:KY1BIwx0OPWWUUuTJdV_aR8WvYQosgV-.cf4XosDMmJ/I0dsXNZQhMlV85F/8Qq11U0htpfX7/gk',
+  id: 'asdfef',
+  isLoggedIn: 'awef',
+  name: 'weff' }
+```
+req.cookies 객체에 현재 설정된 쿠키값들 담겨있음

@@ -15,8 +15,11 @@ var currentTimeDate = new Date();
 class App extends Component {
   constructor(props) {
     super(props)
+    console.log(document.cookie);
+    const getCookie = document.cookie;
+    const isLoggedIn = getCookie.split('=')[1];
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: isLoggedIn
     }
     // console.log('안먹니?');
   }
@@ -24,7 +27,7 @@ class App extends Component {
   // async componentDidMount() {
   //   const isLoggedIn = await axios.get('/mongo/checkUser');
   //   if (isLoggedIn) {
-      
+
   //     this.setState({
   //       isLoggedIn: isLoggedIn
   //     })
@@ -32,16 +35,21 @@ class App extends Component {
   // }
 
   componentDidMount() {
+    // getCookie()
   }
 
-  login = (formChild) => {
+  login = (cbData) => {
     this.setState({
-      isLoggedIn: formChild,
+      isLoggedIn: cbData,
     })
   }
 
   componentDidUpdate() {
     // console.log("app didUpdate");
+    console.log(document.cookie)
+    // this.setState({
+    //   isLoggedIn: 
+    // })
   }
 
   render() {
@@ -60,19 +68,20 @@ class App extends Component {
 
         {/* <PropsRoute exact path="/" component={Cards} data={this.state.asshole} /> */}
         {/* <Route exact path="/" render={() => <Cards data={this.state.asshole} />} />*/}
-          <Switch>
-            <Route path="/main/login/:name" component={Login} />
-            <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
-          </Switch>
-          <Route exact path="/" render={ (props) => <Cards {...props}/> } />
-          <Route path={`/search/:value`} render={ (props) => <Cards {...props} /> } />            
+        <Switch>
+          <Route path="/main/login/:name" component={Login} />
+          <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
+        </Switch>
+        <Route exact path="/" render={(props) => <Cards {...props} />} />
 
-          <Route path="/main/mylist" component={Mylist} />
-          <Route path="/main/myinfo" rcomponent={Myinfo} />
-          <Route path="/main/signin" component={Signin} />
-          <Route path="/detail/:id" component={Detail} />
+        <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
 
-    {/* <Cards data={this.state.asshole}></Cards>  */}
+        <Route path="/main/mylist" component={Mylist} />
+        <Route path="/main/myinfo" rcomponent={Myinfo} />
+        <Route path="/main/signin" component={Signin} />
+        <Route path="/detail/:id" component={Detail} />
+
+        {/* <Cards data={this.state.asshole}></Cards>  */}
       </div>
     );
   }
