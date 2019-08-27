@@ -176,5 +176,17 @@ module.exports = () => {
         });
     });
 
+    router.delete('/user/delete/:id', (req, res, next) => {
+        const _id = req.params.id;
+        Users.deleteOne({ _id }, (err, result) => {
+            console.log(result);
+            req.session.destroy(() => {
+                req.session;
+                delete res.locals.user;
+            });
+            res.status(200).redirect('/');
+        });
+    })
+
     return router;
 }
