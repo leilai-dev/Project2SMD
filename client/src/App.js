@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, HashRouter, NavLink, Router } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Navbar";
 import { Login, Myinfo, Mylist, Signup, Detail } from 'pages';
@@ -51,7 +51,10 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.isLoggedIn);
     return (
+      <HashRouter>
+        <Route>
       <div className="App">
         <div className="bigdiv">
 
@@ -80,6 +83,8 @@ class App extends Component {
         <Route path="/detail/:id" component={Detail} />
         {/* <Cards data={this.state.asshole}></Cards>  */}
       </div>
+      </Route>
+      </HashRouter>
     );
   }
 }

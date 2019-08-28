@@ -73,6 +73,7 @@ module.exports = () => {
                     res.cookie("name", user.name, { maxAge: 10 * 60 * 60 * 1000, httpOnly: true });
                     res.cookie("isLoggedIn", true, { maxAge: 10 * 60 * 60 * 1000 });
                     res.json({ result: true, name: user.name, id: user._id });    
+                    // res.redirect('/', { result: true, name: user.name, id: user._id });
                 } else {
                     console.log('패스워드가 맞지 않습니다');
                     res.redirect('/');
@@ -156,14 +157,12 @@ module.exports = () => {
                     { _id: 1, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 })
                     .sort({ [element]: 1 }).limit(2);
                 results.push(upper);
-
                 i++;
             }
         }
         console.log(results);
         console.log('이것이 길이다!!!!');
         console.log(results.length);
-
 
         if (results.length < 5) {
             res.status(500).send('Array involved Null.');

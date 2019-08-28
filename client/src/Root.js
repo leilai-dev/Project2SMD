@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import App from 'App';
 
 const Root = () => (
     <BrowserRouter>
-        <App/>
+        <Route exact path="/" component={App}></Route>
     </BrowserRouter>
 );
 

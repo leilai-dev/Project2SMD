@@ -15,16 +15,16 @@ export default class Example extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
-            isLoggedIn: this.props.isLoggedIn,
         };
     }
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
+        console.log(this.props.isLoggedIn);
     }
     render() {
-        const { isLoggedin } = this.state;
+        // const { isLoggedin } = this.props;
         return (
             <div className="navi">
                 <Navbar className="navbar1"   light expand="md">
@@ -33,7 +33,7 @@ export default class Example extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             {
-                                isLoggedin ? (
+                                this.props.isLoggedIn ? (
                                     <UncontrolledDropdown nav inNavbar>
                                      <Redirect
                                             to={{
@@ -48,6 +48,9 @@ export default class Example extends React.Component {
                                             
                                             <DropdownItem><Link to="/main/myinfo">회원 정보 수정</Link></DropdownItem>
                                         </DropdownMenu>
+                                        <NavItem>
+                                        <NavLink><Link to="/main/logout">Log Out</Link></NavLink>
+                                    </NavItem>
                                     </UncontrolledDropdown>
                                 ) : (
                                     <>
@@ -55,7 +58,7 @@ export default class Example extends React.Component {
                                         <NavLink><Link to="/main/login">Log In</Link></NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink><Link to="/main/signin">Sign Up</Link></NavLink>
+                                        <NavLink><Link to="/main/signup">Sign Up</Link></NavLink>
                                     </NavItem>
                                     </>
                                 )

@@ -55,7 +55,7 @@ class Signup extends Component {
                         <FormGroup>
                             <div className="dadan">
                                 <Label className="md" for="exampleEmail">신장 (cm)</Label>
-                                <Input className="input1" ype="number" name="tall" id="exampleEmail" placeholder="Enter your Height (cm)" />
+                                <Input className="input1" type="number" name="tall" id="exampleEmail" placeholder="Enter your Height (cm)" />
                                 <Label className="md" for="exampleEmail">체중 (kg)</Label>
                                 <Input className="input1" type="number" name="weight" id="exampleEmail" placeholder="Enter your Weight (kg)" />
                             </div>
