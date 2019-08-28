@@ -199,23 +199,52 @@ module.exports = () => {
         console.log("요청받음");
         console.log("req.params:", req.params);
         
-        const _id = req.params.id;
-        Users.deleteOne({ _id }, (err, result) => {
-            if (err) {
-
+        const id = req.params.id;
+        console.log(id);
+        Users.deleteOne({id}, (err, result) => {
+            if (err) { 
+                console.log("Print if there is an error");
             } else {
-                var destroy = "destroy"
+                console.log("res.locals.user:", res.locals.user)
+                // delete res.locals.user;
+                // var destroy = "destroy"
                 req.session.destroy(() => {
                     // req.session;
-                    delete res.locals.user;
-                    console.log("destroy:", destroy);
+                    // delete res.locals.user;
+                    // console.log("user deleted:");
+                    // res.status(200).redirect('/');
+                    res.redirect('/');
                 });
 
-                res.status(200).redirect('/')
+                
 
             };
         });
     })
+
+
+    // router.delete('/user/delete/:id', (req, res, next) => {
+    //     console.log("요청받음");
+    //     console.log("req.params:", req.params);
+        
+    //     const _id = req.params.id;
+    //     Users.deleteOne({ _id }, (err, result) => {
+    //         if (err) {
+
+    //         } else {
+    //             var destroy = "destroy"
+    //             req.session.destroy(() => {
+    //                 // req.session;
+    //                 delete res.locals.user;
+    //                 console.log("destroy:", destroy);
+    //             });
+
+    //             res.status(200).redirect('/')
+
+    //         };
+    //     });
+    // })
+
 
     return router;
 }

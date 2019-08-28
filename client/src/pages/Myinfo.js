@@ -79,8 +79,8 @@ class Myinfo extends Component {
               <label><b>Email:</b> </label><br />
               &nbsp;&nbsp;<input type="text" value={this.state.data.email}></input> <br /><br />
 
-              <label><b>Password:</b> </label><br />
-              &nbsp;&nbsp;<input type="text" value={this.state.data.password}></input><br /><br />
+              {/* <label><b>Password:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.password}></input><br /><br /> */}
 
               <label><b>Created At</b></label><br />
               &nbsp;&nbsp;<input type="text" value={this.state.data.createdAt}></input><br /><br />
@@ -102,8 +102,8 @@ class Myinfo extends Component {
               <label><b>몸무게:</b> </label><br />
               &nbsp;&nbsp;<input type="text" value={this.state.data.weight}></input><br /><br />
 
-              <label><b>알러지 성분: </b></label><br />
-              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /><br />
+              {/* <label><b>알러지 성분: </b></label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /><br /> */}
 
           </div>
         </ Col>
@@ -153,8 +153,9 @@ class ModalDelete extends React.Component {
         console.log(response);
       })
       .catch(function (error) {
+          console.log('Error: failure');
       });
-      console.log(this.props.data);
+      console.log("delete button clicked userid:", this.props.userid);
     }
 
 
@@ -190,11 +191,11 @@ class ModalDelete extends React.Component {
             </ModalBody>
             <ModalFooter>
               <Button color="danger" onClick={this.delete}>탈퇴하기</Button>
+              {/* <Button color="danger"  onClick={() => this.props.onDelete(this.props.userid)}>탈퇴하기</Button> */}
               <Button color="secondary" onClick={this.toggle}>취소</Button>
             </ModalFooter>
           </Modal>
 
-          {/* <Button color="danger" onClick={this.toggle}>탈퇴하기</Button> */}
 
         </div>
       );
