@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Badge, Toast, ToastBody, ToastHeader, Button } from 'reactstrap';
+import { Toast, ToastBody, ToastHeader, Button } from 'reactstrap';
 import './Detail.css';
 import Image from 'react-bootstrap/Image';
 import axios from 'axios';

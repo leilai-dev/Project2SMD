@@ -33,7 +33,7 @@ export default class Album extends Component {
     if (this.props.match.params.value) {
       const split = String(this.props.location.search).split("?");
       // split[1] 값이 존재하면 카테고리 필터링 검색 수행
-      if (split[1] != null || split[1] != undefined) {
+      if (split[1] !== null || split[1] !== undefined) {
         const queries = String(split[1]).split("=");
         res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
       } else
@@ -63,7 +63,7 @@ export default class Album extends Component {
     if (this.props.match.params.value) {
       const split = String(this.props.location.search).split("?");
       // split[1] 값이 존재하면 카테고리 필터링 검색 수행
-      if (split[1] != null || split[1] != undefined) {
+      if (split[1] !== null || split[1] !== undefined) {
         const queries = String(split[1]).split("=");
         res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
       } else

@@ -18,7 +18,6 @@ const mongoRouter = require('./routes/mongoRouter')();
 // heroku 배포시 필요함
 const PORT = process.env.PORT || 5000;
 
-
 app.use(morgan('dev'));
 
 app.use(express.urlencoded({
@@ -52,9 +51,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 app.use(cors());
-
 
 // 몽고DB사용을 위한 선언
 const dbConnect = require('./schemas');

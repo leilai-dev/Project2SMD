@@ -10,7 +10,6 @@ module.exports = () => {
     })
 
     // 신규 유저 생성
-    // userid | password | salt | name | email
     router.post('/signup', (req, res) => {
         // req.body 객체에서 바로 hasher로
         hasher({
@@ -22,13 +21,26 @@ module.exports = () => {
                 return;
             }
 
-            // user 콜렉션에 hash 저장
-            const user = new Users({
-                userid: req.body.userid,
-                password: hash,
-                salt: salt,
-                name: req.body.name,
-                email: req.body.email,
+        // user 콜렉션에 hash 저장
+        const user = new Users({
+            userid: req.body.userid,
+            email: req.body.email,
+            password: hash,
+            salt: salt,
+            activity: req.body.activity,
+            tall: req.body.tall,
+            weight: req.body.weight,
+
+            allegy_milk: req.body.milk,
+            allegy_bean: req.body.bean,
+            allegy_wheat: req.body.wheat,
+            allegy_egg: req.body.egg,
+            allegy_pork: req.body.pork,
+            allegy_fish: req.body.fish,
+            allegy_shrimp: req.body.shrimp,
+            allegy_peanut: req.body.peanut,
+            allegy_walnut: req.body.walnut,
+            allegy_salmon: req.body.salmon
             });
 
             user.save((err, result) => {
@@ -73,7 +85,6 @@ module.exports = () => {
                     res.cookie("name", user.name, { maxAge: 10 * 60 * 60 * 1000, httpOnly: true });
                     res.cookie("isLoggedIn", true, { maxAge: 10 * 60 * 60 * 1000 });
                     res.json({ result: true, name: user.name, id: user._id });    
-                    // res.redirect('/', { result: true, name: user.name, id: user._id });
                 } else {
                     console.log('패스워드가 맞지 않습니다');
                     res.redirect('/');
@@ -81,6 +92,19 @@ module.exports = () => {
             });
         });
     });
+
+    //로그아웃 요청
+    router.get('/logout', (req, res) => {
+        console.log('껒');
+        res.setcookie("id", time() - 10 * 60 * 60 * 1000);
+        res.setcookie("name", time() - 10 * 60 * 60 * 1000);
+        res.setcookie("isLoggedIn", time() - 10 * 60 * 60 * 1000);
+
+        console.log(res);
+        req.session.destroy(() => {
+            res.redirect('/');
+        });
+    })
 
     router.get('/testCookie', (req, res) => {
         if (res.locals.user) {

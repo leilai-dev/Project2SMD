@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-// import { Button } from 'reactstrap';
-// import { Link } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import Card from 'react-bootstrap/Card'
-import './tmpCard.css'
+import './sim.css'
 
 const nameArray = [];
 

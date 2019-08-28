@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import {HashRouter, NavLink, Router} from 'react-router-dom';
+import { HashRouter, NavLink } from 'react-router-dom';
 import './Login.css';
 import Axios from 'axios';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   handleSubmit = async (e) => {
     // e.preventDefault();
     // console.log(e.target);

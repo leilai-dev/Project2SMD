@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Route, Switch, HashRouter, NavLink, Router } from "react-router-dom";
+import { Route, Switch, HashRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Navbar";
 import { Login, Myinfo, Mylist, Signup, Detail } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-var currentTimeDate = new Date();
+// import axios from 'axios';
+// var currentTimeDate = new Date();
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +42,6 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    // console.log("app didUpdate");
     console.log(document.cookie)
     // this.setState({
     //   isLoggedIn: 
@@ -81,7 +79,6 @@ class App extends Component {
         <Route path="/main/myinfo" rcomponent={Myinfo} />
         <Route path="/main/signup" component={Signup} />
         <Route path="/detail/:id" component={Detail} />
-        {/* <Cards data={this.state.asshole}></Cards>  */}
       </div>
       </Route>
       </HashRouter>
