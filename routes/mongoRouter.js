@@ -41,7 +41,10 @@ module.exports = () => {
                     allegy_shrimp: req.body.allegy_shrimp,
                     allegy_peanut: req.body.allegy_peanut,
                     allegy_walnut: req.body.allegy_walnut,
-                    allegy_salmon: req.body.allegy_salmon
+                    allegy_salmon: req.body.allegy_salmon,
+
+                    // photo: req.body.photofile,
+
             });
 
             user.save((err, result) => {
@@ -191,23 +194,6 @@ module.exports = () => {
     });
 
 
-
-    // router.put('/user/update/:id', (req, res, next) => {
-    //     const _id = req.params.id;
-    //     Users.deleteOne({ _id }, (err, result) => {
-    //         console.log(result);
-    //         req.session.destroy(() => {
-    //             req.session;
-    //             delete res.locals.user;
-    //         });
-    //         res.status(200).redirect('/');
-    //     });
-    // })
-
-    // })
-
-
-
     
     router.delete('/user/delete/:id', (req, res, next) => {
         console.log("요청받음");
@@ -215,14 +201,19 @@ module.exports = () => {
         
         const _id = req.params.id;
         Users.deleteOne({ _id }, (err, result) => {
-            console.log("result:", result);
-            var destroy = "destroy"
-            req.session.destroy(() => {
-                // req.session;
-                delete res.locals.user;
-                console.log("destroy:", destroy);
-            });
-            res.status(200).redirect('/');
+            if (err) {
+
+            } else {
+                var destroy = "destroy"
+                req.session.destroy(() => {
+                    // req.session;
+                    delete res.locals.user;
+                    console.log("destroy:", destroy);
+                });
+
+                res.status(200).redirect('/')
+
+            };
         });
     })
 
