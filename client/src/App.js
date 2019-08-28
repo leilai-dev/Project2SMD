@@ -77,7 +77,7 @@ class App extends Component {
         <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
 
         <Route path="/main/mylist" component={Mylist} />
-        <Route path="/main/myinfo" rcomponent={Myinfo} />
+        <Route path="/main/myinfo" component={Myinfo} />
         <Route path="/main/signin" component={Signin} />
         <Route path="/detail/:id" component={Detail} />
 

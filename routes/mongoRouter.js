@@ -105,6 +105,7 @@ module.exports = () => {
         });
     });
 
+
     // 마이페이지 > 관심 상품
     router.get('/wishlist', (req, res) => {
         let user = res.locals.user;
@@ -176,13 +177,37 @@ module.exports = () => {
         });
     });
 
+
+
+    // router.put('/user/update/:id', (req, res, next) => {
+    //     const _id = req.params.id;
+    //     Users.deleteOne({ _id }, (err, result) => {
+    //         console.log(result);
+    //         req.session.destroy(() => {
+    //             req.session;
+    //             delete res.locals.user;
+    //         });
+    //         res.status(200).redirect('/');
+    //     });
+    // })
+
+    // })
+
+
+
+    
     router.delete('/user/delete/:id', (req, res, next) => {
+        console.log("요청받음");
+        console.log("req.params:", req.params);
+        
         const _id = req.params.id;
         Users.deleteOne({ _id }, (err, result) => {
-            console.log(result);
+            console.log("result:", result);
+            var destroy = "destroy"
             req.session.destroy(() => {
-                req.session;
+                // req.session;
                 delete res.locals.user;
+                console.log("destroy:", destroy);
             });
             res.status(200).redirect('/');
         });

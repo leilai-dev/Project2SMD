@@ -1,33 +1,178 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, FormText, CustomInput } from 'reactstrap';
+import { Form, FormGroup, Label, Input, FormText, CustomInput, Container, Row, Col,
+    Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Myinfo.css';
-import { Button } from 'react-bootstrap';
 import Axios from 'axios';
 
 
+
 class Myinfo extends Component {
-    // constructor(props) {
-    //     super(props);
+  constructor(props) {
+      super(props);
 
-    //     this.state ={
-    //         data:{},
-    //     }
-    //     console.log(data);
-    // }
+      this.state ={
+          data:{
 
-    // componentDidMount() {
-    //     Axios.get('/mongo/userinfo')
-    //     .then((res) => {
-    //         this.setState({
-    //             data:res.data
-    //         });
-    //     });
-    // }
-    
-    render() {
-        return (
-            <div>            
-                <Form>
+            userid: "",
+            name: "",
+            email: "",
+            createdAt: "",
+            hash : "",
+            activity : "",
+             tall : "",
+             weight : "",
+            allegy_milk : "",
+            allegy_bean : "",
+            allegy_wheat :"",
+            allegy_egg : "",
+            allegy_pork : "",
+            allegy_fish : "",
+             allegy_shrimp : "",
+             allegy_peanut : "",
+             allegy_walnut : "",
+            allegy_salmon : "",
+             wishlist : [],
+              field19 : "",
+
+            
+          },
+      }
+      console.log(this.props.match.params);
+  }
+
+  async componentDidMount() {
+      const res = await Axios.get('/mongo/userinfo');
+      console.log(res.data);
+      this.setState({
+          data: res.data
+      })
+      console.log("res.data:", res.data);
+      console.log("this.state.data.userid:", this.state.data.userid );
+  }
+  
+  render() {
+      return (
+<div className="p-3 my-2 rounded bg-docs-transparent-grid">
+
+  <Container> 
+
+      <Row>
+      
+        <Col sm="12" md={{ size: 8, offset: 2 }}>
+
+          <div className="pro-title">
+              <h1>Account Profile</h1>
+              <hr />
+
+          </div>
+
+          <div className="pro-img">
+              <img src={this.state.img}/>
+          </div>
+
+          <div className="pro-info">
+              <br />
+          <h2>기본 정보</h2>
+          <hr />
+
+              <label><b>Full Name: </b></label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.userid}></input><br /> <br />
+
+              <label><b>Email:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.email}></input> <br /><br />
+
+              <label><b>Password:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.password}></input><br /><br />
+
+              <label><b>Created At</b></label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.createdAt}></input><br /><br />
+
+<br />
+<br />
+<br />
+
+              <h2>추가 정보</h2>
+
+             <hr />
+
+              <label><b>성별: </b></label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /> <br />
+
+              <label><b>키와 몸무게:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data}></input> <br /><br />
+
+              <label><b>활동량:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /><br />
+
+              <label><b>알러지 성분: </b></label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /><br />
+
+          </div>
+        </ Col>
+      </Row>
+
+<br />
+<br />
+
+      <Row className="button-row">
+          <Col xs='6'>
+              <ModalModify />
+          </Col>
+          <Col xs='6'>
+              <ModalDelete  userid= {this.state.data.userid} />
+            
+          </Col>
+      </Row> 
+
+  </Container>
+          
+</div>          
+
+      );
+  };
+}
+
+
+
+class ModalModify extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+  }
+
+update() {
+ Axios.get('/users', {
+      params: {
+        id: 1
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+    });
+}
+
+  
+
+  render() {
+    return (
+      <div>
+        <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}내 정보 수정하기</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>내 회원 정보 수정하기</ModalHeader>
+          <ModalBody>
+          <Form>
             <h3>나의 정보</h3>
             <hr />
             <div>
@@ -61,7 +206,6 @@ class Myinfo extends Component {
                     <Input type="email" name="email" id="exampleEmail" />
                 </FormGroup> */}
 
-                <Button color="warning">정보 수정</Button>
             </div>
 
        <br />
@@ -81,10 +225,10 @@ class Myinfo extends Component {
 
                 <FormGroup>
                     <div className="dadan">
-                        <Label className="md" for="exampleEmail">신장 (cm)</Label>
-                        <Input type="number" name="tall" id="exampleEmail" placeholder="Enter your Height (cm)" />
-                        <Label className="md" for="exampleEmail">체중 (kg)</Label>
-                        <Input type="number" name="weight" id="exampleEmail" placeholder="Enter your Weight (kg)" />
+                        <Label className="md" for="exampleEmail" >신장 (cm)</Label>
+                        <Input type="number" name="tall" id="exampleEmail" placeholder="(cm)" />
+                        <Label className="md" for="exampleEmail" >체중 (kg)</Label>
+                        <Input type="number" name="weight" id="exampleEmail" placeholder="(kg)" />
                     </div>
                 </FormGroup>
 
@@ -148,15 +292,96 @@ class Myinfo extends Component {
                         </div>
                     </FormGroup>
                 </FormGroup>
-
-                <Button color="waring">추가 정보 수정</Button>
-
             </div>
         </Form>
-    </div>
-
-        );
-    };
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.update}>수정하기</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>취소</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
+    );
+  }
 }
+
+
+
+
+
+
+class ModalDelete extends React.Component {
+    constructor(props) {
+      super(props);
+     
+      this.state = {
+        modal: false,
+
+      };
+  
+      this.toggle = this.toggle.bind(this);
+    }
+
+
+    delete = () => {
+      Axios.delete('/mongo/user/delete/'+ this.props.userid, {
+        params: { 
+           _id: this.props.userid,
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+      });
+      console.log(this.props.data);
+    }
+
+
+    // delete() {
+    //   Axios.delete('/user/delete/' + this.props.match.params.userid, {
+    //     params: { 
+    //       id: this.state.data.userid,
+    //     }
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //   });
+    //   console.log(this.props.data);
+    // }
+
+  
+    toggle() {
+      this.setState(prevState => ({
+        modal: !prevState.modal
+      }));
+    }
+  
+    render() {
+      return (
+        <div>
+          <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel} 회원 탈퇴하기</Button>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>탈퇴하기</ModalHeader>
+            <ModalBody>
+            <p>정말 탈퇴하시겠습니까??</p>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={this.delete}>탈퇴하기</Button>
+              <Button color="secondary" onClick={this.toggle}>취소</Button>
+            </ModalFooter>
+          </Modal>
+
+          {/* <Button color="danger" onClick={this.toggle}>탈퇴하기</Button> */}
+
+        </div>
+      );
+    }
+  }
+
+
+
 
 export default Myinfo;

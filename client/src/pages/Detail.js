@@ -23,6 +23,7 @@ class Detail extends Component {
             data: res.data
         })
     }
+    
     render() {
         let { data } = this.state;
         return (
