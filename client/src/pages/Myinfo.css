@@ -1,0 +1,29 @@
+.p-3 {
+    margin-top:170px !important;
+}
+
+.pro-info {
+    border: 1px solid gray;
+    /* text-align: center; */
+}
+
+.pro-img {
+    background-color: lightcyan;
+    border: 1px solid gray;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 200px;
+}
+
+input {
+    width: 500px;
+}
+
+label {
+    text-align: left;
+}

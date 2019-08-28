@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import './Signin.css';
+import './Signup.css';
 import Axios from 'axios';
 
-class Signin extends Component {
+class Signup extends Component {
     constructor(props) {
         super(props);
     }
@@ -24,7 +24,7 @@ class Signin extends Component {
             <>
                 <div border="1px solid">
                     <Form className="siform" onSubmit={this.handleSubmit}>
-                        <h4>Sign In</h4>
+                        <h4>Sign Up</h4>
                         <br />
                         <p><h6>필수 사항</h6></p>
                         <FormGroup>
@@ -128,4 +128,4 @@ class Signin extends Component {
     }
 };
 
-export default Signin;
+export default Signup;

@@ -27,29 +27,33 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
+app.use(cookieparser());
 
 app.use(session({
   secret: '1A@W#E$E',
   resave: false,
   saveUninitialized: true,
   cookie: {
-      secure: false,
-      httpOnly: true,
-      maxAge: 10*60*60*1000 // 쿠키 유효기간 10시간
+    secure: false,
+    httpOnly: true,
+    maxAge: 10 * 60 * 60 * 1000, // 쿠키 유효기간 10시간
+    // name: res.locals.user.name
   },
   store: new FileStore()
 }));
-
-app.use(cookieparser());
-
-app.use(cors());
 
 // 각 유저별 세션 정보 res.locals에 저장
 app.use(function (req, res, next) {
   res.locals.user = req.session.user;
   console.log("Session user: ", res.locals.user);
+  // res.cookie("name", req.session.user.name, {
+  //   maxAge: 10 * 60 * 60 * 1000,
+  // })
   next();
 });
+
+
+app.use(cors());
 
 
 // 몽고DB사용을 위한 선언
@@ -62,7 +66,9 @@ app.use('/main', main);
 app.use('/mongo', mongoRouter);
 
 // App.js Greeting 예제를 위해 남겨둠
-app.get("/api/greeting", (req,res) => {
+app.get("/api/greeting", (req, res) => {
+  console.log('Cookies: ', req.cookies)
+
   res.send("Hello World!")
 })
 

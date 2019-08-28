@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link , Redirect } from 'react-router-dom';
 
 export default class Example extends React.Component {
     constructor(props) {
@@ -18,13 +18,6 @@ export default class Example extends React.Component {
             isLoggedIn: this.props.isLoggedIn,
         };
     }
-    // componentDidUpdate() {
-    //     console.log(this.props);
-    //     console.log("navbar", this.props.isLoggedIn)
-    //     // this.setState({
-    //     //     isLoggedIn: this.props.isLoggedIn
-    //     // })
-    // }
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -42,6 +35,12 @@ export default class Example extends React.Component {
                             {
                                 isLoggedin ? (
                                     <UncontrolledDropdown nav inNavbar>
+                                     <Redirect
+                                            to={{
+                                                pathname: "/",
+                                                state: { from: this.props.location }
+                                            }}
+                                        />     
                                     <DropdownToggle nav caret>내 정보</DropdownToggle>
                                         <DropdownMenu right>
                                             <DropdownItem><Link to="/main/mylist">나의 관심 상품</Link></DropdownItem>
@@ -56,7 +55,7 @@ export default class Example extends React.Component {
                                         <NavLink><Link to="/main/login">Log In</Link></NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink><Link to="/main/signin">Sign In</Link></NavLink>
+                                        <NavLink><Link to="/main/signin">Sign Up</Link></NavLink>
                                     </NavItem>
                                     </>
                                 )
