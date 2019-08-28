@@ -30,23 +30,14 @@ module.exports = () => {
             activity: req.body.activity,
             tall: req.body.tall,
             weight: req.body.weight,
-
-            allegy_milk: req.body.milk,
-            allegy_bean: req.body.bean,
-            allegy_wheat: req.body.wheat,
-            allegy_egg: req.body.egg,
-            allegy_pork: req.body.pork,
-            allegy_fish: req.body.fish,
-            allegy_shrimp: req.body.shrimp,
-            allegy_peanut: req.body.peanut,
-            allegy_walnut: req.body.walnut,
-            allegy_salmon: req.body.salmon
+            wishlist: []
             });
 
             user.save((err, result) => {
                 if (err) console.log(err);
                 else {
                     console.log(result);
+                    console.log('외않나와;;');
                     res.redirect('/');
                 }
             });
@@ -95,27 +86,20 @@ module.exports = () => {
 
     //로그아웃 요청
     router.get('/logout', (req, res) => {
-        console.log('껒');
-        res.setcookie("id", time() - 10 * 60 * 60 * 1000);
-        res.setcookie("name", time() - 10 * 60 * 60 * 1000);
-        res.setcookie("isLoggedIn", time() - 10 * 60 * 60 * 1000);
+        console.log('하이하이?????');
+        // res.setcookie("id", time() - 10 * 60 * 60 * 1000);
+        // res.setcookie("name", time() - 10 * 60 * 60 * 1000);
+        // res.setcookie("isLoggedIn", time() - 10 * 60 * 60 * 1000);
 
-        console.log(res);
+        console.log(req.session);
         req.session.destroy(() => {
+            console.log('야 왜 안되냐고');
             res.redirect('/');
         });
     })
 
-    router.get('/testCookie', (req, res) => {
-        if (res.locals.user) {
-            return res.json(true);
-        }
-        else
-            return res.json(false);
-    })
-
     // 마이페이지 > 정보 수정 요청
-    router.get('/userinfo', (req, res) => {
+    router.get('/myinfo', (req, res) => {
         let user = res.locals.user;
         // console.log(userid);
         if (!user)
@@ -205,22 +189,7 @@ module.exports = () => {
         // req.setTimeout(0); // 504에러 방지
         // Item
         console.log('요청옴');
-        Items.find({}, {
-            // _id: 0,
-            // category: 1,
-            // name: 1,
-            // imgUrl: 1,
-            // kcal: 1,
-            // carbo: 1,
-            // protein: 1,
-            // fat: 1,
-            // sFat: 1,
-            // tFat: 1,
-            // sugar: 1,
-            // choles: 1,
-            // natrium: 1,
-            // ingredi: 1
-        }, (err, results) => {
+        Items.find({}, {}, (err, results) => {
             res.json(results);
         })
     });

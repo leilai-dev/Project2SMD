@@ -38,7 +38,7 @@ app.use(session({
     maxAge: 10 * 60 * 60 * 1000, // 쿠키 유효기간 10시간
     // name: res.locals.user.name
   },
-  store: new FileStore()
+  // store: new FileStore()
 }));
 
 // 각 유저별 세션 정보 res.locals에 저장
@@ -62,13 +62,5 @@ dbConnect();
 app.use('/main', main);
 app.use('/mongo', mongoRouter);
 
-// App.js Greeting 예제를 위해 남겨둠
-app.get("/api/greeting", (req, res) => {
-  console.log('Cookies: ', req.cookies)
-
-  res.send("Hello World!")
-})
-
 const server = app.listen(PORT);
-
 server.setTimeout(0);

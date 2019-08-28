@@ -6,7 +6,7 @@ import { Login, Myinfo, Mylist, Signup, Detail } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import axios from 'axios';
+import axios from 'axios';
 // var currentTimeDate = new Date();
 
 class App extends Component {
@@ -21,20 +21,15 @@ class App extends Component {
     // console.log('안먹니?');
   }
 
-  // async componentDidMount() {
-  //   const isLoggedIn = await axios.get('/mongo/checkUser');
-  //   if (isLoggedIn) {
+  async componentDidMount() {
+    const isLoggedIn = await axios.get('/mongo/checkUser');
+    if (isLoggedIn) {
 
-  //     this.setState({
-  //       isLoggedIn: isLoggedIn
-  //     })
-  //   }
-  // }
-
-  componentDidMount() {
-    // getCookie()
+      this.setState({
+        isLoggedIn: isLoggedIn
+      })
+    }
   }
-
   login = (cbData) => {
     this.setState({
       isLoggedIn: cbData,
