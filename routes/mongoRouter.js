@@ -23,12 +23,25 @@ module.exports = () => {
             }
 
             // user 콜렉션에 hash 저장
-            const user = new Users({
-                userid: req.body.userid,
-                password: hash,
-                salt: salt,
-                name: req.body.name,
-                email: req.body.email,
+                const user = new Users({
+                    userid: req.body.userid,
+                    password: hash,
+                    salt: salt,
+                    name: req.body.name,
+                    email: req.body.email,
+                    activity: req.body.activity,
+                    tall: req.body.tall,
+                    weight: req.body.weight,
+                    allegy_milk: req.body.allegy_milk,
+                    allegy_bean: req.body.allegy_bean,
+                    allegy_bean: req.body.allegy_bean,
+                    allegy_egg: req.body.allegy_egg,
+                    allegy_pork: req.body.allegy_pork,
+                    allegy_fish: req.body.allegy_fish,
+                    allegy_shrimp: req.body.allegy_shrimp,
+                    allegy_peanut: req.body.allegy_peanut,
+                    allegy_walnut: req.body.allegy_walnut,
+                    allegy_salmon: req.body.allegy_salmon
             });
 
             user.save((err, result) => {

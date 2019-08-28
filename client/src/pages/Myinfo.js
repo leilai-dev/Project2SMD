@@ -12,7 +12,6 @@ class Myinfo extends Component {
 
       this.state ={
           data:{
-
             userid: "",
             name: "",
             email: "",
@@ -32,9 +31,7 @@ class Myinfo extends Component {
              allegy_walnut : "",
             allegy_salmon : "",
              wishlist : [],
-              field19 : "",
-
-            
+              field19 : ""
           },
       }
       console.log(this.props.match.params);
@@ -47,7 +44,8 @@ class Myinfo extends Component {
           data: res.data
       })
       console.log("res.data:", res.data);
-      console.log("this.state.data.userid:", this.state.data.userid );
+      console.log("this.state.data.userid:");
+      console.log(this.state.data.userid ); 
   }
   
   render() {
@@ -95,14 +93,14 @@ class Myinfo extends Component {
 
              <hr />
 
-              <label><b>성별: </b></label><br />
-              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /> <br />
+              <label><b>활동량: </b></label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.activity}></input><br /> <br />
 
-              <label><b>키와 몸무게:</b> </label><br />
-              &nbsp;&nbsp;<input type="text" value={this.state.data}></input> <br /><br />
+              <label><b>키:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.tall}></input> <br /><br />
 
-              <label><b>활동량:</b> </label><br />
-              &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /><br />
+              <label><b>몸무게:</b> </label><br />
+              &nbsp;&nbsp;<input type="text" value={this.state.data.weight}></input><br /><br />
 
               <label><b>알러지 성분: </b></label><br />
               &nbsp;&nbsp;<input type="text" value={this.state.data}></input><br /><br />
