@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,53 +11,6 @@ import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import './cardList.css';
-
-// import Link from '@material-ui/core/Link';
-
-// function MadeWithLove() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Built with love by the '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Material-UI
-//       </Link>
-//       {' team.'}
-//     </Typography>
-//   );
-// }
-
-// const useStyles = makeStyles(theme => ({
-//   icon: {
-//     marginRight: theme.spacing(2),
-//   },
-//   heroContent: {
-//     backgroundColor: theme.palette.background.paper,
-//     padding: theme.spacing(8, 0, 6),
-//   },
-//   heroButtons: {
-//     marginTop: theme.spacing(4),
-//   },
-//   cardGrid: {
-//     paddingTop: theme.spacing(8),
-//     paddingBottom: theme.spacing(8),
-//   },
-//   card: {
-//     height: '100%',
-//     display: 'flex',
-//     flexDirection: 'column',
-//   },
-//   cardMedia: {
-//     paddingTop: '56.25%', // 16:9
-//   },
-//   cardContent: {
-//     flexGrow: 1,
-//   },
-//   footer: {
-//     backgroundColor: theme.palette.background.paper,
-//     padding: theme.spacing(6),
-//   },
-// }));
-
 
 export default class Album extends Component {
   constructor(props) {
@@ -212,17 +164,17 @@ export default class Album extends Component {
                       <Typography gutterBottom variant="h5" component="h2">
                         {index.name}
                       </Typography>
-                      <Typography>
+                      {/* <Typography>
                         {index.kcal}
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                     </CardMedia>
                     <CardActions >
                       <Link to={`/detail/${index._id}`} >
                       {/* <Button size="small" color="primary" float="right" > */}
                         More
-                    {/* </Button> */}
-                    </Link>
+                      {/* </Button> */}
+                      </Link>
                     </CardActions>
                   </Card>
                 </Grid>

@@ -1,14 +1,13 @@
 .inlinecard {
     flex-direction: column;
     display: inline-block;
-
     margin-left: 10px;
 }
 
 .card-body {
-    margin-top:50px;
-    width: 250px;
-    padding:0;
+    margin-top:10px;
+    width: 100px;
+    padding:0 0 10px 15px;
 }
 
 .card-img-top{
@@ -20,5 +19,6 @@
 }
 
 .btn1 {
+    left:0px;
 position: relative;
 }

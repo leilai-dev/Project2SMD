@@ -15,16 +15,31 @@ class Detail extends Component {
         }
         console.log(this.props.match.params);
     }
-
-    async componentDidMount() {
+    async componentWillReceiveProps() {
         console.log(this.props.match.params.id);
         const res = await axios.get('/mongo/detail/' + this.props.match.params.id);
+        console.log(res.data);
+
 
         this.setState({
             data: res.data[0],
-            sim: [res.data[1][0], res.data[2][0], res.data[2][1],
-                res.data[3][0], res.data[4][0], res.data[4][1],
-                res.data[5][0], res.data[6][0], res.data[6][1]]
+            sim: [res.data[1][0], res.data[1][1], 
+            res.data[2][0], res.data[2][1],
+            res.data[3][0], res.data[3][1]]
+        })
+        console.log(this.state.sim);
+    }
+    async componentDidMount() {
+        console.log(this.props.match.params.id);
+        const res = await axios.get('/mongo/detail/' + this.props.match.params.id);
+        console.log(res.data);
+
+
+        this.setState({
+            data: res.data[0],
+            sim: [res.data[1][0], res.data[1][1], 
+            res.data[2][0], res.data[2][1],
+            res.data[3][0], res.data[3][1]]
         })
         console.log(this.state.sim);
     }
@@ -49,11 +64,8 @@ class Detail extends Component {
                             <div className="star"></div>
                             <br />
                             <div className="button">
-                                <Button color="warning">관심상품</Button>{' '}
-                                &nbsp; &nbsp;  &nbsp;  &nbsp;
-                            <Button color="success">최저가 구매하기</Button>{' '}
+                                <Button color="warning">관심상품</Button>
                             </div>
-
                         </ToastBody>
                     </Toast>
                 </div>
@@ -63,7 +75,6 @@ class Detail extends Component {
                             영양 구성표
                 </ToastHeader>
                         <ToastBody>
-
                             <tr>
                                 <th>열량(g)</th>
                                 <th>탄수화물(g)</th>
@@ -72,7 +83,6 @@ class Detail extends Component {
                                 <th>나트륨(mg)</th>
                                 <th>콜레스트롤(mg)</th>
                             </tr>
-
                             <tr>
                                 <td><b>{data.kcal}</b></td>
                                 <td>{data.carbo}</td>
@@ -89,16 +99,11 @@ class Detail extends Component {
                             알러지 성분
                 </ToastHeader>
                         <ToastBody>
-                            <h5>
-                                <Badge className="adge1" color="secondary">New</Badge>
-                                <Badge color="secondary">{data.name}</Badge>
-                                <Badge className="adge2" color="secondary">New</Badge>
-                            </h5>
                             {data.ingredi}
                         </ToastBody>
                     </Toast>
                     <div>
-                        {sim ? <Sim data={sim} /> : ""}
+                        {sim ? <Sim data={sim} /> : "Loading..."}
                     </div>
                 </div>
             </div>

@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
+// import { Link } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import Card from 'react-bootstrap/Card'
 import './tmpCard.css'
 
-const responsive = {
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
-        slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-        slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-        slidesToSlide: 1, // optional, default to 1.
-    },
-};
-
 const nameArray = [];
-
 
 class Sim extends Component {
     constructor(props) {
         super(props);
-        const Array = this.props.data.map((data) => {
+        this.props.data.map((data) => {
             nameArray.push(data);
         });
     }
+    
+    // componentWillReceiveProps() {
+    //     nameArray.splice(0,nameArray.length)
+    //     this.props.data.map((data) => {
+    //         nameArray.push(data);
+    //     });
+    // }
 
     forLoop = () => {
         let n=0;
@@ -42,22 +31,29 @@ class Sim extends Component {
             <Card.Img variant="top" src={nameArray[n].imgUrl} />
             <Card.Body>
                 <Card.Text> {nameArray[n].name}</Card.Text>
-                <Button className="btn1" variant="primary">Go</Button>
+                {/* <Link to={`/detail/${this.props.data[n]._id}`}>Go</Link> */}
+                {/* <Button className="btn1" variant="primary" onClick={this.go.bind(this.props.data[n])}>Go</Button> */}
             </Card.Body>
             </Card>);
         }
         return itemCard;
     }
     
+    // go() {
+    //     console.log('이동');
+    //     console.log(this._id);
+    //     let path = "/detail/" + this._id;
+    //     return(<Link to={path}></Link>);
+    // }
 
     render() {
         if (nameArray == null) {
             return <span>Loading...</span>;
         }
         console.log(nameArray);
+
         return (
             <div>
-                {Array}
                 <Carousel
                     additionalTransfrom={0}
                     arrows
@@ -98,8 +94,6 @@ class Sim extends Component {
                         }
                     }}
                     showDots={false}
-                    sliderClass=""
-                    slidesToSlide={1}
                     swipeable
                 >
                     {this.forLoop()}

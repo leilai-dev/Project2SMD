@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
-import { Home, Login, Myinfo, Mylist, Signin, Detail } from 'pages';
+import { Login, Myinfo, Mylist, Signin, Detail } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import axios from 'axios';

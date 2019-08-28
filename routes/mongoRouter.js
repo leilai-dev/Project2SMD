@@ -117,11 +117,11 @@ module.exports = () => {
 
     // 제품 정보 페이지
     router.get('/detail/:id', async (req, res) => {
-        console.log('detail 요청...hh')
+        console.log('detail 요청...');
         console.log(req.params.id);
         _id = req.params.id;
         var results = [];
-        var element = ['sugar', 'kcal', 'natrium'];
+        var element = ['sugar', 'natrium'];
         var full = await Items.findOne({ _id });
         results.push(full);
 
@@ -132,29 +132,39 @@ module.exports = () => {
         var cate = await results[0].category;
 
         var i = 0;
-        while (i < 3) {
+        while (i < 2) {
             var figure = await results[0][element[i]];
-            console.log(i+" : "+figure);
-
-            var lower = await Items.find({
-                [element[i]]: { $lt: figure },
-                category: { $ne: cate }
-            },
-                { _id: 0, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 }).sort({ [element]: -1 }).limit(1);
-            
-                if(lower._id )
+            console.log(i + " : " + figure);
+            if (figure == null) {
+                break;
+            } else {
+                var lower = await Items.find({
+                    [element[i]]: { $lt: figure },
+                    category: { $ne: cate }
+                },
+                    { _id: 1, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 })
+                    .sort({ [element]: -1 }).limit(2);
                 results.push(lower);
 
-            var upper = await Items.find({
-                [element[i]]: { $gte: figure },
-                category: { $ne: cate }
-            },
-                { _id: 0, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 }).sort({ [element]: 1 }).limit(2);
-            results.push(upper);
-            i++;
+                var upper = await Items.find({
+                    [element[i]]: { $gte: figure },
+                    category: { $ne: cate }
+                },
+                    { _id: 1, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 })
+                    .sort({ [element]: 1 }).limit(2);
+                results.push(upper);
+
+                i++;
+            }
         }
-        console.log('보자보자');
         console.log(results);
+        console.log('이것이 길이다!!!!');
+        console.log(results.length);
+
+
+        if (results.length < 5) {
+            res.status(500).send('Array involved Null.');
+        }
 
         res.status(200).json(results);
     })
