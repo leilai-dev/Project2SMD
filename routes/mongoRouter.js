@@ -86,14 +86,13 @@ module.exports = () => {
 
     //로그아웃 요청
     router.get('/logout', (req, res) => {
-        console.log('하이하이?????');
+        console.log('Log out.');
         // res.setcookie("id", time() - 10 * 60 * 60 * 1000);
         // res.setcookie("name", time() - 10 * 60 * 60 * 1000);
         // res.setcookie("isLoggedIn", time() - 10 * 60 * 60 * 1000);
 
         console.log(req.session);
         req.session.destroy(() => {
-            console.log('야 왜 안되냐고');
             res.redirect('/');
         });
     })

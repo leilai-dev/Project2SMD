@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {
     Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,
     NavbarBrand, Nav, NavItem, NavLink,
@@ -26,10 +26,10 @@ export default class Example extends React.Component {
         console.log(this.props.isLoggedIn);
     }
 
-    async logout() {
-        console.log(this.props.isLoggedIn);
-        const res = await axios.get('/mongo/logout');
-    }
+    // async logout() {
+    //     console.log(this.props.isLoggedIn);
+    //     const res = await axios.get('/mongo/logout');
+    // }
 
 
   // getItems = async () => {
@@ -37,9 +37,9 @@ export default class Example extends React.Component {
   //   return await axios.get("/mongo/itemlist");
   // }
 
-    logout = async () => {
+    logout = () => {
         console.log(this.props.isLoggedIn);
-        return await axios.get('/mongo/logout');
+        return axios.get('/mongo/logout');
     }
 
     render() {
@@ -53,8 +53,15 @@ export default class Example extends React.Component {
                             {
                                 this.props.isLoggedIn ? (
                                     <>
+                                        
+                                        <Redirect
+                                            to={{
+                                                pathname: "/",
+                                                state: { from: this.props.location }
+                                            }}
+                                        />     
                                         <NavItem>
-                                            <NavLink><Button onClick={this.logout()}>Log out</Button></NavLink>
+                                           <Button onClick={this.logout}>Log out</Button>
                                         </NavItem>
                                         <UncontrolledDropdown nav inNavbar>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, HashRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Navbar";
 import { Login, Myinfo, Mylist, Signup, Detail } from 'pages';
@@ -21,15 +21,15 @@ class App extends Component {
     // console.log('안먹니?');
   }
 
-  async componentDidMount() {
-    const isLoggedIn = await axios.get('/mongo/checkUser');
-    if (isLoggedIn) {
+  // async componentDidMount() {
+  //   const isLoggedIn = await axios.get('/mongo/checkUser');
+  //   if (isLoggedIn) {
 
-      this.setState({
-        isLoggedIn: isLoggedIn
-      })
-    }
-  }
+  //     this.setState({
+  //       isLoggedIn: isLoggedIn
+  //     })
+  //   }
+  // }
   login = (cbData) => {
     this.setState({
       isLoggedIn: cbData,
@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    console.log(document.cookie)
+    console.log(document.cookie);
     // this.setState({
     //   isLoggedIn: 
     // })
@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     console.log(this.state.isLoggedIn);
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Route>
       <div className="App">
         <div className="bigdiv">
@@ -76,7 +76,7 @@ class App extends Component {
         <Route path="/detail/:id" component={Detail} />
       </div>
       </Route>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
