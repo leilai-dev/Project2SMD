@@ -21,21 +21,16 @@ class App extends Component {
     // console.log('안먹니?');
   }
 
-  // async componentDidMount() {
-  //   const isLoggedIn = await axios.get('/mongo/checkUser');
-  //   if (isLoggedIn) {
-
-  //     this.setState({
-  //       isLoggedIn: isLoggedIn
-  //     })
-  //   }
-  // }
   login = (cbData) => {
     this.setState({
       isLoggedIn: cbData,
     })
   }
-
+  logout = (cbData) => {
+    this.setState({
+      isLoggedIn: cbData,
+    })
+  }
   componentDidUpdate() {
     console.log(document.cookie);
     // this.setState({
@@ -52,7 +47,7 @@ class App extends Component {
         <div className="bigdiv">
 
           <div className="ndiv1">
-            <Navbar isLoggedIn={this.state.isLoggedIn} />
+            <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout}/>
           </div>
 
           <div className="ndiv2">
@@ -71,7 +66,7 @@ class App extends Component {
         <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
 
         <Route path="/main/mylist" component={Mylist} />
-        <Route path="/main/myinfo" rcomponent={Myinfo} />
+        <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
         <Route path="/main/signup" component={Signup} />
         <Route path="/detail/:id" component={Detail} />
       </div>

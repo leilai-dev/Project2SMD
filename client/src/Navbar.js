@@ -17,8 +17,14 @@ export default class Example extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
+            isLoggedOut: false,
         };
     }
+    componentDidMount() {
+
+        console.log("navbar islogin",this.props.isLoggedIn);
+    }
+
     // componentDidUpdate() {
     //     console.log(this.props);
     //     console.log("navbar", this.props.isLoggedIn)
@@ -37,29 +43,42 @@ export default class Example extends React.Component {
     //     console.log(this.props.isLoggedIn);
     //     const res = await axios.get('/mongo/logout');
     // }
+    logout = async () => {
+        const res = await axios.get('/mongo/logout');
 
-
-  // getItems = async () => {
-  //   console.log("did getcha");
-  //   return await axios.get("/mongo/itemlist");
-  // }
-
-    logout = () => {
-        console.log(this.props.isLoggedIn);
-        return axios.get('/mongo/logout');
+        if (res.status === 200) {
+        console.log("loggedIn", this.props.isLoggedIn);
+            console.log("clear");
+            this.setState({
+                isLoggedOut : true
+            })
+            this.props.logoutCallback(false);
+        }
     }
 
     render() {
         const { isLoggedin } = this.state;
+        console.log("navbar render", this.props.isLoggedIn);
+        let a = this.props.isLoggedIn;
         return (
             <div className="navi">
+                {this.state.isLoggedOut ?
+                <Redirect
+                 to={{
+                     pathname: "/",
+                     state: { from: this.props.location }
+                 }}
+                />
+                 : <></>
+                }
                 <Navbar className="navbar1" light expand="md">
                     <NavbarBrand href="/">세모:닭</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             {
-                                this.props.isLoggedIn ? (
+                                
+                                a ? (
                                     <>
                                         
                                         <Redirect

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './Signup.css';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class Signup extends Component {
+    state = {
+        isCompleted : false
+    }
     // constructor(props) {
     //     super(props);
     // }
@@ -18,14 +22,33 @@ class Signup extends Component {
         const userid = e.target.elements.userid.value;
         const password = e.target.elements.password.value;
         const email = e.target.elements.email.value;
+        const activity = e.target.elements.activity.value;
+        const tall = e.target.elements.tall.value;
+        const weight = e.target.elements.weight.value;
 
-        let data = { userid, email, password };
+
+        let data = { userid, email, password ,
+                    activity, tall , weight};
         const res = await axios.post('/mongo/signup', data);
+        // console.log(res.status);
+        if (res.status === 200) {
+            this.setState({
+                isCompleted : true
+            })
+        }
+        // res.status(200)
     }
 
     render() {
         return (
             <>
+                {this.state.isCompleted?
+                    <Redirect
+                        to={{
+                            pathname: "/",
+                            state: { from: this.props.location }
+                        }} />
+                : <></>}
                 <div border="1px solid">
                     <Form className="siform" onSubmit={this.handleSubmit}>
                         <h4>Sign Up</h4>

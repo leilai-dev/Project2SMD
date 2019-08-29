@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Myinfo.css';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
-
 
 class Myinfo extends Component {
     constructor(props) {
@@ -23,7 +22,11 @@ class Myinfo extends Component {
                 field19: ""
             },
         }
-        console.log(this.props.match.params);
+        // console.log(this.props.match.params);
+    }
+
+    delete = (cbData) => {
+        this.props.loginCallback(cbData);
     }
 
     async componentDidMount() {
@@ -88,7 +91,7 @@ class Myinfo extends Component {
               <ModalModify />
           </Col> */}
                         <Col xs='6'>
-                            <ModalDelete userid={this.state.data.userid} />
+                            <ModalDelete deleteCallback={this.delete} userid={this.state.data.userid} />
 
                         </Col>
                     </Row>
@@ -106,12 +109,24 @@ class ModalDelete extends React.Component {
 
         this.state = {
             modal: false,
+            deleteSuccess: false,
         };
 
         this.toggle = this.toggle.bind(this);
     }
 
-    // delete = () => {
+    delete = async () => {
+        console.log(this.props.userid);
+        const res = await axios.delete('/mongo/user/delete/' + this.props.userid);
+
+        
+        if (res.data.result) {
+            this.setState({
+                deleteSuccess: true
+            })
+            this.props.deleteCallback(false);
+        }
+    }
 
     toggle() {
         this.setState(prevState => ({
@@ -122,6 +137,17 @@ class ModalDelete extends React.Component {
     render() {
         return (
             <div>
+                {
+                    this.state.deleteSuccess ? 
+                    <Redirect
+                    to={{
+                        pathname: "/",
+                        state: { from: this.props.location }
+                    }}
+                   />
+                   : <></>
+                }
+
                 <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel} 회원 탈퇴하기</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>탈퇴하기</ModalHeader>
