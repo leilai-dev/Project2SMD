@@ -12,7 +12,7 @@ class App extends Component {
     super(props)
     console.log(document.cookie);
     const getCookie = document.cookie;
-    const isLoggedIn = getCookie.split('=')[1];
+    const isLoggedIn = JSON.parse(getCookie.split('=')[1]);
     this.state = {
       isLoggedIn: isLoggedIn
     }
