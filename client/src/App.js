@@ -14,7 +14,7 @@ class App extends Component {
     super(props)
     console.log(document.cookie);
     const getCookie = document.cookie;
-    const isLoggedIn = getCookie.split('=')[1];
+    const isLoggedIn = JSON.parse(getCookie.split('=')[1]);
     this.state = {
       isLoggedIn: isLoggedIn
     }
@@ -43,34 +43,34 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Route>
-      <div className="App">
-        <div className="bigdiv">
+          <div className="App">
+            <div className="bigdiv">
 
-          <div className="ndiv1">
-            <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout}/>
+              <div className="ndiv1">
+                <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout} />
+              </div>
+
+              <div className="ndiv2">
+                <SearchBar />
+              </div>
+            </div>
+
+            {/* <PropsRoute exact path="/" component={Cards} data={this.state.asshole} /> */}
+            {/* <Route exact path="/" render={() => <Cards data={this.state.asshole} />} />*/}
+            <Switch>
+              <Route path="/main/login/:name" component={Login} />
+              <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
+            </Switch>
+            <Route exact path="/" render={(props) => <Cards {...props} />} />
+
+            <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
+
+            <Route path="/main/mylist" component={Mylist} />
+            <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
+            <Route path="/main/signup" component={Signup} />
+            <Route path="/detail/:id" component={Detail} />
           </div>
-
-          <div className="ndiv2">
-            <SearchBar />
-          </div>
-        </div>
-
-        {/* <PropsRoute exact path="/" component={Cards} data={this.state.asshole} /> */}
-        {/* <Route exact path="/" render={() => <Cards data={this.state.asshole} />} />*/}
-        <Switch>
-          <Route path="/main/login/:name" component={Login} />
-          <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
-        </Switch>
-        <Route exact path="/" render={(props) => <Cards {...props} />} />
-
-        <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
-
-        <Route path="/main/mylist" component={Mylist} />
-        <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
-        <Route path="/main/signup" component={Signup} />
-        <Route path="/detail/:id" component={Detail} />
-      </div>
-      </Route>
+        </Route>
       </BrowserRouter>
     );
   }
