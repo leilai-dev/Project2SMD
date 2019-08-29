@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import {
     Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,
@@ -24,14 +23,7 @@ export default class Example extends React.Component {
 
         console.log("navbar islogin",this.props.isLoggedIn);
     }
-
-    // componentDidUpdate() {
-    //     console.log(this.props);
-    //     console.log("navbar", this.props.isLoggedIn)
-    //     // this.setState({
-    //     //     isLoggedIn: this.props.isLoggedIn
-    //     // })
-    // }
+    
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -39,13 +31,8 @@ export default class Example extends React.Component {
         console.log(this.props.isLoggedIn);
     }
 
-    // async logout() {
-    //     console.log(this.props.isLoggedIn);
-    //     const res = await axios.get('/mongo/logout');
-    // }
     logout = async () => {
         const res = await axios.get('/mongo/logout');
-
         if (res.status === 200) {
         console.log("loggedIn", this.props.isLoggedIn);
             console.log("clear");
@@ -57,7 +44,6 @@ export default class Example extends React.Component {
     }
 
     render() {
-        const { isLoggedin } = this.state;
         console.log("navbar render", this.props.isLoggedIn);
         let a = this.props.isLoggedIn;
         return (
@@ -72,15 +58,14 @@ export default class Example extends React.Component {
                  : <></>
                 }
                 <Navbar className="navbar1" light expand="md">
-                    <NavbarBrand href="/">세모:닭</NavbarBrand>
+                    {/* <NavbarBrand href="/">세모:닭</NavbarBrand> */}
+                    <NavbarBrand><Link to='/'>세모:닭</Link></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             {
-                                
                                 a ? (
-                                    <>
-                                        
+                                    <>  
                                         <Redirect
                                             to={{
                                                 pathname: "/",
@@ -88,16 +73,16 @@ export default class Example extends React.Component {
                                             }}
                                         />     
                                         <NavItem>
-                                           <Button onClick={this.logout}>Log out</Button>
+                                           <NavLink><a onClick={this.logout}>Log out</a></NavLink>
                                         </NavItem>
                                         <UncontrolledDropdown nav inNavbar>
 
                                             <DropdownToggle nav caret>내 정보</DropdownToggle>
                                             <DropdownMenu right>
-                                                <DropdownItem><Link to="/main/mylist">나의 관심 상품</Link></DropdownItem>
+                                                <DropdownItem><Link to="/main/myinfo">회원 정보 확인</Link></DropdownItem>
                                                 <DropdownItem divider />
-                                                <DropdownItem><Link to="/main/myinfo">회원 정보 수정</Link></DropdownItem>
-                                            </DropdownMenu>
+                                                <DropdownItem><Link to="/main/leave">회원 탈퇴</Link></DropdownItem>
+                                                </DropdownMenu>
                                         </UncontrolledDropdown>
                                     </>
                                 ) : (

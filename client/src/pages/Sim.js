@@ -9,17 +9,10 @@ const nameArray = [];
 class Sim extends Component {
     constructor(props) {
         super(props);
-        this.props.data.map((data) => {
-            nameArray.push(data);
+        this.props.data.map(data => {
+            return nameArray.push(data);
         });
     }
-    
-    // componentWillReceiveProps() {
-    //     nameArray.splice(0,nameArray.length)
-    //     this.props.data.map((data) => {
-    //         nameArray.push(data);
-    //     });
-    // }
 
     forLoop = () => {
         let n=0;
