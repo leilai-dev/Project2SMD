@@ -19,6 +19,13 @@ export default class Example extends React.Component {
             isOpen: false,
         };
     }
+    // componentDidUpdate() {
+    //     console.log(this.props);
+    //     console.log("navbar", this.props.isLoggedIn)
+    //     // this.setState({
+    //     //     isLoggedIn: this.props.isLoggedIn
+    //     // })
+    // }
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -43,6 +50,7 @@ export default class Example extends React.Component {
     }
 
     render() {
+        const { isLoggedin } = this.state;
         return (
             <div className="navi">
                 <Navbar className="navbar1" light expand="md">

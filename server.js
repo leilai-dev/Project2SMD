@@ -53,6 +53,9 @@ app.use(function (req, res, next) {
 
 app.use(cors());
 
+app.use(cors());
+
+
 // 몽고DB사용을 위한 선언
 const dbConnect = require('./schemas');
 

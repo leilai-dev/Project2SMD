@@ -75,7 +75,7 @@ module.exports = () => {
                     res.cookie("id", user.userid, { maxAge: 10 * 60 * 60 * 1000, httpOnly: true });
                     res.cookie("name", user.name, { maxAge: 10 * 60 * 60 * 1000, httpOnly: true });
                     res.cookie("isLoggedIn", true, { maxAge: 10 * 60 * 60 * 1000 });
-                    res.json({ result: true, name: user.name, id: user._id });    
+                    res.json({ result: true, name: user.name, id: user._id });
                 } else {
                     console.log('패스워드가 맞지 않습니다');
                     res.redirect('/');
@@ -136,46 +136,9 @@ module.exports = () => {
         var full = await Items.findOne({ _id });
         results.push(full);
 
-        console.log(results);
-        console.log(results[0].category);
-        console.log(results[0][element[0]]);
-
-        var cate = await results[0].category;
-
-        var i = 0;
-        while (i < 2) {
-            var figure = await results[0][element[i]];
-            console.log(i + " : " + figure);
-            if (figure == null) {
-                break;
-            } else {
-                var lower = await Items.find({
-                    [element[i]]: { $lt: figure },
-                    category: { $ne: cate }
-                },
-                    { _id: 1, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 })
-                    .sort({ [element]: -1 }).limit(2);
-                results.push(lower);
-
-                var upper = await Items.find({
-                    [element[i]]: { $gte: figure },
-                    category: { $ne: cate }
-                },
-                    { _id: 1, name: 1, category: 1, imgUrl: 1, [element[i]]: 1 })
-                    .sort({ [element]: 1 }).limit(2);
-                results.push(upper);
-                i++;
-            }
-        }
-        console.log(results);
-        console.log('이것이 길이다!!!!');
-        console.log(results.length);
-
-        if (results.length < 5) {
-            res.status(500).send('Array involved Null.');
-        }
-
-        res.status(200).json(results);
+        Items.findOne({ _id }, (err, result) => {
+            res.status(200).json(result);
+        })
     })
 
     router.get('/testArray', (req, res) => {
@@ -212,6 +175,18 @@ module.exports = () => {
             res.json(result);
         });
     });
+
+    router.delete('/user/delete/:id', (req, res, next) => {
+        const _id = req.params.id;
+        Users.deleteOne({ _id }, (err, result) => {
+            console.log(result);
+            req.session.destroy(() => {
+                req.session;
+                delete res.locals.user;
+            });
+            res.status(200).redirect('/');
+        });
+    })
 
     return router;
 }
