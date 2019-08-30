@@ -69,6 +69,18 @@ class Signup extends Component {
                         <hr />
                         <p className="md"><h6>선택 사항</h6></p>
                         <p className="muted2">선택 정보는 일일 섭취 권장량 계산에 이용됩니다.</p>
+
+
+                        {/* <FormGroup>
+                            <Label className="md">활동량</Label>
+                            <Input className="input1" type="select" id="activity" name="activity">
+                                <option default value="자신의 활동량 선택">자신의 활동량 선택</option>
+                                <option value="육체 활동이 거의 없는 경우">육체 활동이 거의 없는 경우</option>
+                                <option value="보통의 활동을 하는 경우2">보통의 활동을 하는 경우</option>
+                                <option value="심한 육체 활동을 하는 경우">심한 육체 활동을 하는 경우</option>
+                            </Input>
+                        </FormGroup> */}
+
                         <FormGroup>
                             <Label className="md">활동량</Label>
                             <Input className="input1" type="select" id="activity" name="activity">
