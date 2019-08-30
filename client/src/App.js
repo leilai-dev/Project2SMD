@@ -13,8 +13,15 @@ class App extends Component {
   constructor(props) {
     super(props)
     console.log(document.cookie);
-    const getCookie = document.cookie;
-    const isLoggedIn = JSON.parse(getCookie.split('=')[1]);
+    // 
+    let isLoggedIn = false;
+    const getCookie = document.cookie.split(';');
+    for (let elem of getCookie) {
+      const tempArr = elem.split("=");
+      if (tempArr[0] === "isLoggedIn") {
+        isLoggedIn = tempArr[1];
+      }
+    }
     this.state = {
       isLoggedIn: isLoggedIn
     }
