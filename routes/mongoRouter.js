@@ -79,6 +79,7 @@ module.exports = () => {
                     res.cookie("isLoggedIn", true, { maxAge: 10 * 60 * 60 * 1000 });
                     res.json({ result: true, name: user.name, id: user._id });
                 } else {
+                    
                     console.log('패스워드가 맞지 않습니다');
                     res.redirect('/');
                 }
