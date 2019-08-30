@@ -12,14 +12,18 @@ import axios from 'axios';
 class App extends Component {
   constructor(props) {
     super(props)
-    console.log(document.cookie);
-    // 
+
+    // 로그인 상태 초기값 설정
     let isLoggedIn = false;
+    // document.cookie ==> "a=1; b=2; c=3; ..."
+    // 쿠키값을 배열로 저장
     const getCookie = document.cookie.split(';');
+    // 각 배열 요소마다 isLoggedIn값이 있는지 확인 후
     for (let elem of getCookie) {
       const tempArr = elem.split("=");
       if (tempArr[0] === "isLoggedIn") {
-        isLoggedIn = tempArr[1];
+        // 값이 true일 경우 true값 isLoggedIn 변수에 저장
+        isLoggedIn = (tempArr[1].charAt(0) === 't');
       }
     }
     this.state = {
