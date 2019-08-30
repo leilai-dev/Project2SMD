@@ -4,9 +4,13 @@ import './Signup.css';
 import axios from 'axios';
 
 class Signup extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedFile: null
+        }
+        this.handleFileInput = this.handleFileInput.bind(this);
+    }
     handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -21,6 +25,24 @@ class Signup extends Component {
 
         let data = { userid, email, password };
         const res = await axios.post('/mongo/signup', data);
+    }
+
+    handleFileInput = (f) => {
+        this.setState({
+          selectedFile : f.target.files[0],
+        })
+    }
+
+    handlePost = () => {
+        const formData = new FormData();
+        formData.append('file', this.state.selectedFile);
+    
+        return axios.post("/mongo/upload", formData).then(res => {
+          alert('성공')
+        }).catch(err => {
+            console.log(err);
+          alert('실패')
+        })
     }
 
     render() {
@@ -71,7 +93,8 @@ class Signup extends Component {
                                 <FormText className="muted" color="muted">
                                     Select your profile image.
                                 </FormText>
-                                <Input type="file" name="photofile" />
+                                <Input type="file" name="photofile" onChange={this.handleFileInput} />
+                                <Button color="primary" onClick={this.handlePost}>photo upload</Button>
                             </div>
                         </FormGroup>
                         <Button color="primary">Sign In</Button>
