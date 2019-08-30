@@ -25,9 +25,22 @@ class Myinfo extends Component {
     async componentDidMount() {
         const res = await axios.get('/mongo/myinfo');
         console.log(res.data);
+        const data = res.data
+        console.log(data)
+
+        if (data.activity === 1){
+            data.activity = "육체 활동이 거의 없는 경우"
+        } else if (data.activity === 2) {
+            data.activity = " 보통의 활동을 하는 경우"  
+        } else {
+            data.activity = "심한 육체 활동을 하는 경우"
+        };
+
         this.setState({
-            data: res.data
+            data: data,
         })
+        
+       
         console.log("res.data:", res.data);
         console.log("this.state.data.userid:");
         console.log(this.state.data.userid);
