@@ -68,7 +68,7 @@ class App extends Component {
 
             <Route exact path="/" render={(props) => <Cards {...props} />} />
             <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
-            <Route path="/main/leave" component={Leave} />
+            <Route path="/main/leave"  render={() => <Leave loginCallback={this.login} />}/>
             <Route path="/main/signup" component={Signup} />
 
             <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />

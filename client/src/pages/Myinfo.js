@@ -25,29 +25,14 @@ class Myinfo extends Component {
     async componentDidMount() {
         const res = await axios.get('/mongo/myinfo');
         console.log(res.data);
-        const data = res.data
-        console.log(data)
-
-        if (data.activity === 1){
-            data.activity = "육체 활동이 거의 없는 경우"
-        } else if (data.activity === 2) {
-            data.activity = " 보통의 활동을 하는 경우"  
-        } else {
-            data.activity = "심한 육체 활동을 하는 경우"
-        };
-
         this.setState({
-            data: data,
+            data: res.data
         })
-        
-       
+    
         console.log("res.data:", res.data);
         console.log("this.state.data.userid:");
         console.log(this.state.data.userid);
     }
-
-
-                            </div>
     active() {
         let act;
         console.log(this.state.data.activity);
@@ -85,39 +70,6 @@ class Myinfo extends Component {
                             </FormText>
                         </div>
                     </FormGroup>
-
-                <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel} 회원 탈퇴하기</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>탈퇴안내</ModalHeader>
-                    <ModalBody>
-                        <p>회웥탈퇴 진행에 앞서 아래의 사랑을 <strong>반드시 확인</strong>하시길 바랍니다</p>  
-                        <div className="notice">
-                            <p>1. 한번 탈퇴하면 ㅇㄹㅇㄹㅇㄹ</p>   
-                            <p>1. 한번 탈퇴하면 ㅇㄹㅇㄹㅇㄹ</p>  
-                            <p>1. 한번 탈퇴하면 ㅇㄹㅇㄹㅇㄹ</p>  
-                            <p>1. 한번 탈퇴하면 ㅇㄹㅇㄹㅇㄹ</p>  
-                            <p>1. 한번 탈퇴하면 ㅇㄹㅇㄹㅇㄹ</p>                     
-                            </div>
-
-                            <div className="reason">
-                                <p>탈퇴사유 입력</p>
-                                
-                                <p>향후 더 나은 서비스 제공을 위해 탈퇴사유를 입력하세요</p>
-                                <input></input>
-                            </div>
-
-                            <div className="password">
-                                <p>패스워드 인증</p>
-                            
-                                <p>타인에 의한 탈퇴를 방자하기 위한 추가 인증입니다</p>
-                                <input onChange={this.updatePassword} placeholder="패스워드를 입력하세요." name="password" type="password"></input>
-                            </div>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="danger" onClick={this.delete}>탈퇴하기</Button>
-                        <Button color="secondary" onClick={this.toggle}>취소</Button>
-                    </ModalFooter>
-                </Modal>
                     <FormGroup>
                         <Label className="sm">ID</Label>
                         <Input className="input1" type="userid" name="userid"  value={this.state.data.userid} />
@@ -145,7 +97,6 @@ class Myinfo extends Component {
                             <Input className="input1" type="number" name="weight" value={this.state.data.weight} />
                         </div>
                     </FormGroup>
-                    {/* <Button color="primary">Sign In</Button> */}
                 </Form>
             </div>
         );
