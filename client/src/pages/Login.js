@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 

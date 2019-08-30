@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import "./App.css";
-import Navbar from "./Navbar";
-import { Login, Myinfo, Mylist, Signup, Detail } from 'pages';
+import { Login, Myinfo, Signup, Detail, Leave } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
+import Navbar from "./Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-// var currentTimeDate = new Date();
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +27,6 @@ class App extends Component {
     this.state = {
       isLoggedIn: isLoggedIn
     }
-    // console.log('안먹니?');
   }
 
   login = (cbData) => {
@@ -56,7 +53,6 @@ class App extends Component {
         <Route>
           <div className="App">
             <div className="bigdiv">
-
               <div className="ndiv1">
                 <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout} />
               </div>
@@ -65,20 +61,17 @@ class App extends Component {
                 <SearchBar />
               </div>
             </div>
-
-            {/* <PropsRoute exact path="/" component={Cards} data={this.state.asshole} /> */}
-            {/* <Route exact path="/" render={() => <Cards data={this.state.asshole} />} />*/}
             <Switch>
               <Route path="/main/login/:name" component={Login} />
               <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
             </Switch>
+
             <Route exact path="/" render={(props) => <Cards {...props} />} />
+            <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
+            <Route path="/main/leave" component={Leave} />
+            <Route path="/main/signup" component={Signup} />
 
             <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
-
-            <Route path="/main/mylist" component={Mylist} />
-            <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
-            <Route path="/main/signup" component={Signup} />
             <Route path="/detail/:id" component={Detail} />
           </div>
         </Route>

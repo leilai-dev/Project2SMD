@@ -46,6 +46,12 @@ a:hover{
     background-color: transparent;
 }
 
+
+
 a.nav-link {
     margin: 0 5px 0 5px;
+}
+
+.dropdown-item:active {
+    background-color: transparent;
 }
