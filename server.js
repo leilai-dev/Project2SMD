@@ -31,7 +31,7 @@ app.use(cookieparser());
 
 app.use(session({
   secret: '1A@W#E$E',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   cookie: {
     secure: false,
@@ -39,7 +39,7 @@ app.use(session({
     maxAge: 10 * 60 * 60 * 1000, // 쿠키 유효기간 10시간
     // name: res.locals.user.name
   },
-  // store: new FileStore()
+  store: new FileStore()
 }));
 
 // 각 유저별 세션 정보 res.locals에 저장
@@ -52,7 +52,9 @@ app.use(function (req, res, next) {
   next();
 });
 
+
 app.use(cors());
+
 
 // 몽고DB사용을 위한 선언
 const dbConnect = require('./schemas');

@@ -24,8 +24,12 @@
     max-width: 1000px;
 }
 
-.th {
-    width: 15%;
-    margin-right: 5px;
+table {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+th {
+    padding: 0 3px 0 3px;
 }
 

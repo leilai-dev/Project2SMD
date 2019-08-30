@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import './Myinfo.css';
+import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
-
-
 
 class Myinfo extends Component {
     constructor(props) {
@@ -23,123 +20,87 @@ class Myinfo extends Component {
                 field19: ""
             },
         }
-        console.log(this.props.match.params);
     }
-
+    
     async componentDidMount() {
         const res = await axios.get('/mongo/myinfo');
         console.log(res.data);
         this.setState({
             data: res.data
         })
+    
         console.log("res.data:", res.data);
         console.log("this.state.data.userid:");
         console.log(this.state.data.userid);
     }
-
-    render() {
-        return (
-            <div className="p-3 my-2 rounded bg-docs-transparent-grid">
-                <Container>
-                    <Row>
-                        <Col sm="12" md={{ size: 8, offset: 2 }}>
-                            <div className="pro-title">
-                                <h1>Account Profile</h1> <hr />
-                            </div>
-                            <div className="pro-img">
-                                <img src={this.state.img} />
-                            </div>
-
-                            <div className="pro-info">
-                                <br />
-                                <h2>기본 정보</h2>
-                                <hr />
-
-                                <label><b>Full Name: </b></label><br />
-                                &nbsp;&nbsp;<input type="text" value={this.state.data.userid}></input><br /> <br />
-                                <label><b>Email:</b> </label><br />
-                                &nbsp;&nbsp;<input type="text" value={this.state.data.email}></input> <br /><br />
-                                <label><b>Created At</b></label><br />
-                                &nbsp;&nbsp;<input type="text" value={this.state.data.createdAt}></input><br /><br />
-
-                                <br />
-                                <br />
-                                <br />
-
-                                <h2>추가 정보</h2>
-                                <hr />
-                                <label><b>활동량: </b></label><br />
-                                &nbsp;&nbsp;<input type="text" value={this.state.data.activity}></input><br /> <br />
-
-                                <label><b>키:</b> </label><br />
-                                &nbsp;&nbsp;<input type="text" value={this.state.data.tall}></input> <br /><br />
-
-                                <label><b>몸무게:</b> </label><br />
-                                &nbsp;&nbsp;<input type="text" value={this.state.data.weight}></input><br /><br />
-                            </div>
-                        </ Col>
-                    </Row>
-
-                    <br />
-                    <br />
-
-                    <Row className="button-row">
-                        {/* <Col xs='6'>
-              <ModalModify />
-          </Col> */}
-                        <Col xs='6'>
-                            <ModalDelete userid={this.state.data.userid} />
-
-                        </Col>
-                    </Row>
-                </Container>
-
-            </div>
-
-        );
-    };
-}
-
-class ModalDelete extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            modal: false,
-        };
-
-        this.toggle = this.toggle.bind(this);
-    }
-
-    // delete = () => {
-
-    toggle() {
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }));
+    active() {
+        let act;
+        console.log(this.state.data.activity);
+        switch(this.state.data.activity) {
+            case 1 :
+                act="육체 활동이 거의 없는 경우";
+                break;
+            case 2:
+                act="보통의 활동을 하는 경우";
+                break;
+            case 3 :
+                act="심한 육체 활동을 하는 경우";
+                break;
+            default :
+                act="선택 없음";
+                break;
+        }
+        return act;
     }
 
     render() {
         return (
-            <div>
-                <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel} 회원 탈퇴하기</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>탈퇴하기</ModalHeader>
-                    <ModalBody>
-                        <p>정말 탈퇴하시겠습니까??</p>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="danger" onClick={this.delete}>탈퇴하기</Button>
-                        <Button color="secondary" onClick={this.toggle}>취소</Button>
-                    </ModalFooter>
-                </Modal>
-                {/* <Button color="danger" onClick={this.toggle}>탈퇴하기</Button> */}
+            <div border="1px solid">
+                <Form className="siform" onSubmit={this.handleSubmit}>
+                    <h4>Account Profile</h4>
+                    <br />
+                    <p><h6>기본 정보</h6></p>
+                    <FormGroup>
+                        <div >
+                            <Label className="md2">프로필 이미지</Label>
+                            <FormText className="muted" color="muted">
+                                <div align="center">
+                                <img src={this.state.img} alt="Default"/>
+                                </div>
+                            </FormText>
+                        </div>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="sm">ID</Label>
+                        <Input className="input1" type="userid" name="userid"  value={this.state.data.userid} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="sm">Email</Label>
+                        <Input className="input1" type="email" name="email" value={this.state.data.email} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="sm">Created At</Label>
+                        <Input className="input1" type="text" value={this.state.data.createdAt.substring(0,10)} />
+                    </FormGroup>
+                    <hr />
+                    <p className="md"><h6>추가 정보</h6></p>
+                    <FormGroup>
+                        <Label className="md">활동량</Label>
+                        <Input className="input1" type="text" value={this.active()} />
+                    </FormGroup>
+
+                    <FormGroup>
+                        <div className="dadan">
+                            <Label className="md" name="tall" >신장 (cm)</Label>
+                            <Input className="input1" type="number" name="tall" value={this.state.data.tall} />
+                            <Label className="md" name="weight">체중 (kg)</Label>
+                            <Input className="input1" type="number" name="weight" value={this.state.data.weight} />
+                        </div>
+                    </FormGroup>
+                </Form>
             </div>
         );
     }
-}
-
-
-
+};
 
 export default Myinfo;

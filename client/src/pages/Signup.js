@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './Signup.css';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedFile: null
+            selectedFile: null,
+            isCompleted : false
         }
         this.handleFileInput = this.handleFileInput.bind(this);
     }
+        
     handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -22,9 +25,21 @@ class Signup extends Component {
         const userid = e.target.elements.userid.value;
         const password = e.target.elements.password.value;
         const email = e.target.elements.email.value;
+        const activity = e.target.elements.activity.value;
+        const tall = e.target.elements.tall.value;
+        const weight = e.target.elements.weight.value;
 
-        let data = { userid, email, password };
+
+        let data = { userid, email, password ,
+                    activity, tall , weight};
         const res = await axios.post('/mongo/signup', data);
+        // console.log(res.status);
+        if (res.status === 200) {
+            this.setState({
+                isCompleted : true
+            })
+        }
+        // res.status(200)
     }
 
     handleFileInput = (f) => {
@@ -48,6 +63,13 @@ class Signup extends Component {
     render() {
         return (
             <>
+                {this.state.isCompleted?
+                    <Redirect
+                        to={{
+                            pathname: "/",
+                            state: { from: this.props.location }
+                        }} />
+                : <></>}
                 <div border="1px solid">
                     <Form className="siform" onSubmit={this.handleSubmit}>
                         <h4>Sign Up</h4>
@@ -68,6 +90,7 @@ class Signup extends Component {
                         <hr />
                         <p className="md"><h6>선택 사항</h6></p>
                         <p className="muted2">선택 정보는 일일 섭취 권장량 계산에 이용됩니다.</p>
+
                         <FormGroup>
                             <Label className="md">활동량</Label>
                             <Input className="input1" type="select" id="activity" name="activity">
