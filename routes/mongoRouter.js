@@ -211,5 +211,44 @@ router.get('/detail/:id', async (req, res) => {
         });
     })
 
+
+
+    // router.post('/exit', (req, res) => {
+    //     // req.body 객체에서 바로 hasher로
+    //     hasher({
+    //         password: req.body.password
+    //     }, (err, pass, salt, hash) => {
+    //         if (err) {
+    //             console.log('ERR: ', err);
+    //             res.status(500).redirect('/');
+    //             return;
+    //         }
+
+    //     // user 콜렉션에 hash 저장
+    //     const exit = new Exits({
+    //         userid: req.body.userid,
+    //         email: req.body.email,
+    //         password: hash,
+    //         salt: salt,
+    //         activity: req.body.activity,
+    //         tall: req.body.tall,
+    //         weight: req.body.weight,
+    //         reason: req.body.reason,
+    //         });
+
+    //         user.save((err, result) => {
+    //             if (err) console.log(err);
+    //             else {
+    //                 console.log(result);
+    //                 res.status(200).json({ result: true });
+
+    //             }
+    //         });
+
+    //     });
+    // });
+
+
+
     return router;
 }
