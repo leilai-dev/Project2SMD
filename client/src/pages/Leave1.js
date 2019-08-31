@@ -82,6 +82,7 @@ class ModalDelete extends React.Component {
             })
             this.props.deleteCallback(false);
         }
+        alert("회원탈퇴가 완료되었습니다\n다음에 또 뵙겠습니다.");
     }
 
     toggle() {
