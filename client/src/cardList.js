@@ -18,11 +18,37 @@ export default class Album extends Component {
     this.state = {
       data: [],
       isLoaded: false,
+      searchVal: null,
+      category: null,
     }
     // queries[0], queries[1]
     // console.log(queries[0], queries[1]);
     // console.log("cardlist props:", this.props);
 
+  }
+  async shouldComponentUpdate() {
+    console.log(this.props.match.params);
+    // this.setState({
+    //   category: this.props.match.params
+    // })
+    let res;
+    // 서치일경우 > /search/:value 링크로 접근시.
+    if (this.props.match.params.value) {
+      const split = String(this.props.location.search).split("?");
+      // split[1] 값이 존재하면 카테고리 필터링 검색 수행
+      if (split[1] !== null && split[1] !== undefined) {
+        const queries = String(split[1]).split("=");
+        res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
+      } else
+        res = await axios.get(`/mongo/search/${this.props.match.params.value}`);
+      // console.log("search: ",this.props.match.params.value);
+    }
+    else {
+      res = await axios.get("/mongo/itemlist");
+    }
+    this.setState({ data: res.data, isLoaded: true });
+
+    return !this.state.isLoaded
   }
 
   async componentDidMount() {
@@ -30,12 +56,14 @@ export default class Album extends Component {
     console.log("willUpdate:", this.props);
     console.log(this.props.match.params);
 
+    if (this.state.isLoaded)
+      return;
     let res;
     // 서치일경우 > /search/:value 링크로 접근시.
     if (this.props.match.params.value) {
       const split = String(this.props.location.search).split("?");
       // split[1] 값이 존재하면 카테고리 필터링 검색 수행
-      if (split[1] !== null || split[1] !== undefined) {
+      if (split[1] !== null && split[1] !== undefined) {
         const queries = String(split[1]).split("=");
         res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
       } else
