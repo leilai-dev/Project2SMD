@@ -1,6 +1,5 @@
 const multer = require('multer');
 const moment = require('moment');
-const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -10,27 +9,24 @@ const storage = multer.diskStorage({
     cb(null, moment().format('YYYYMMDDHHmmss') + "_" + file.originalname);  // 저장되는 파일명
   },
 });
-// ... 
+
 // 업로드 파일 필터링 설정
 const fileFilter = (req, file, cb) => {
-  const extension = path.extname(file.originalname).toLowerCase();
-  const mimetyp = file.mimetype
-  if (extension !== '.jpg'
-    || extension !== '.jpeg'
-    || extension !== '.png'
-    || mimetyp !== 'image/png'
-    || mimetyp !== 'image/jpg'
-    || mimetyp !== 'image/jpeg') {
-    return cb('Not allowed file type', false);
+  let typeCheck = file.mimetype.split('/')[1];
+  if (typeCheck === 'png'
+    || typeCheck === 'jpg'
+    || typeCheck === 'jpeg') {
+    return cb(null, true);
   }
 
-  cb(null, true);
+  cb('Not allowed file type', false);
 }
 
+// 필터링 적용
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 2048 // 2Mbytes 용량 제한
+    fileSize: 1024 * 2048 // 2Mbytes 용량 제한
   },
   fileFilter
 }).single("file");   // single : 하나의 파일업로드 할때
