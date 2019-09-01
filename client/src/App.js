@@ -50,31 +50,29 @@ class App extends Component {
     console.log(this.state.isLoggedIn);
     return (
       <BrowserRouter>
-        <Route>
-          <div className="App">
-            <div className="bigdiv">
-              <div className="ndiv1">
-                <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout} />
-              </div>
-
-              <div className="ndiv2">
-                <SearchBar />
-              </div>
+        <div className="App">
+          <div className="bigdiv">
+            <div className="ndiv1">
+              <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout} />
             </div>
-            <Switch>
-              <Route path="/main/login/:name" component={Login} />
-              <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
-            </Switch>
 
-            <Route exact path="/" render={(props) => <Cards {...props} />} />
-            <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
-            <Route path="/main/leave"  render={() => <Leave loginCallback={this.login} />}/>
-            <Route path="/main/signup" component={Signup} />
-
-            <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
-            <Route path="/detail/:id" component={Detail} />
+            <div className="ndiv2">
+              <SearchBar />
+            </div>
           </div>
-        </Route>
+          <Switch>
+            <Route path="/main/login/:name" component={Login} />
+            <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
+          </Switch>
+
+          <Route exact path="/" render={(props) => <Cards {...props} />} />
+          <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
+          <Route path="/main/leave" render={() => <Leave loginCallback={this.login} />} />
+          <Route path="/main/signup" component={Signup} />
+
+          <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
+          <Route path="/detail/:id" component={Detail} />
+        </div>
       </BrowserRouter>
     );
   }

@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import App from 'App';
+import ClientErrorHandler from 'ClientErrorHandler';
 
 const Root = () => (
-    <BrowserRouter>
-        <Route exact path="/" component={App}></Route>
-    </BrowserRouter>
+    <App />
 );
 
 export default Root;
