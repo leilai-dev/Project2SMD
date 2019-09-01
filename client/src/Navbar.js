@@ -21,9 +21,9 @@ export default class Example extends React.Component {
     }
     componentDidMount() {
 
-        console.log("navbar islogin",this.props.isLoggedIn);
+        console.log("navbar islogin", this.props.isLoggedIn);
     }
-    
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -34,10 +34,10 @@ export default class Example extends React.Component {
     logout = async () => {
         const res = await axios.get('/mongo/logout');
         if (res.status === 200) {
-        console.log("loggedIn", this.props.isLoggedIn);
+            console.log("loggedIn", this.props.isLoggedIn);
             console.log("clear");
             this.setState({
-                isLoggedOut : true
+                isLoggedOut: true
             })
             this.props.logoutCallback(false);
         }
@@ -49,31 +49,31 @@ export default class Example extends React.Component {
         return (
             <div className="navi">
                 {this.state.isLoggedOut ?
-                <Redirect
-                 to={{
-                     pathname: "/",
-                     state: { from: this.props.location }
-                 }}
-                />
-                 : <></>
+                    <Redirect
+                        to={{
+                            pathname: "/",
+                            state: { from: this.props.location }
+                        }}
+                    />
+                    : <></>
                 }
                 <Navbar className="navbar1" light expand="md">
-                    {/* <NavbarBrand href="/">세모:닭</NavbarBrand> */}
-                    <NavbarBrand><Link to='/'>세모:닭</Link></NavbarBrand>
+                    <NavbarBrand href="/">세모:닭</NavbarBrand>
+                    {/* <NavbarBrand><Link to='/'>세모:닭</Link></NavbarBrand> */}
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             {
                                 a ? (
-                                    <>  
+                                    <>
                                         <Redirect
                                             to={{
                                                 pathname: "/",
                                                 state: { from: this.props.location }
                                             }}
-                                        />     
+                                        />
                                         <NavItem>
-                                           <NavLink><a onClick={this.logout}>Log out</a></NavLink>
+                                            <NavLink onClick={this.logout}>Log out</NavLink>
                                         </NavItem>
                                         <UncontrolledDropdown nav inNavbar>
 
@@ -82,7 +82,7 @@ export default class Example extends React.Component {
                                                 <DropdownItem><Link to="/main/myinfo">회원 정보 확인</Link></DropdownItem>
                                                 <DropdownItem divider />
                                                 <DropdownItem><Link to="/main/leave">회원 탈퇴</Link></DropdownItem>
-                                                </DropdownMenu>
+                                            </DropdownMenu>
                                         </UncontrolledDropdown>
                                     </>
                                 ) : (

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-
-class ClientErrorHandler extends Component {
+import AxiosInterceptors from './AxiosInterceptors';
+import { Link } from 'react-router-dom';
+class ErrorHandler extends Component {
   constructor(props) {
     super(props);
+    AxiosInterceptors();
+
     this.state = { error: null, errorInfo: null };
   }
 
@@ -21,6 +24,7 @@ class ClientErrorHandler extends Component {
       return (
         <div>
           <h2>오류 발생</h2>
+          <a href='/'>메인으로 돌아가기</a>
           <details style={{ whiteSpace: 'pre-wrap' }}>
             {this.state.error && this.state.error.toString()}
             <br />
@@ -34,4 +38,4 @@ class ClientErrorHandler extends Component {
   }
 }
 
-export default ClientErrorHandler;
+export default ErrorHandler;
