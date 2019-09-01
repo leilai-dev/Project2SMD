@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Login, Myinfo, Signup, Detail, Leave } from 'pages';
 import SearchBar from './SearchBar';
 import Cards from './cardList';
 import Navbar from "./Navbar";
+import NotFound from './NotFound';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
@@ -49,21 +50,19 @@ class App extends Component {
   render() {
     console.log(this.state.isLoggedIn);
     return (
-      <BrowserRouter>
-        <div className="App">
-          <div className="bigdiv">
-            <div className="ndiv1">
-              <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout} />
-            </div>
-
-            <div className="ndiv2">
-              <SearchBar />
-            </div>
+      <div className="App">
+        <div className="bigdiv">
+          <div className="ndiv1">
+            <Navbar isLoggedIn={this.state.isLoggedIn} logoutCallback={this.logout} />
           </div>
-          <Switch>
-            <Route path="/main/login/:name" component={Login} />
-            <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
-          </Switch>
+
+          <div className="ndiv2">
+            <SearchBar />
+          </div>
+        </div>
+        <Switch>
+          <Route path="/main/login/:name" component={Login} />
+          <Route path="/main/login" render={() => <Login loginCallback={this.login} />} />
 
           <Route exact path="/" render={(props) => <Cards {...props} />} />
           <Route path="/main/myinfo" render={() => <Myinfo loginCallback={this.login} />} />
@@ -72,8 +71,9 @@ class App extends Component {
 
           <Route path={`/search/:value`} render={(props) => <Cards {...props} />} />
           <Route path="/detail/:id" component={Detail} />
-        </div>
-      </BrowserRouter>
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     );
   }
 }
