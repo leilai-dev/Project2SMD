@@ -4,18 +4,27 @@ const Users = require('../schemas/user');
 const Items = require('../schemas/item');
 const upload = require('./fileupload');
 const multer = require('multer');
+var csrf = require('csurf');
+var csrfProtection = csrf({ cookie: true });
+
 
 module.exports = () => {
     var router = express.Router();
-    router.get('/', (req, res) => {
-        res.send('mongodb router');
+
+    router.get('/', csrfProtection, (req, res) => {
+        res.render('send', { csrfToken: req.csrfToken()});
     })
 
     // 신규 유저 생성
     router.post('/signup', (req, res) => {
-        // req.body 객체에서 바로 hasher로
+        var passwd= req.body.password
+        if(passwd == null || passwd.legnth<10)
+            return res.status(500).send('invalid password');
+
+        var check = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{10,20}$/;
+        if(!check.test(passwd)) return res.status(500).send('invalid password');
         hasher({
-            password: req.body.password
+            password: passwd
         }, (err, pass, salt, hash) => {
             if (err) {
                 console.log('ERR: ', err);
@@ -79,9 +88,8 @@ module.exports = () => {
                     res.cookie("isLoggedIn", true, { maxAge: 10 * 60 * 60 * 1000 });
                     res.json({ result: true, name: user.name, id: user._id });
                 } else {
-                    
                     console.log('패스워드가 맞지 않습니다');
-                    res.redirect('/');
+                    res.status(500).redirect('/');
                 }
             });
         });

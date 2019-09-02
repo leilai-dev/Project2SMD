@@ -18,9 +18,6 @@ class Signup extends Component {
         e.preventDefault();
 
         console.log(e.target.elements.userid.value);
-        console.log(e.target.elements.activity.value);
-        console.log(e.target.elements.tall.value);
-        console.log(e.target.elements.weight.value);
 
         const userid = e.target.elements.userid.value;
         const password = e.target.elements.password.value;
@@ -32,14 +29,20 @@ class Signup extends Component {
 
         let data = { userid, email, password ,
                     activity, tall , weight};
-        const res = await axios.post('/mongo/signup', data);
-        // console.log(res.status);
-        if (res.status === 200) {
-            this.setState({
-                isCompleted : true
-            })
-        }
-        // res.status(200)
+        await axios.post('/mongo/signup', data)
+        .then(res => {
+            // console.log(res.status);
+            if (res.status === 200) {
+                this.setState({
+                    isCompleted : true
+                })
+            }
+        })
+        .catch(error => {
+            // console.log(error.response.stnatus);
+            if(error.response.status === 500)
+                alert("Invalid password"); 
+        })
     }
 
     handleFileInput = (f) => {
@@ -60,6 +63,13 @@ class Signup extends Component {
         })
     }
 
+    csrfToken = async () => {
+        const data="";
+        await axios.get("/main/signup",data).then(res => {
+            return res.csrfToken;
+        });
+    }
+
     render() {
         return (
             <>
@@ -76,16 +86,17 @@ class Signup extends Component {
                         <br />
                         <p><h6>필수 사항</h6></p>
                         <FormGroup>
+                            <Input type="hidden" name="_csrf" value={this.csrfToken()} />
                             <Label className="sm">ID</Label>
-                            <Input className="input1" type="userid" name="userid" placeholder="Enter your new ID" />
+                            <Input className="input1" type="userid" name="userid" placeholder="Enter your new ID" required />
                         </FormGroup>
                         <FormGroup>
                             <Label className="sm">Email</Label>
-                            <Input className="input1" type="email" name="email" placeholder="Enter your E-mail" />
+                            <Input className="input1" type="email" name="email" placeholder="Enter your E-mail" required />
                         </FormGroup>
                         <FormGroup>
                             <Label className="sm">Password</Label>
-                            <Input className="input1" type="password" name="password" placeholder="Enter your passoword" />
+                            <Input className="input1" type="password" name="password" placeholder="Enter your passoword" required />
                         </FormGroup>
                         <hr />
                         <p className="md"><h6>선택 사항</h6></p>
