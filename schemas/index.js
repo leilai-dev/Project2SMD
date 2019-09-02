@@ -10,7 +10,9 @@ module.exports = () => {
         socketOptions: {
             socketTimeoutMS: 120000,
             connectTimeoutMS: 120000
-        }
+        },
+        useCreateIndex: true,
+        autoIndex: false
     }, (err) => {
         if (err) {
             console.log('mongodb 연결 오류..');
