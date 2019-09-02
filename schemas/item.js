@@ -18,6 +18,7 @@ const itemSchema = new Schema({
     natrium: Number,
     ingredi: String
 });
-itemSchema.index({ name: "text", description: "text" });
+
+itemSchema.index({ name: "text" });
 
 module.exports = mongoose.model('item', itemSchema);

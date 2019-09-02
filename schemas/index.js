@@ -7,22 +7,19 @@ module.exports = () => {
         // heroku 빌드시 mongodb uri 변경 < db유저/패스워드 관리는 어떻게?
         // mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds157857.mlab.com:57857/heroku_x7r5lscv', {
         useNewUrlParser: true,
-        socketOptions: {
-            socketTimeoutMS: 120000,
-            connectTimeoutMS: 120000
-        },
+        socketTimeoutMS: 120000,
+        connectTimeoutMS: 120000,
         useCreateIndex: true,
-        autoIndex: false
     }, (err) => {
         if (err) {
-            console.log('mongodb 연결 오류..');
+            console.log('mongodb 연결 오류..', err);
         } else {
             console.log('mongodb 연결 성공..');
         }
     });
 
     mongoose.connection.on('error', (error) => {
-        console.log('mongodb 연결 에러..');
+        console.log('mongodb 연결 에러..', error);
     });
     mongoose.connection.on('disconnected', () => {
         console.log('mongodb 연결 끊어짐');
