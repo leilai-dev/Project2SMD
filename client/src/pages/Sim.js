@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
-import Carousel from "react-multi-carousel";
-import TMPCard from './tmpCard';
 import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel";
+import Card from 'react-bootstrap/Card'
+import './sim.css'
 
-
-const responsive = {
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
-        slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-        slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-        slidesToSlide: 1, // optional, default to 1.
-    },
-};
+const nameArray = [];
 
 class Sim extends Component {
+    constructor(props) {
+        super(props);
+        this.props.data.map(data => {
+            return nameArray.push(data);
+        });
+    }
+
+    forLoop = () => {
+        let n=0;
+        let itemCard = [];
+        for ( n=0; n<nameArray.length; n++) {
+            itemCard.push(<Card className="inlinecard" style={{ width: '8rem' }}>
+            <Card.Img variant="top" src={nameArray[n].imgUrl} />
+            <Card.Body>
+                <Card.Text> {nameArray[n].name}</Card.Text>
+                {/* <Link to={`/detail/${this.props.data[n]._id}`}>Go</Link> */}
+                {/* <Button className="btn1" variant="primary" onClick={this.go.bind(this.props.data[n])}>Go</Button> */}
+            </Card.Body>
+            </Card>);
+        }
+        return itemCard;
+    }
+    
+    // go() {
+    //     console.log('이동');
+    //     console.log(this._id);
+    //     let path = "/detail/" + this._id;
+    //     return(<Link to={path}></Link>);
+    // }
 
     render() {
+        if (nameArray == null) {
+            return <span>Loading...</span>;
+        }
+        console.log(nameArray);
+
         return (
             <div>
                 <Carousel
@@ -34,7 +52,6 @@ class Sim extends Component {
                     centerMode={false}
                     containerClass="container"
                     dotListClass=""
-                    draggable
                     focusOnSelect={false}
                     infinite={false}
                     itemClass=""
@@ -68,18 +85,9 @@ class Sim extends Component {
                         }
                     }}
                     showDots={false}
-                    sliderClass=""
-                    slidesToSlide={1}
                     swipeable
                 >
-
-                    <TMPCard data={this.props.data} />
-
-                    {/* <WithStyles
-                        description="React Carousel with Server Side Rendering Support – Part 1"
-                        headline="w3js.com - web front-end studio"
-                        image="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                    />*/}
+                    {this.forLoop()}
                 </Carousel>
             </div>
         );

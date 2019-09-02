@@ -1,8 +1,6 @@
-export { default as Home } from './Home';
 export { default as Login } from './Login';
-export { default as Myinfo } from './Myinfo';
 export { default as Detail } from './Detail';
-export { default as Mylist } from './Mylist';
-export { default as TmpCard } from './tmpCard';
-export { default as Signin } from './Signin';
+export { default as Signup } from './Signup';
 export { default as Sim } from './Sim';
+export { default as Leave } from './Leave1';
+export { default as Myinfo } from './Myinfo';

@@ -12,21 +12,15 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
+    email: String,
     password: {
         type: String,
         required: true
     },
     salt: String,
-    name: String,
-    email: String,
-    extraInfo : {
-        type: Object,
-        gender: String,
-        height: Number,
-        weight: Number,
-        age: Number,
-        allergy: Array
-    },
+    activity: Number,
+    tall: Number,
+    weight: Number,
     wishlist: Array,
     createdAt: {
         type: Date,

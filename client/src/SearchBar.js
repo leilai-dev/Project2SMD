@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
-import {
-    Navbar,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButtonDropdown,
-    InputGroupDropdown,
-    FormGroup,
-    Input,
-    Button,
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
-} from 'reactstrap';
 import { Link } from "react-router-dom";
-
+import {
+    Navbar, InputGroup, InputGroupAddon, InputGroupButtonDropdown,
+    Input, Button, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -76,7 +64,7 @@ class SearchBar extends Component {
                     <Input onChange={this.updateInput} placeholder="브랜드명 또는 제품명을 입력해주세요." />
 
                     <InputGroupAddon addonType="append"><Link to={
-                        category == "전체" || category == "카테고리 선택" ? (
+                        category === "전체" || category === "카테고리 선택" ? (
                             `/search/${searchVal}`
                         ) : (
                             `/search/${searchVal}?category=${category}`

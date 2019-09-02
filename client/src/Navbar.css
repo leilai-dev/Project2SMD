@@ -23,15 +23,15 @@
     font-size: 17px; 
     padding: 20px 20px 20px 30px;
 }
-
-.input-group>.input-group-prepend>.btn {
+.input-group-append .btn, .input-group-prepend .btn {
     font-size: 17px;
     padding: 10px 20px 10px 20px;
 }
 
-.input-group>.input-group-append>.btn {
-    font-size: 17px;
-    padding: 10px 20px 10px 20px;
+.input-group-append .btn{
+    height: 60px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 a {
@@ -46,6 +46,12 @@ a:hover{
     background-color: transparent;
 }
 
+
+
 a.nav-link {
     margin: 0 5px 0 5px;
+}
+
+.dropdown-item:active {
+    background-color: transparent;
 }
