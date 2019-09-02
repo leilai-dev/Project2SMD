@@ -14,6 +14,10 @@ const item = require("./schemas/item");
 var csrf = require('csurf');
 var csrfProtection = csrf({ cookie: true });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
 // 라우터 선언
 const main = require('./routes/main')();
 const mongoRouter = require('./routes/mongoRouter')();

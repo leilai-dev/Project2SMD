@@ -18,24 +18,18 @@ export default class Album extends Component {
     this.state = {
       data: [],
       isLoaded: false,
+      searchVal: null,
+      category: null,
     }
-    // queries[0], queries[1]
-    // console.log(queries[0], queries[1]);
-    // console.log("cardlist props:", this.props);
-
   }
 
-  async componentDidMount() {
-    console.log("Mounted");
-    console.log("willUpdate:", this.props);
-    console.log(this.props.match.params);
-
+  search = async () => {
     let res;
     // 서치일경우 > /search/:value 링크로 접근시.
     if (this.props.match.params.value) {
       const split = String(this.props.location.search).split("?");
       // split[1] 값이 존재하면 카테고리 필터링 검색 수행
-      if (split[1] !== null || split[1] !== undefined) {
+      if (split[1] !== undefined && split[1] !== null) {
         const queries = String(split[1]).split("=");
         res = await axios.get(`/mongo/searchCategory/${queries[1]}/${this.props.match.params.value}`);
       } else
@@ -45,14 +39,28 @@ export default class Album extends Component {
     else {
       res = await axios.get("/mongo/itemlist");
     }
-    this.setState({ data: res.data, isLoaded: true });
-    console.log("cardlist state:", this.state);
+    console.log("success?", res.data);
+    if (!res.data.success)
+      return;
+
+    this.setState({ data: res.data.result, isLoaded: true });
+
   }
 
-  // getItems = async () => {
-  //   console.log("did getcha");
-  //   return await axios.get("/mongo/itemlist");
-  // }
+  componentDidUpdate(prevProps) {
+    console.log("update");
+
+    if (this.props.match.params !== prevProps.match.params)
+      this.search();
+  }
+
+  async componentDidMount() {
+    console.log("mount");
+    await this.setState({
+      isLoaded: false
+    })
+    await this.search();
+  }
 
   testClick = (event) => {
     console.log(event.target);

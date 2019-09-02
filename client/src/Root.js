@@ -1,10 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
+import ErrorHandler from './ErrorHandler';
 
 const Root = () => (
     <BrowserRouter>
-        <Route exact path="/" component={App}></Route>
+        <ErrorHandler>
+            <App />
+        </ErrorHandler>
     </BrowserRouter>
 );
 
