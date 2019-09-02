@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AxiosInterceptors from './AxiosInterceptors';
-import { Link } from 'react-router-dom';
+
 class ErrorHandler extends Component {
   constructor(props) {
     super(props);
