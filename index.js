@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
-
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
-const cookieparser = require('cookie-parser');
-const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const multer = require('multer'); // 파일 업로드용 모듈?
 const moment = require('moment');
 const cors = require('cors');
+const helmet= require('helmet');
 const item = require("./schemas/item");
+var csrf = require('csurf');
+var csrfProtection = csrf({ cookie: true });
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
@@ -31,7 +34,8 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
-app.use(cookieparser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(session({
   secret: '1A@W#E$E',
@@ -45,9 +49,13 @@ app.use(session({
   },
   store: new FileStore()
 }));
+app.use(csrf());
 
 // 각 유저별 세션 정보 res.locals에 저장
 app.use(function (req, res, next) {
+  var token = req.csrfToken();
+  res.cookie('XSRF-TOKEN', token);
+  res.locals.csrfToken = token;
   res.locals.user = req.session.user;
   console.log("Session user: ", res.locals.user);
   // res.cookie("name", req.session.user.name, {
@@ -56,7 +64,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
+app.use(helmet.xssFilter());
 app.use(cors());
 
 
